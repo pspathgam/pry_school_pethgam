@@ -1,0 +1,9 @@
+/* Urdu / RTL support — applied when body.urdu-mode or html[lang="ur"] */
+html[lang="ur"], body.urdu-mode {
+  direction: rtl;
+  font-family: "Noto Nastaliq Urdu", "Noto Nastaliq", serif;
+}
+
+/* minor adjustments for RTL layouts */
+body.urdu-mode .menu { text-align: right; }
+body.urdu-mode .brand { flex-direction: row-reverse; gap:10px; }
