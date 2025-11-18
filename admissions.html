@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions - Government Primary School Pethgam Wagoora</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="school-logo.png" alt="School Logo" class="school-logo">
+            <div class="school-title">Government Primary School</div>
+            <div class="school-subtitle">Pethgam Wagoora</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="results.html">Results</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="staff.html">Staff</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admissions.html" class="active">Admissions</a></li> <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-sub">
+            <h1>Admissions Open for New Session (2025-2026)</h1>
+            <p>Welcome your child to a place of foundational learning and growth.</p>
+        </section>
+
+        <section class="admission-steps">
+            <h2>Admission Process Guide</h2>
+            <ol>
+                <li>**Check Eligibility:** Review the age criteria for the desired class (Nursery to Class 5).</li>
+                <li>**Download Prospectus:** Download the official school prospectus for detailed information.</li>
+                <li>**Submit Inquiry Form:** Fill out the online inquiry form below to register interest.</li>
+                <li>**Document Verification:** Bring required documents (Birth Certificate, Address Proof, etc.) to the school office.</li>
+                <li>**Confirmation:** Receive confirmation and complete the fee payment.</li>
+            </ol>
+            <a href="#" class="cta-button" style="background-color: #2ecc71;">Download Prospectus / Application Form PDF</a>
+        </section>
+
+        <section class="online-inquiry-form">
+            <h2>Online Admission Inquiry Form</h2>
+            <p class="note">**Note:** This is an inquiry form only. Final admission requires document submission at the school office.</p>
+            
+            <form action="#" method="POST" id="admission-form">
+                
+                <div class="form-group">
+                    <label for="student-name">Student's Full Name:</label>
+                    <input type="text" id="student-name" name="student_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="class-apply">Applying for Class:</label>
+                    <select id="class-apply" name="class_apply" required>
+                        <option value="">-- Select Class --</option>
+                        <option value="Nursery">Nursery</option>
+                        <option value="Class 1">Class 1</option>
+                        <option value="Class 2">Class 2</option>
+                        <option value="Class 3">Class 3</option>
+                        <option value="Class 4">Class 4</option>
+                        <option value="Class 5">Class 5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="parent-name">Parent / Guardian Full Name:</label>
+                    <input type="text" id="parent-name" name="parent_name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Contact Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Any Specific Query (Optional):</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="cta-button submit-button">Submit Admission Inquiry</button>
+            </form>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Government Primary School Pethgam Wagoora. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
