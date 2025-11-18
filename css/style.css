@@ -1,62 +1,142 @@
-/* --- Admissions Page and Form Styles --- */
+/* ================================
+   COLOUR PALETTE (Option A)
+   Elegant + Primary School Friendly
+   ================================ */
 
-.admission-steps ol {
-    padding-left: 20px;
-    margin-bottom: 20px;
+:root {
+  --primary: #2A7FFF;        /* Soft Royal Blue */
+  --secondary: #FFC947;      /* Warm School Yellow */
+  --accent: #4CAF50;         /* Positive Green */
+  --light-bg: #F7FAFF;       /* Soft Blue-White Background */
+  --soft-card: #FFFFFF;      /* Clean White Cards */
+  --text-dark: #1E293B;      /* Slate Grey Text */
+  --text-light: #475569;     /* Light Grey Text */
 }
 
-.admission-steps ol li {
-    margin-bottom: 10px;
+/* ================================
+   GENERAL BODY
+   ================================ */
+
+body {
+  background-color: var(--light-bg);
+  color: var(--text-dark);
+  font-family: system-ui, sans-serif;
 }
 
-.online-inquiry-form {
-    background-color: #ecf0f1; /* Light grey background for the form area */
-    border: 1px solid #ddd;
+/* ================================
+   HEADER & NAVBAR
+   ================================ */
+
+header, .navbar {
+  background-color: var(--primary);
+  color: white !important;
 }
 
-.online-inquiry-form .note {
-    color: #e74c3c; /* Red note for emphasis */
-    font-weight: 600;
-    margin-bottom: 20px;
+.navbar a {
+  color: white !important;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.navbar a:hover {
+  color: var(--secondary) !important;
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #34495e;
+/* ================================
+   BUTTONS
+   ================================ */
+
+.btn, button {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border-radius: 6px;
+  transition: 0.2s;
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="tel"],
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box; /* Important for padding/width calculation */
+.btn:hover, button:hover {
+  background-color: var(--secondary) !important;
+  color: black !important;
 }
 
-.form-group textarea {
-    resize: vertical;
+/* Highlight Buttons (like “Admissions Open”) */
+.btn-highlight {
+  background-color: var(--secondary) !important;
+  color: black !important;
+  font-weight: 600;
 }
 
-.submit-button {
-    background-color: #007bff !important; /* Use primary blue for submission */
-    border: none;
-    cursor: pointer;
-    font-size: 1.1em;
-    width: 100%;
-    text-align: center;
+/* ================================
+   CARDS (Notices, Gallery, Staff, etc.)
+   ================================ */
+
+.card, .info-card {
+  background-color: var(--soft-card);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 18px;
+  border: none;
 }
 
-.submit-button:hover {
-    background-color: #0056b3 !important;
+/* ================================
+   NOTICE HIGHLIGHT (Yellow Bar)
+   ================================ */
+
+.notice-box, .announcement, .latest-notices {
+  background: white;
+  border-left: 5px solid var(--secondary);
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 10px;
+}
+
+/* ================================
+   QUICK INFO BOX
+   ================================ */
+
+.quick-info {
+  background-color: var(--light-bg);
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid #E2E8F0;
+}
+
+/* ================================
+   HEADINGS
+   ================================ */
+
+h1, h2, h3 {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+h4, h5, h6 {
+  color: var(--text-dark);
+}
+
+/* ================================
+   LINKS
+   ================================ */
+
+a {
+  color: var(--primary);
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+
+footer {
+  background-color: #1E56D9;   /* Darker Blue */
+  color: white !important;
+  padding: 20px 0;
+}
+
+footer a {
+  color: white !important;
+}
+
+footer a:hover {
+  color: var(--secondary) !important;
 }
