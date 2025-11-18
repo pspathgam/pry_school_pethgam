@@ -1,0 +1,63 @@
+/* General page styling */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #eef3f9;
+    color: #222;
+}
+
+header {
+    background: linear-gradient(135deg, #004aad, #1b65d6);
+    color: white;
+    text-align: center;
+    padding: 30px 10px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.tagline {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* Dashboard grid layout */
+.dashboard-grid {
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+/* Dashboard cards */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #222;
+    border-left: 6px solid #004aad;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Admin card styling */
+.admin-card {
+    border-left-color: #ff9800;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #004aad;
+    color: white;
+    margin-top: 30px;
+}
