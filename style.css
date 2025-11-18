@@ -1,12 +1,181 @@
 
-:root{--max-w:1000px;--accent:#2b6cb0}
-*{box-sizing:border-box}
-body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#111}
-.container{max-width:var(--max-w);margin:0 auto;padding:16px}
-.site-header{background:#f4f6fb;padding:12px 0;border-bottom:3px solid #e2e8f0}
-.logo{height:64px;vertical-align:middle;margin-right:12px}
-.site-title{display:inline-block;font-size:18px;vertical-align:middle;margin:0}
-.hero{background:#eef6ff;padding:20px;border-radius:6px;margin-bottom:12px}
-.quick-links ul{list-style:disc;margin-left:20px}
-.site-footer{font-size:14px;color:#555;padding:12px 0;border-top:1px solid #eee;margin-top:20px}
-button#lang-switch{float:right;padding:6px 10px;margin-top:6px}
+:/* ===============================
+   GLOBAL STYLES
+================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===============================
+   HEADER + NAVBAR
+================================*/
+
+header {
+    background: linear-gradient(135deg, #007bff, #0056d6);
+    padding: 20px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* Navigation */
+nav {
+    background: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+nav a {
+    text-decoration: none;
+    padding: 8px 14px;
+    background: #007bff;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #0056d6;
+}
+
+/* ===============================
+   HERO BANNER
+================================*/
+
+.hero {
+    background: url('assets/images/banner.jpg') center/cover no-repeat;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h2 {
+    background: rgba(0,0,0,0.6);
+    padding: 12px 20px;
+    color: white;
+    font-size: 22px;
+    border-radius: 8px;
+}
+
+/* ===============================
+   SCROLLING ANNOUNCEMENTS
+================================*/
+
+.marquee-box {
+    background: #ffcc00;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.marquee-text {
+    animation: scroll-left 15s linear infinite;
+    white-space: nowrap;
+    font-size: 16px;
+}
+
+@keyframes scroll-left {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+/* ===============================
+   SECTIONS
+================================*/
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+section h2 {
+    margin-bottom: 12px;
+    color: #0056d6;
+    font-size: 22px;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
+}
+
+/* ===============================
+   GALLERY
+================================*/
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* ===============================
+   FOOTER
+================================*/
+
+footer {
+    background: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ===============================
+   URDU SUPPORT
+================================*/
+
+.urdu {
+    font-family: "Noto Nastaliq Urdu", serif;
+    direction: rtl;
+    text-align: right;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================*/
+
+@media (max-width: 600px) {
+    header h1 { font-size: 22px; }
+    nav a { font-size: 12px; padding: 6px 10px; }
+    .hero h2 { font-size: 18px; }
+}
