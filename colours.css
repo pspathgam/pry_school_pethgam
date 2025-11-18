@@ -1,0 +1,13 @@
+:root {
+  --primary: #2b7cff;
+  --primary-dark: #1f5fd6;
+  --accent: #ff7a59;
+  --muted: #556070;
+  --bg: #f4f7fb;
+  --card: #ffffff;
+}
+
+a { color: var(--primary); }
+.btn { background: var(--primary); color: #fff; padding: 8px 12px; border-radius:6px; text-decoration:none; display:inline-block; }
+.small { color: var(--muted); font-size:0.9rem; }
+.card { background: var(--card); border-radius:12px; box-shadow:0 6px 20px rgba(18,24,35,0.06); padding:12px; }
