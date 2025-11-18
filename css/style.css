@@ -1,161 +1,62 @@
-/* --- Additional Styles for Modern Dashboard Look --- */
+/* --- Admissions Page and Form Styles --- */
 
-/* 1. Header and Logo Styling */
-header {
-    /* Updated background color for a vibrant look */
-    background: #1e3c72; /* Darker, professional blue */
-    padding: 10px 5%; /* Reduced padding for compact look */
+.admission-steps ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
 }
 
-.logo-container {
-    display: flex;
-    align-items: center;
+.admission-steps ol li {
+    margin-bottom: 10px;
 }
 
-.school-logo {
-    width: 40px; /* Size of the logo image */
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 50%; /* If you use a round logo */
-    /* Add a subtle shadow to the logo if desired */
+.online-inquiry-form {
+    background-color: #ecf0f1; /* Light grey background for the form area */
+    border: 1px solid #ddd;
 }
 
-.school-title {
-    font-size: 1.2em;
-    font-weight: 700;
-    line-height: 1.1;
-}
-
-.school-subtitle {
-    font-size: 0.8em;
-    font-weight: 400;
-    opacity: 0.8;
-    margin-left: 5px;
-}
-
-/* 2. Scrolling Marquee / Notification Bar */
-.marquee-container {
-    background-color: #f39c12; /* Bright, noticeable orange/yellow */
-    color: #fff;
-    padding: 8px 5%;
-    display: flex;
-    align-items: center;
-    overflow: hidden; /* Ensure content doesn't break out */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.marquee-label {
-    font-weight: bold;
-    margin-right: 15px;
-    padding-right: 15px;
-    border-right: 1px solid rgba(255, 255, 255, 0.5);
-    flex-shrink: 0; /* Prevents the label from shrinking */
-}
-
-.marquee-content {
-    /* Style for the actual scrolling text */
-    flex-grow: 1;
-    white-space: nowrap; /* Forces text to stay on one line for scrolling */
-}
-
-/* 3. Dashboard Banner */
-.main-dashboard-banner {
-    background: #34495e; /* Dark banner color */
-    color: white;
-    padding: 40px 5%;
-    text-align: center;
-    border-bottom: 5px solid #007bff;
-}
-
-.main-dashboard-banner h1 {
-    color: white;
-    margin-bottom: 5px;
-    font-size: 2.2em;
-}
-
-.main-dashboard-banner p {
-    font-size: 1em;
-    opacity: 0.8;
-}
-
-/* 4. Dashboard Grid Layout */
-.dashboard-grid {
-    display: grid;
-    gap: 20px;
-    padding-top: 20px;
-    /* Define the grid structure for larger screens */
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-        "stats stats stats"
-        "events notices results"
-        "gallery gallery gallery";
-}
-
-.stat-cards {
-    grid-area: stats;
-    display: flex;
-    gap: 20px;
-    justify-content: space-around;
-}
-
-.upcoming-events { grid-area: events; }
-.latest-notices { grid-area: notices; }
-.recent-results { grid-area: results; }
-.gallery-preview { grid-area: gallery; }
-
-/* 5. Card Styling */
-.card, .dashboard-section {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s;
-}
-
-.card:hover, .dashboard-section:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
-.stat-card {
-    flex: 1;
-    text-align: center;
-    border-left: 5px solid #007bff;
-}
-
-.stat-card p {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #2c3e50;
-    margin-top: 5px;
-}
-
-/* 6. View All Link */
-.view-all-link {
-    display: block;
-    text-align: right;
-    margin-top: 15px;
+.online-inquiry-form .note {
+    color: #e74c3c; /* Red note for emphasis */
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
-/* 7. Mobile Responsiveness */
-@media (max-width: 768px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "stats"
-            "events"
-            "notices"
-            "results"
-            "gallery";
-    }
+.form-group {
+    margin-bottom: 15px;
+}
 
-    .stat-cards {
-        flex-direction: column;
-    }
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #34495e;
+}
 
-    /* Adjust marquee on small screens */
-    .marquee-label {
-        display: none; /* Hide label to save space */
-    }
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Important for padding/width calculation */
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    background-color: #007bff !important; /* Use primary blue for submission */
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    width: 100%;
+    text-align: center;
+}
+
+.submit-button:hover {
+    background-color: #0056b3 !important;
 }
