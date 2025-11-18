@@ -140,3 +140,92 @@ footer a {
 footer a:hover {
   color: var(--secondary) !important;
 }
+/* ================================
+   COLOUR PALETTE (Option A)
+   Elegant + Primary School Friendly
+   ================================ */
+
+:root {
+  --primary: #2A7FFF;        /* Soft Royal Blue */
+  --secondary: #FFC947;      /* Warm School Yellow */
+  --accent: #4CAF50;         /* Positive Green */
+  --light-bg: #F7FAFF;       /* Soft Blue-White Background */
+  --soft-card: #FFFFFF;      /* Clean White Cards */
+  --text-dark: #1E293B;      /* Slate Grey Text */
+  --text-light: #475569;     /* Light Grey Text */
+}
+
+/* HEADER */
+header, .navbar {
+  background-color: var(--primary);
+  color: white !important;
+}
+
+.navbar a {
+  color: white !important;
+}
+
+.navbar a:hover {
+  color: var(--secondary) !important;
+}
+
+/* BUTTONS */
+.btn, button {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.btn:hover, button:hover {
+  background-color: var(--secondary) !important;
+  color: black !important;
+}
+
+/* SUBTITLE VISIBILITY FIX */
+.site-subtitle, .site-description {
+  color: white !important;
+  font-weight: 600;
+}
+
+/* CARDS */
+.card, .info-card {
+  background-color: var(--soft-card);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 18px;
+  border: none;
+}
+
+/* NOTICE / ANNOUNCEMENT BOX */
+.notice-box, .announcement, .latest-notices {
+  background: white;
+  border-left: 5px solid var(--secondary);
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  border-radius: 10px;
+}
+
+/* SCROLLING NEWS BAR */
+.scroll-news {
+  background: var(--secondary);
+  color: #000;
+  padding: 8px;
+  font-weight: 600;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+  background-color: #1E56D9;
+  color: white !important;
+}
+
+footer a {
+  color: white !important;
+}
+
+footer a:hover {
+  color: var(--secondary) !important;
+}
