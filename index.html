@@ -1,28 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Primary School Pethgam Wagoora</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GPS Pethgam Wagoora - Dashboard</title>
 
-    <!-- Link to Style -->
-    <link rel="stylesheet" href="style.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/colours.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/urdu.css">
 
-    <!-- Urdu Font (Google) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+      <div class="brand">
+        <img src="assets/images/logo.png" alt="logo" class="logo">
+        <span class="brand-title">GPS Pethgam</span>
+      </div>
 
-    <!-- HEADER -->
-    <header>
-        <h1>Government Primary School Pethgam Wagoora</h1>
-        <p>Learning • Discipline • Growth</p>
-    </header>
-
-    <!-- NAVIGATION BAR -->
-    <nav>
-        <a href="index.html">Home</a>
+      <nav class="menu">
+        <a href="index.html" class="active">Dashboard</a>
         <a href="pages/announcements.html">Announcements</a>
         <a href="pages/events.html">Events</a>
         <a href="pages/results.html">Results</a>
@@ -30,56 +30,74 @@
         <a href="pages/staff.html">Staff</a>
         <a href="pages/about.html">About</a>
         <a href="pages/contact.html">Contact</a>
-    </nav>
+        <a href="pages/admin.html" class="admin">Admin</a>
+      </nav>
 
-    <!-- HERO SECTION -->
-    <div class="hero">
-        <h2>Welcome to GPS Pethgam Wagoora</h2>
-    </div>
-
-    <!-- SCROLLING ANNOUNCEMENTS -->
-    <div class="marquee-box">
-        <div class="marquee-text">
-            🔔 Admission Open • 📢 New Events Coming Soon • 📝 Results Updated Regularly • 🎓 Quality Education for All Students
+      <div class="sidebar-footer">
+        <button id="collapseBtn" title="Collapse sidebar">☰</button>
+        <div class="lang-switch">
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ur">اردو</button>
         </div>
-    </div>
+      </div>
+    </aside>
 
-    <!-- MAIN SECTIONS -->
-    <section>
-        <h2>📢 Latest Announcements</h2>
-        <p>All important school notices and updates will be displayed here. Tap announcements page for complete list.</p>
-    </section>
-
-    <section>
-        <h2>🎉 School Events</h2>
-        <p>Annual Day, Sports Day, Cultural Programs and other events will be updated regularly.</p>
-    </section>
-
-    <section>
-        <h2>📄 Results</h2>
-        <p>Term-wise and class-wise results will be uploaded for parents and students to access online anytime.</p>
-    </section>
-
-    <section>
-        <h2>🖼️ Photo Gallery</h2>
-        <div class="gallery">
-            <img src="assets/images/sample1.jpg" alt="School Image">
-            <img src="assets/images/sample2.jpg" alt="School Image">
-            <img src="assets/images/sample3.jpg" alt="School Image">
+    <!-- MAIN -->
+    <div class="main">
+      <header class="topbar">
+        <button id="hamburger" class="hamburger">☰</button>
+        <div class="top-title">
+          <h1 id="pageTitle">Dashboard</h1>
+          <p class="school-name">Government Primary School Pethgam Wagoora</p>
         </div>
-    </section>
+        <div id="marquee" class="marquee">Loading notices...</div>
+      </header>
 
-    <section class="urdu">
-        <h2>مدرسہ کے بارے میں</h2>
-        <p>
-            گورنمنٹ پرائمری اسکول پیتھ گام واگورہ معیاری تعلیم، نظم و ضبط اور بچوں کی ہمہ جہتی ترقی کے لیے کوشاں ہے۔
-        </p>
-    </section>
+      <main class="content">
+        <section class="cards">
+          <div class="card">
+            <h3>Total Students</h3>
+            <p id="numStudents">--</p>
+          </div>
+          <div class="card">
+            <h3>Total Staff</h3>
+            <p id="numStaff">--</p>
+          </div>
+          <div class="card">
+            <h3>Upcoming Events</h3>
+            <p id="numEvents">--</p>
+          </div>
+          <div class="card">
+            <h3>Recent Results</h3>
+            <p id="numResults">--</p>
+          </div>
+        </section>
 
-    <!-- FOOTER -->
-    <footer>
-        © 2025 Government Primary School Pethgam Wagoora — All Rights Reserved
-    </footer>
+        <section class="panels">
+          <div class="panel card" id="eventsPanel">
+            <h3>Upcoming Events</h3>
+            <div id="eventsList">Loading events...</div>
+          </div>
 
+          <div class="panel card" id="noticesPanel">
+            <h3>Latest Notices</h3>
+            <div id="noticesList">Loading notices...</div>
+          </div>
+
+          <div class="panel card" id="galleryPanel">
+            <h3>Gallery Preview</h3>
+            <div id="galleryPreview">Loading gallery...</div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        © 2025 Government Primary School Pethgam Wagoora
+      </footer>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
