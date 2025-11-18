@@ -1,181 +1,36 @@
-
-:/* ===============================
-   GLOBAL STYLES
-================================*/
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", Arial, sans-serif;
+:root{
+  --bg:#f4f7fb; --card:#fff; --muted:#435068; --primary:#2b7cff; --accent:#ff7a59; --radius:12px;
 }
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:#123}
+.app{display:flex;min-height:100vh}
+.sidebar{width:260px;background:linear-gradient(180deg,#0f1724,#112233);color:#fff;padding:18px;display:flex;flex-direction:column;transition:width .25s}
+.sidebar.collapsed{width:76px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:46px;height:46px;border-radius:8px;background:#fff;padding:6px;object-fit:contain}
+.brand-title{font-weight:700}
+.menu{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.menu a{padding:10px;border-radius:8px;color:#dbeafe;text-decoration:none}
+.menu a.active{background:rgba(255,255,255,0.06)}
+.sidebar-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between}
+.lang-switch button{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff;padding:6px;border-radius:6px;margin-left:6px}
 
-body {
-    background: #f5f7fa;
-    color: #333;
-    line-height: 1.6;
-}
+.main{flex:1;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#fff;box-shadow:0 2px 6px rgba(18,24,35,0.04)}
+.hamburger{display:none}
+.top-title h1{margin:0;font-size:18px}
+.marquee{background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;padding:8px 12px;border-radius:8px}
 
-/* ===============================
-   HEADER + NAVBAR
-================================*/
+.content{padding:18px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(18,24,35,0.06)}
+.panels{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:12px}
+.panel{padding:10px}
+.site-footer{padding:14px;text-align:center;color:var(--muted);margin-top:auto;border-top:1px solid #e9eef6;background:#fff}
 
-header {
-    background: linear-gradient(135deg, #007bff, #0056d6);
-    padding: 20px;
-    color: white;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-header p {
-    font-size: 15px;
-    opacity: 0.9;
-}
-
-/* Navigation */
-nav {
-    background: #ffffff;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    border-bottom: 2px solid #e5e5e5;
-}
-
-nav a {
-    text-decoration: none;
-    padding: 8px 14px;
-    background: #007bff;
-    color: #fff;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    background: #0056d6;
-}
-
-/* ===============================
-   HERO BANNER
-================================*/
-
-.hero {
-    background: url('assets/images/banner.jpg') center/cover no-repeat;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero h2 {
-    background: rgba(0,0,0,0.6);
-    padding: 12px 20px;
-    color: white;
-    font-size: 22px;
-    border-radius: 8px;
-}
-
-/* ===============================
-   SCROLLING ANNOUNCEMENTS
-================================*/
-
-.marquee-box {
-    background: #ffcc00;
-    padding: 10px;
-    margin: 15px;
-    border-radius: 6px;
-    font-weight: 600;
-    overflow: hidden;
-}
-
-.marquee-text {
-    animation: scroll-left 15s linear infinite;
-    white-space: nowrap;
-    font-size: 16px;
-}
-
-@keyframes scroll-left {
-    from { transform: translateX(100%); }
-    to { transform: translateX(-100%); }
-}
-
-/* ===============================
-   SECTIONS
-================================*/
-
-section {
-    margin: 20px;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-section h2 {
-    margin-bottom: 12px;
-    color: #0056d6;
-    font-size: 22px;
-    border-left: 5px solid #007bff;
-    padding-left: 10px;
-}
-
-/* ===============================
-   GALLERY
-================================*/
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 10px;
-}
-
-.gallery img {
-    width: 100%;
-    border-radius: 8px;
-    transition: 0.3s;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-}
-
-/* ===============================
-   FOOTER
-================================*/
-
-footer {
-    background: #007bff;
-    color: white;
-    padding: 15px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* ===============================
-   URDU SUPPORT
-================================*/
-
-.urdu {
-    font-family: "Noto Nastaliq Urdu", serif;
-    direction: rtl;
-    text-align: right;
-}
-
-/* ===============================
-   MOBILE RESPONSIVE
-================================*/
-
-@media (max-width: 600px) {
-    header h1 { font-size: 22px; }
-    nav a { font-size: 12px; padding: 6px 10px; }
-    .hero h2 { font-size: 18px; }
+@media(max-width:900px){
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .panels{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;height:100vh;z-index:50}
+  .hamburger{display:inline-block}
 }
