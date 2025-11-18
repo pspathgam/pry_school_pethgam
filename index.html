@@ -64,6 +64,121 @@
       color: white;
       margin-top: 20px;
     }
+     /* ===========================================
+   CHILD-FRIENDLY PRIMARY SCHOOL THEME (PASTEL)
+   =========================================== */
+
+:root {
+  --primary: #4A90E2;       /* Sky Blue - Main Color */
+  --secondary: #F9D342;     /* Friendly Yellow */
+  --accent-green: #4CAF50;  /* Fresh Green */
+  --accent-red: #FF6F61;    /* Soft Warm Red */
+  --light-bg: #F4FBFF;      /* Light Mint Blue Background */
+  --card-bg: #FFFFFF;       /* Clean White Cards */
+  --text-dark: #1F2D3D;     /* Slate Grey Text */
+}
+
+
+/* ======== BODY ======== */
+body {
+  background-color: var(--light-bg) !important;
+  color: var(--text-dark);
+  font-family: "Nunito", sans-serif;
+}
+
+
+/* ======== HEADER + NAVBAR ======== */
+header, .navbar {
+  background-color: var(--primary) !important;
+  color: white !important;
+}
+
+.navbar a {
+  color: white !important;
+}
+
+.navbar a:hover {
+  color: var(--secondary) !important;
+}
+
+
+/* ======== BUTTONS ======== */
+button, .btn, .btn-primary {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+button:hover, .btn:hover {
+  background-color: var(--secondary) !important;
+  color: black !important;
+}
+
+/* Red animated buttons */
+.btn-red {
+  background-color: var(--accent-red) !important;
+  color: white !important;
+}
+
+.btn-red:hover {
+  background-color: #ff8a7a !important;
+}
+
+
+/* ======== CARDS ======== */
+.card, .info-card, .notice-box {
+  background-color: var(--card-bg);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+
+/* ======== NOTICES / ANNOUNCEMENTS ======== */
+.notice-box {
+  border-left: 6px solid var(--secondary);
+}
+
+.announcement-title {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+
+/* ======== SUBTITLE FIX (Nursery to 5th Visibility) ======== */
+.site-subtitle,
+.site-description {
+  color: white !important;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+
+/* ======== SCROLLING NEWS BAR ======== */
+.scroll-news {
+  background-color: var(--secondary) !important;
+  color: black !important;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+
+/* ======== FOOTER ======== */
+footer {
+  background-color: #357ABD; /* Slightly darker blue */
+  color: white !important;
+}
+
+footer a {
+  color: white !important;
+}
+
+footer a:hover {
+  color: var(--secondary) !important;
+}
   </style>
 </head>
 <body>
