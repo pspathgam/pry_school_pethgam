@@ -1,63 +1,87 @@
-/* General page styling */
+/* GENERAL PAGE STYLE */
 body {
-    margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #eef3f9;
-    color: #222;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #f5f7fa;
 }
 
 header {
-    background: linear-gradient(135deg, #004aad, #1b65d6);
-    color: white;
-    text-align: center;
-    padding: 30px 10px;
+  background: #004aad;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 28px;
-    font-weight: 700;
+/* NAVIGATION BAR */
+nav {
+  width: 100%;
+  background: #003a84;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.tagline {
-    font-size: 16px;
-    opacity: 0.9;
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 8px 15px;
+  font-weight: 600;
 }
 
-/* Dashboard grid layout */
-.dashboard-grid {
-    display: grid;
-    padding: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 20px;
+nav a:hover {
+  text-decoration: underline;
 }
 
-/* Dashboard cards */
+/* DASHBOARD SECTIONS */
+.section {
+  background: white;
+  margin: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+  margin: 0 0 10px 0;
+  color: #004aad;
+}
+
+/* GRID BLOCKS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
 .card {
-    background: white;
-    padding: 25px;
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-    text-decoration: none;
-    color: #222;
-    border-left: 6px solid #004aad;
-    transition: 0.3s ease;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+  text-align: center;
+  border-left: 5px solid #004aad;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+.card h3 {
+  margin: 0;
+  color: #004aad;
+  font-size: 22px;
 }
 
-/* Admin card styling */
-.admin-card {
-    border-left-color: #ff9800;
+.card p {
+  font-size: 18px;
+  margin-top: 10px;
 }
 
+/* FOOTER */
 footer {
-    text-align: center;
-    padding: 20px;
-    background: #004aad;
-    color: white;
-    margin-top: 30px;
+  text-align: center;
+  padding: 20px;
+  background: #003a84;
+  color: white;
+  margin-top: 20px;
 }
