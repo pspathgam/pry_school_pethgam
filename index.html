@@ -1,103 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GPS Pethgam Wagoora - Dashboard</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="css/colours.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/urdu.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Government Primary School Pethgam Wagoora</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="app">
-    <!-- SIDEBAR -->
-    <aside id="sidebar" class="sidebar">
-      <div class="brand">
-        <img src="assets/images/logo.png" alt="logo" class="logo">
-        <span class="brand-title">GPS Pethgam</span>
-      </div>
 
-      <nav class="menu">
-        <a href="index.html" class="active">Dashboard</a>
-        <a href="pages/announcements.html">Announcements</a>
-        <a href="pages/events.html">Events</a>
-        <a href="pages/results.html">Results</a>
-        <a href="pages/gallery.html">Gallery</a>
-        <a href="pages/staff.html">Staff</a>
-        <a href="pages/about.html">About</a>
-        <a href="pages/contact.html">Contact</a>
-        <a href="pages/admin.html" class="admin">Admin</a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <button id="collapseBtn" title="Collapse sidebar">☰</button>
-        <div class="lang-switch">
-          <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="ur">اردو</button>
+    <header>
+        <div class="logo-container">
+            <img src="school-logo.png" alt="School Logo" class="school-logo">
+            <div class="school-title">Government Primary School</div>
+            <div class="school-subtitle">Pethgam Wagoora</div>
         </div>
-      </div>
-    </aside>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Dashboard</a></li>
+                <li><a href="announcements.html">Announcements</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="results.html">Results</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="staff.html">Staff</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- MAIN -->
-    <div class="main">
-      <header class="topbar">
-        <button id="hamburger" class="hamburger">☰</button>
-        <div class="top-title">
-          <h1 id="pageTitle">Dashboard</h1>
-          <p class="school-name">Government Primary School Pethgam Wagoora</p>
-        </div>
-        <div id="marquee" class="marquee">Loading notices...</div>
-      </header>
-
-      <main class="content">
-        <section class="cards">
-          <div class="card">
-            <h3>Total Students</h3>
-            <p id="numStudents">--</p>
-          </div>
-          <div class="card">
-            <h3>Total Staff</h3>
-            <p id="numStaff">--</p>
-          </div>
-          <div class="card">
-            <h3>Upcoming Events</h3>
-            <p id="numEvents">--</p>
-          </div>
-          <div class="card">
-            <h3>Recent Results</h3>
-            <p id="numResults">--</p>
-          </div>
-        </section>
-
-        <section class="panels">
-          <div class="panel card" id="eventsPanel">
-            <h3>Upcoming Events</h3>
-            <div id="eventsList">Loading events...</div>
-          </div>
-
-          <div class="panel card" id="noticesPanel">
-            <h3>Latest Notices</h3>
-            <div id="noticesList">Loading notices...</div>
-          </div>
-
-          <div class="panel card" id="galleryPanel">
-            <h3>Gallery Preview</h3>
-            <div id="galleryPreview">Loading gallery...</div>
-          </div>
-        </section>
-      </main>
-
-      <footer class="site-footer">
-        © 2025 Government Primary School Pethgam Wagoora
-      </footer>
+    <div class="marquee-container">
+        <span class="marquee-label">🔔 LATEST NEWS:</span>
+        <marquee direction="left" scrollamount="5" class="marquee-content">
+            **New Admission forms available from March 1st!** | Parent-Teacher Meeting on December 5th. | Annual Sports Day postponed to next week. Check announcements page for details.
+        </marquee>
     </div>
-  </div>
 
-  <!-- JS -->
-  <script src="js/dashboard.js"></script>
+    <div class="main-dashboard-banner">
+        <h1>Dashboard</h1>
+        <p>Government Primary School Pethgam Wagoora - Smart Overview</p>
+    </div>
+
+    <main class="dashboard-grid">
+        
+        <section class="stat-cards">
+            <div class="card stat-card total-students">
+                <h3>Total Students</h3>
+                <p id="total-students">Loading...</p>
+            </div>
+            <div class="card stat-card total-staff">
+                <h3>Total Staff</h3>
+                <p id="total-staff">Loading...</p>
+            </div>
+        </section>
+
+        <section class="dashboard-section upcoming-events">
+            <h2>Upcoming Events</h2>
+            <div id="events-list">Loading events...</div>
+        </section>
+
+        <section class="dashboard-section recent-results">
+            <h2>Recent Results</h2>
+            <div id="results-data">Loading results...</div>
+        </section>
+
+        <section class="dashboard-section latest-notices">
+            <h2>Latest Notices</h2>
+            <div id="notices-list">Loading notices...</div>
+            <a href="announcements.html" class="view-all-link">View All Notices →</a>
+        </section>
+
+        <section class="dashboard-section gallery-preview">
+            <h2>Gallery Preview</h2>
+            <div id="gallery-placeholder">Loading gallery...</div>
+            <a href="gallery.html" class="view-all-link">View Full Gallery →</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 Government Primary School Pethgam Wagoora. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> 
 </body>
 </html>
