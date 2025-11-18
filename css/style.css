@@ -1,36 +1,161 @@
-:root{
-  --bg:#f4f7fb; --card:#fff; --muted:#435068; --primary:#2b7cff; --accent:#ff7a59; --radius:12px;
+/* --- Additional Styles for Modern Dashboard Look --- */
+
+/* 1. Header and Logo Styling */
+header {
+    /* Updated background color for a vibrant look */
+    background: #1e3c72; /* Darker, professional blue */
+    padding: 10px 5%; /* Reduced padding for compact look */
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:#123}
-.app{display:flex;min-height:100vh}
-.sidebar{width:260px;background:linear-gradient(180deg,#0f1724,#112233);color:#fff;padding:18px;display:flex;flex-direction:column;transition:width .25s}
-.sidebar.collapsed{width:76px}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{width:46px;height:46px;border-radius:8px;background:#fff;padding:6px;object-fit:contain}
-.brand-title{font-weight:700}
-.menu{margin-top:18px;display:flex;flex-direction:column;gap:8px}
-.menu a{padding:10px;border-radius:8px;color:#dbeafe;text-decoration:none}
-.menu a.active{background:rgba(255,255,255,0.06)}
-.sidebar-footer{margin-top:auto;display:flex;align-items:center;justify-content:space-between}
-.lang-switch button{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff;padding:6px;border-radius:6px;margin-left:6px}
 
-.main{flex:1;display:flex;flex-direction:column}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#fff;box-shadow:0 2px 6px rgba(18,24,35,0.04)}
-.hamburger{display:none}
-.top-title h1{margin:0;font-size:18px}
-.marquee{background:linear-gradient(90deg,var(--primary),var(--accent));color:#fff;padding:8px 12px;border-radius:8px}
+.logo-container {
+    display: flex;
+    align-items: center;
+}
 
-.content{padding:18px}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.card{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(18,24,35,0.06)}
-.panels{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:12px}
-.panel{padding:10px}
-.site-footer{padding:14px;text-align:center;color:var(--muted);margin-top:auto;border-top:1px solid #e9eef6;background:#fff}
+.school-logo {
+    width: 40px; /* Size of the logo image */
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%; /* If you use a round logo */
+    /* Add a subtle shadow to the logo if desired */
+}
 
-@media(max-width:900px){
-  .cards{grid-template-columns:repeat(2,1fr)}
-  .panels{grid-template-columns:1fr}
-  .sidebar{position:fixed;left:0;top:0;height:100vh;z-index:50}
-  .hamburger{display:inline-block}
+.school-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.school-subtitle {
+    font-size: 0.8em;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-left: 5px;
+}
+
+/* 2. Scrolling Marquee / Notification Bar */
+.marquee-container {
+    background-color: #f39c12; /* Bright, noticeable orange/yellow */
+    color: #fff;
+    padding: 8px 5%;
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Ensure content doesn't break out */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.marquee-label {
+    font-weight: bold;
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    flex-shrink: 0; /* Prevents the label from shrinking */
+}
+
+.marquee-content {
+    /* Style for the actual scrolling text */
+    flex-grow: 1;
+    white-space: nowrap; /* Forces text to stay on one line for scrolling */
+}
+
+/* 3. Dashboard Banner */
+.main-dashboard-banner {
+    background: #34495e; /* Dark banner color */
+    color: white;
+    padding: 40px 5%;
+    text-align: center;
+    border-bottom: 5px solid #007bff;
+}
+
+.main-dashboard-banner h1 {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 2.2em;
+}
+
+.main-dashboard-banner p {
+    font-size: 1em;
+    opacity: 0.8;
+}
+
+/* 4. Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    gap: 20px;
+    padding-top: 20px;
+    /* Define the grid structure for larger screens */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+        "stats stats stats"
+        "events notices results"
+        "gallery gallery gallery";
+}
+
+.stat-cards {
+    grid-area: stats;
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.upcoming-events { grid-area: events; }
+.latest-notices { grid-area: notices; }
+.recent-results { grid-area: results; }
+.gallery-preview { grid-area: gallery; }
+
+/* 5. Card Styling */
+.card, .dashboard-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.card:hover, .dashboard-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card {
+    flex: 1;
+    text-align: center;
+    border-left: 5px solid #007bff;
+}
+
+.stat-card p {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 5px;
+}
+
+/* 6. View All Link */
+.view-all-link {
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+/* 7. Mobile Responsiveness */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "stats"
+            "events"
+            "notices"
+            "results"
+            "gallery";
+    }
+
+    .stat-cards {
+        flex-direction: column;
+    }
+
+    /* Adjust marquee on small screens */
+    .marquee-label {
+        display: none; /* Hide label to save space */
+    }
 }
