@@ -1,13 +1,13 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
 }
 
 body {
-    background: #f4faff;
-    color: #222;
+    background: #f0f8ff;
+    color: #333;
 }
 
 /* HEADER */
@@ -21,32 +21,30 @@ body {
 
 .header .sub-heading {
     background: #ffeb3b;
-    display: inline-block;
-    padding: 4px 12px;
+    padding: 6px 14px;
     margin-top: 10px;
+    display: inline-block;
+    font-weight: bold;
     border-radius: 6px;
-    font-weight: 700;
 }
 
-/* MENU BUTTONS LIKE KEYBOARD KEYS */
+/* MENU */
 .menu {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     background: #fff3cd;
     padding: 15px;
+    text-align: center;
 }
 
 .menu a {
+    display: inline-block;
     margin: 8px;
-    padding: 12px 18px;
+    padding: 12px 20px;
     background: #4caf50;
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 10px;
+    border-bottom: 4px solid #2e7d32;
     font-weight: bold;
-    border: 2px solid #2e7d32;
-    box-shadow: 0 4px 0 #2e7d32;
 }
 
 .menu a:hover {
@@ -59,15 +57,16 @@ body {
     color: black;
     padding: 8px;
     font-weight: bold;
+    font-size: 16px;
 }
 
-/* SECTION STYLE */
+/* SECTIONS */
 .section {
-    padding: 25px;
-    margin: 20px;
     background: white;
+    margin: 20px;
+    padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* STAFF */
@@ -79,40 +78,62 @@ body {
 
 .staff-card {
     background: #e3f2fd;
-    padding: 15px;
     width: 150px;
     text-align: center;
+    padding: 10px;
     border-radius: 10px;
 }
 
 .staff-card img {
     width: 100%;
-    border-radius: 8px;
-    background: #bbdefb;
     height: 120px;
+    background: #bbdefb;
+    border-radius: 10px;
 }
 
 /* LOGIN BUTTONS */
 .login-section {
     text-align: center;
-    margin: 30px 0;
+    margin-top: 20px;
 }
 
 .login-btn {
-    display: inline-block;
-    padding: 12px 18px;
-    background: #673ab7;
-    color: white;
-    margin: 8px;
-    border-radius: 6px;
+    padding: 12px 20px;
+    margin: 10px;
+    border-radius: 8px;
     font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.student {
+    background: #0288d1;
+}
+
+.teacher {
+    background: #7b1fa2;
+}
+
+.hoi {
+    background: #e64a19;
+}
+
+/* UPDATE PANEL */
+.update-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #ff5722;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 10px;
 }
 
 /* FOOTER */
 footer {
     text-align: center;
-    padding: 20px;
     background: #1976d2;
+    padding: 18px;
     color: white;
-    margin-top: 40px;
+    margin-top: 30px;
 }
