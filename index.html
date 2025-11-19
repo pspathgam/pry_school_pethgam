@@ -9,6 +9,149 @@
 <link rel="stylesheet" href="css/style.css">
 
 </head>
+    <script>
+// Popup controls
+function openForm() {
+  const popup = document.getElementById('formPopup');
+  popup.style.display = 'flex';
+  popup.setAttribute('aria-hidden', 'false');
+  // Reset form view
+  document.getElementById('admissionForm').reset();
+  document.getElementById('photoPreview').style.display = 'none';
+  document.getElementById('successBox').style.display = 'none';
+}
+
+function closeForm() {
+  document.getElementById('formPopup').style.display = 'none';
+  document.getElementById('formPopup').setAttribute('aria-hidden', 'true');
+}
+
+// Photo preview
+function previewPhoto(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = document.getElementById('previewImg');
+    img.src = e.target.result;
+    document.getElementById('photoPreview').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+// Handle form submit (shows success and keeps form data for PDF)
+function handleSubmit(e) {
+  e.preventDefault();
+  // Basic validation: required fields
+  const name = document.getElementById('studentName').value.trim();
+  const contact = document.getElementById('contact').value.trim();
+  const dob = document.getElementById('dob').value;
+  const applyClass = document.getElementById('applyClass').value;
+
+  if (!name || !contact || !dob || !applyClass) {
+    alert('Please fill required fields: Name, DOB, Class and Contact.');
+    return;
+  }
+
+  // Show success box
+  document.getElementById('successBox').style.display = 'block';
+
+  // Optionally auto-close form after a delay:
+  // setTimeout(closeForm, 1200);
+}
+
+// PDF generation (reads fields and inserted photo)
+function generateAdmissionPDF() {
+  // Use jsPDF from window.jspdf
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
+  const margin = 36;
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const usableWidth = pageWidth - margin * 2;
+
+  // Gather form data
+  const form = document.getElementById('admissionForm');
+  const formData = new FormData(form);
+  const entries = {};
+  formData.forEach((v,k) => entries[k] = v);
+
+  // Page 1 - Student Details
+  // Draw elegant border (simple rectangle)
+  pdf.setLineWidth(1.2);
+  pdf.rect(margin/2, margin/2, pageWidth - margin, pdf.internal.pageSize.getHeight() - margin, 'S');
+
+  pdf.setFontSize(16);
+  pdf.text('GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA', pageWidth/2, 60, { align: 'center' });
+
+  pdf.setFontSize(12);
+  let y = 100;
+  const lineGap = 18;
+
+  const leftColX = margin + 6;
+  const rightColX = pageWidth/2 + 10;
+
+  pdf.text(`Student Name: ${entries.studentName || ''}`, leftColX, y);
+  pdf.text(`Father's Name: ${entries.fatherName || ''}`, rightColX, y);
+  y += lineGap;
+  pdf.text(`Mother's Name: ${entries.motherName || ''}`, leftColX, y);
+  pdf.text(`Date of Birth: ${entries.dob || ''}`, rightColX, y);
+  y += lineGap;
+  pdf.text(`Gender: ${entries.gender || ''}`, leftColX, y);
+  pdf.text(`Applying For Class: ${entries.applyClass || ''}`, rightColX, y);
+  y += lineGap;
+  pdf.text(`Contact: ${entries.contact || ''}`, leftColX, y);
+  pdf.text(`Aadhaar: ${entries.aadhaar || ''}`, rightColX, y);
+  y += lineGap;
+  // Address - wrap text
+  pdf.text('Address:', leftColX, y);
+  const address = entries.address || '';
+  const splitAddr = pdf.splitTextToSize(address, usableWidth - 20);
+  pdf.text(splitAddr, leftColX, y + lineGap);
+  y += lineGap * (splitAddr.length + 1);
+
+  // Previous school
+  pdf.text(`Previous School: ${entries.prevSchool || ''}`, leftColX, y);
+  y += lineGap * 1.2;
+
+  // Insert photo if available (preview image element holds dataURL)
+  const previewImg = document.getElementById('previewImg');
+  if (previewImg && previewImg.src) {
+    // calculate size and position (top-right)
+    const imgW = 110;
+    const imgH = 140;
+    pdf.addImage(previewImg.src, 'JPEG', pageWidth - margin - imgW, 110, imgW, imgH);
+  }
+
+  // Footer sign boxes
+  const footerY = pdf.internal.pageSize.getHeight() - 120;
+  pdf.setLineWidth(0.5);
+  pdf.text('Parent/Guardian Signature', leftColX, footerY);
+  pdf.text('Head of Institution', pageWidth - margin - 140, footerY);
+  pdf.line(leftColX, footerY + 6, leftColX + 180, footerY + 6); // parent sign line
+  pdf.line(pageWidth - margin - 220, footerY + 6, pageWidth - margin - 20, footerY + 6); // hoi line
+
+  // Page 2 - APAAR / Consent / Declaration
+  pdf.addPage();
+  pdf.setFontSize(16);
+  pdf.text('APAAR Consent & Declaration (Page 2)', pageWidth/2, 60, { align: 'center' });
+  pdf.setFontSize(12);
+
+  const consentText = [
+    'I hereby declare that the information provided above is true to the best of my knowledge.',
+    'I agree to abide by school rules and provide required documents when asked.',
+    'I give consent for Aadhaar/identification verification if required by authorities.'
+  ];
+  let ty = 110;
+  consentText.forEach(line => {
+    const spl = pdf.splitTextToSize(line, usableWidth);
+    pdf.text(spl, margin + 10, ty);
+    ty += lineGap * (spl.length + 0.6);
+  });
+
+  // Save PDF
+  pdf.save('Admission_Form_GPS_Pethgam.pdf');
+}
+    </script>
 <body>
 
 <header class="header">
@@ -84,28 +227,86 @@
     </div>
 
   </div>
-</section>
-
-<!-- POPUP FORM -->
-<div id="formPopup">
+<!-- POPUP FORM (REPLACE OLD POPUP WITH THIS) -->
+<div id="formPopup" aria-hidden="true">
   <div class="form-box">
 
-    <h3>Admission Form</h3>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <h3 style="margin:0">Admission Form</h3>
+      <button type="button" onclick="closeForm()" style="background:#d9534f;color:#fff;border:none;padding:6px 10px;border-radius:8px;cursor:pointer;">✖ Close</button>
+    </div>
 
-    <input type="text" id="studentName" placeholder="Student Full Name">
-    <input type="text" id="fatherName" placeholder="Father's Name">
-    <input type="text" id="motherName" placeholder="Mother's Name">
-    <input type="text" id="dob" placeholder="Date of Birth (DD/MM/YYYY)">
-    <input type="text" id="contact" placeholder="Parent Contact Number">
+    <!-- The main form -->
+    <form id="admissionForm" onsubmit="handleSubmit(event)">
+      <label>Student Full Name</label>
+      <input type="text" id="studentName" name="studentName" placeholder="Full name" required>
 
-    <label>Upload Photo:</label>
-    <input type="file" id="photoUpload" accept="image/*">
+      <label>Father's Name</label>
+      <input type="text" id="fatherName" name="fatherName" placeholder="Father's name" required>
 
-    <div class="btn" onclick="submitForm()">Submit Now</div>
+      <label>Mother's Name</label>
+      <input type="text" id="motherName" name="motherName" placeholder="Mother's name">
 
-    <div class="success-box" id="successBox">
-      <p class="success-text">✔ Submitted Successfully</p>
-      <div class="btn" onclick="generatePDF()">Download Now</div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+        <div>
+          <label>Date of Birth</label>
+          <input type="date" id="dob" name="dob" required>
+        </div>
+        <div>
+          <label>Gender</label>
+          <select id="gender" name="gender">
+            <option value="">Select</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Applying For Class</label>
+      <select id="applyClass" name="applyClass" required>
+        <option value="">Select Class</option>
+        <option>Nursery</option>
+        <option>KG</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+
+      <label>Address</label>
+      <textarea id="address" name="address" rows="2" placeholder="Permanent address"></textarea>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+        <div>
+          <label>Parent Contact</label>
+          <input type="tel" id="contact" name="contact" placeholder="10-digit number" required>
+        </div>
+        <div>
+          <label>Aadhaar (if any)</label>
+          <input type="text" id="aadhaar" name="aadhaar" placeholder="Aadhaar number">
+        </div>
+      </div>
+
+      <label>Previous School (if any)</label>
+      <input type="text" id="prevSchool" name="prevSchool" placeholder="Previous school name">
+
+      <label>Upload Photo (mobile gallery)</label>
+      <input type="file" id="photoUpload" name="photo" accept="image/*" onchange="previewPhoto(event)">
+
+      <div id="photoPreview" style="margin-top:8px; display:none;">
+        <small>Photo preview:</small>
+        <img id="previewImg" src="" alt="photo preview" style="width:100px; height:120px; object-fit:cover; border-radius:8px; display:block; margin-top:6px; border:1px solid #ccc;">
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Now</button>
+    </form>
+
+    <!-- Success box (hidden initially) -->
+    <div class="success-box" id="successBox" style="text-align:center; margin-top:12px;">
+      <p class="success-text" style="font-size:18px;">✔ Submitted Successfully</p>
+      <button class="btn" id="downloadBtn" onclick="generateAdmissionPDF()" style="margin-top:6px;">Download Now</button>
     </div>
 
   </div>
@@ -234,3 +435,16 @@ function downloadPDF() {
 </script>
 </body>
 </html>
+<script>
+function openForm() {
+  document.getElementById("formPopup").style.display = "flex";
+}
+
+function submitForm() {
+  document.getElementById("successBox").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("formPopup").style.display = "none";
+}
+</script>
