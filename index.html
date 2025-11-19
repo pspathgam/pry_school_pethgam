@@ -1,4 +1,91 @@
          <!DOCTYPE html>
+<style>
+/* ---------- FORCE-APPLY: colourful child-friendly theme ---------- */
+:root{
+  --sky-blue: #4fa7ff;
+  --sun-yellow: #ffdd57;
+  --grass-green: #44c767;
+  --soft-red: #ff6f61;
+  --dark-blue: #003b8b;
+  --text-dark: #061625;
+  --page-bg: #f0f8ff;
+  --card-bg: #ffffff;
+}
+
+/* Global override */
+html,body { background: var(--page-bg) !important; color: var(--text-dark) !important; font-family: "Poppins", Arial, sans-serif !important; }
+
+/* Header */
+header, .topbar, .site-header {
+  background: linear-gradient(90deg, var(--sky-blue), #2e93ff) !important;
+  color: black !important;
+  padding: 18px !important;
+  text-align:center !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12) !important;
+}
+
+/* Title & subtitle pill so black text is readable on blue */
+.site-title, header h1 { color: black !important; font-weight:900 !important; font-size:22px !important; }
+.site-subtitle-pill {
+  display:inline-block !important;
+  background: #ffffff !important;
+  color: #000 !important;
+  padding:6px 12px !important;
+  border-radius:12px !important;
+  font-weight:700 !important;
+  box-shadow:0 3px 8px rgba(0,0,0,0.12) !important;
+  margin-top:8px !important;
+}
+
+/* Navbar links */
+nav, .navbar, .menu { background: transparent !important; }
+nav a, .navbar a { color: #032b6e !important; font-weight:700 !important; text-decoration:none !important; }
+nav a:hover { color: var(--soft-red) !important; }
+
+/* Notice bar */
+.notice-strip {
+  background: var(--grass-green) !important;
+  color: #fff !important;
+  padding:10px 12px !important;
+  font-weight:700 !important;
+  overflow:hidden !important;
+  white-space:nowrap !important;
+}
+
+/* Cards / sections */
+.card, .section, .panel, .box {
+  background: var(--card-bg) !important;
+  border-radius:14px !important;
+  padding:16px !important;
+  margin:16px !important;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06) !important;
+  border: none !important;
+}
+
+/* Section headers */
+.section-title, h2 { color: var(--dark-blue) !important; font-weight:800 !important; }
+
+/* Staff cards */
+.staff-grid { display:grid !important; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) !important; gap:12px !important; }
+.staff-card { background:var(--card-bg) !important; border-left:8px solid var(--sun-yellow) !important; text-align:center !important; padding:12px !important; border-radius:10px !important; }
+
+/* Buttons */
+button, .btn, a.button { background: var(--soft-red) !important; color:#fff !important; padding:10px 14px !important; border-radius:8px !important; text-decoration:none !important; border:none !important; font-weight:700 !important; }
+button:hover, a.button:hover { background:#ff4f41 !important; }
+
+/* Footer */
+footer, .site-footer { background: var(--dark-blue) !important; color:#fff !important; padding:14px !important; text-align:center !important; }
+
+/* Ensure links inside cards show the theme */
+.card a { color: var(--sky-blue) !important; font-weight:700 !important; }
+.card a:hover { color: var(--soft-red) !important; }
+
+/* responsive tweaks */
+@media (max-width:700px){
+  .site-title { font-size:18px !important; }
+  .site-subtitle-pill { font-size:13px !important; padding:5px 10px !important; }
+}
+</style>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
