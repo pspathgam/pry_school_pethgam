@@ -1,480 +1,133 @@
-   <!--
-  GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA
-  Single-file, completely free, ready-to-deploy website
-  - Save this as index.html and push to a GitHub repository (branch: main) to host on GitHub Pages for free
-  - How to deploy (quick):
-      1. Create a new GitHub repo (e.g. ps-pethgam-wagoora)
-      2. Add this index.html to the repo root and commit to the main branch
-      3. In the repo: Settings -> Pages -> Source -> Branch: main /root -> Save
-      4. After a minute your site will be at https://<your-username>.github.io/<repo-name>/
-  - Replace placeholders (<!-- REPLACE -->) with your real images/text
-  - This single-file site uses only HTML/CSS/vanilla JS — no server, no cost.
-  - Tips: store photos in /assets/ and reference them (or use GitHub repo images via raw.githubusercontent.com links)
--->
-
-<!doctype html>
+         <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Government Primary School Pethgam Wagoora</title>
-  <meta name="description" content="Government Primary School Pethgam Wagoora - Quality education for every child">
-  <link rel="icon" href="favicon.ico">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(135deg, #004aad, #0074d9);
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background: #003b8e;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 20px;
-      margin: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
-    h2 {
-      color: #004aad;
-    }
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #003b8e;
-      color: white;
-      margin-top: 20px;
-    }
-     /* ===========================================
-   CHILD-FRIENDLY PRIMARY SCHOOL THEME (PASTEL)
-   =========================================== */
-
-:root {
-  --primary: #4A90E2;       /* Sky Blue - Main Color */
-  --secondary: #F9D342;     /* Friendly Yellow */
-  --accent-green: #4CAF50;  /* Fresh Green */
-  --accent-red: #FF6F61;    /* Soft Warm Red */
-  --light-bg: #F4FBFF;      /* Light Mint Blue Background */
-  --card-bg: #FFFFFF;       /* Clean White Cards */
-  --text-dark: #1F2D3D;     /* Slate Grey Text */
-}
-
-
-/* ======== BODY ======== */
-body {
-  background-color: var(--light-bg) !important;
-  color: var(--text-dark);
-  font-family: "Nunito", sans-serif;
-}
-
-
-/* ======== HEADER + NAVBAR ======== */
-header, .navbar {
-  background-color: var(--primary) !important;
-  color: white !important;
-}
-
-.navbar a {
-  color: white !important;
-}
-
-.navbar a:hover {
-  color: var(--secondary) !important;
-}
-
-
-/* ======== BUTTONS ======== */
-button, .btn, .btn-primary {
-  background-color: var(--primary) !important;
-  color: white !important;
-  border-radius: 8px;
-  transition: 0.2s;
-}
-
-button:hover, .btn:hover {
-  background-color: var(--secondary) !important;
-  color: black !important;
-}
-
-/* Red animated buttons */
-.btn-red {
-  background-color: var(--accent-red) !important;
-  color: white !important;
-}
-
-.btn-red:hover {
-  background-color: #ff8a7a !important;
-}
-
-
-/* ======== CARDS ======== */
-.card, .info-card, .notice-box {
-  background-color: var(--card-bg);
-  border-radius: 14px;
-  padding: 18px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-
-/* ======== NOTICES / ANNOUNCEMENTS ======== */
-.notice-box {
-  border-left: 6px solid var(--secondary);
-}
-
-.announcement-title {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-
-/* ======== SUBTITLE FIX (Nursery to 5th Visibility) ======== */
-.site-subtitle,
-.site-description {
-  color: white !important;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-
-/* ======== SCROLLING NEWS BAR ======== */
-.scroll-news {
-  background-color: var(--secondary) !important;
-  color: black !important;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-
-/* ======== FOOTER ======== */
-footer {
-  background-color: #357ABD; /* Slightly darker blue */
-  color: white !important;
-}
-
-footer a {
-  color: white !important;
-}
-
-footer a:hover {
-  color: var(--secondary) !important;
-}
-  </style>
-   /* === Strong override: Child-friendly colour theme for Primary School === */
-
-:root{
-  --primary: #4A90E2;
-  --secondary: #F9D342;
-  --green: #4CAF50;
-  --red: #FF6F61;
-  --light-bg: #F4FBFF;
-  --card-bg: #FFFFFF;
-  --text-dark: #1F2D3D;
-}
-
-/* Body & background */
-html, body {
-  background: var(--light-bg) !important;
-  color: var(--text-dark) !important;
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Header / top info bar */
-header, .topbar, .site-header, .navbar {
-  background: linear-gradient(90deg, var(--primary), #357ABD) !important;
-  color: #ffffff !important;
-  border: none !important;
-}
-
-/* If your header uses specific IDs/classes, cover them too */
-#header, .header, .masthead {
-  background: linear-gradient(90deg, var(--primary), #357ABD) !important;
-  color: #ffffff !important;
-}
-
-/* Site title / subtitle contrast (fix invisible text) */
-.site-title, .site-name, header h1, .brand {
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.25) !important;
-}
-.site-subtitle, .site-description, .subtitle, header p {
-  color: #ffffff !important;
-  font-weight: 700 !important;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.25) !important;
-}
-
-/* Navigation links */
-nav a, .navbar a, .menu a {
-  color: #ffffff !important;
-  font-weight: 600 !important;
-}
-nav a:hover, .navbar a:hover, .menu a:hover {
-  color: var(--secondary) !important;
-  background: transparent !important;
-}
-
-/* Buttons */
-.btn, button, .button, .btn-primary {
-  background: var(--primary) !important;
-  color: #fff !important;
-  border-radius: 8px !important;
-  border: none !important;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12) !important;
-}
-.btn:hover, button:hover, .btn-primary:hover {
-  background: var(--secondary) !important;
-  color: #000 !important;
-}
-
-/* Cards / boxes */
-.card, .box, .panel, .info-card, .section {
-  background: var(--card-bg) !important;
-  border-radius: 12px !important;
-  padding: 16px !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
-  border: none !important;
-}
-
-/* Notice / Latest Notices highlight */
-.latest-notices, .notice, .announcement, .notice-box {
-  background: #fff !important;
-  border-left: 6px solid var(--secondary) !important;
-  padding: 12px !important;
-  color: var(--text-dark) !important;
-}
-
-/* Scrolling news bar style (if you add one) */
-.scroll-news, .marquee, .ticker {
-  background: var(--secondary) !important;
-  color: #000 !important;
-  padding: 8px 12px !important;
-  border-radius: 6px !important;
-  font-weight: 700 !important;
-  display: block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Footer */
-footer, .site-footer {
-  background: #2E6FB2 !important;
-  color: #fff !important;
-  padding: 18px 0 !important;
-}
-
-/* Force link colours inside cards */
-.card a, .box a, .panel a {
-  color: var(--primary) !important;
-}
-.card a:hover, .box a:hover {
-  color: var(--secondary) !important;
-}
-
-/* Small helpers */
-.hidden { display:none !important; }
-.center { text-align:center !important; }
-
-/* End strong override theme */
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+
+  <!-- HEADER -->
   <header>
-    <div class="topbar">
-      <div class="school-name">GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</div>
-      <div class="contact">UDISE: <strong>--</strong>  |  Contact: <strong>7006261694, 9596449881</strong></div>
-    </div>
+    <div class="school-title">GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</div>
+    <div>Nursery – Grade 5 | UDISE: 01022202207</div>
   </header>
 
+  <!-- NAVBAR -->
   <nav>
-    <div class="nav-inner">
-      <div class="logo">
-        <!-- REPLACE: put school logo at assets/logo.png -->
-        <img src="assets/logo.png" alt="School Logo" onerror="this.style.display='none'">
-        <div>
-          <div style="font-weight:700">Govt Primary School Pethgam Wagoora</div>
-          <div style="font-size:12px;color:var(--muted)">Nursery — Grade 5</div>
-        </div>
-      </div>
-
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#academics">Academics</a>
-        <a href="#admissions">Admissions</a>
-        <a href="#staff">Staff</a>
-        <a href="#gallery">Gallery</a>
-        <a class="btn" href="#contact">Contact</a>
-      </div>
-    </div>
+    <a href="#about">About</a>
+    <a href="#academics">Academics</a>
+    <a href="#admissions">Admissions</a>
+    <a href="#staff">Staff</a>
+    <a href="#results">Results</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#downloads">Downloads</a>
   </nav>
 
-  <section class="hero">
-    <div>
-      <h1>Quality education for every child</h1>
-      <p>Government Primary School Pethgam Wagoora — a safe, inclusive, community-centered school for Nursery to Class 5.</p>
+  <!-- NOTICE BAR -->
+  <div class="notice-strip">
+    <span class="notice-content">
+      🔔 Admissions open for Session 2025–26 | New academic session starts 1 Dec 2025 |
+      Annual Sports Day – 15 December 2025 |
+    </span>
+  </div>
 
-      <div class="cta-row">
-        <a class="btn" href="#admissions">Admissions Open</a>
-        <a class="card" href="#downloads" style="display:inline-block;padding:10px 12px">Download Prospectus</a>
-      </div>
-
-      <div class="quick-grid">
-        <div class="card">📋 <strong>Notices</strong><div style="font-size:13px;color:var(--muted)">Latest school notices & circulars</div></div>
-        <div class="card">📸 <strong>Gallery</strong><div style="font-size:13px;color:var(--muted)">Events & Activities</div></div>
-        <div class="card">👩‍🏫 <strong>Staff</strong><div style="font-size:13px;color:var(--muted)">Team & Profiles</div></div>
-      </div>
-    </div>
-
-    <aside class="card">
-      <h3 style="margin:0">Quick Info</h3>
-      <div style="font-size:13px;color:var(--muted);margin-top:8px">Admission: Nursery — Grade 5</div>
-      <div style="margin-top:10px">
-        <strong>School Hours</strong>
-        <div style="font-size:13px;color:var(--muted)">9:00 AM — 2:00 PM (Mon–Fri)</div>
-      </div>
-      <div style="margin-top:10px">
-        <strong>Head of Institution</strong>
-        <div style="font-size:13px;color:var(--muted)">HOI: Mohammad Ashraf Rather</div>
-      </div>
-    </aside>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="card">
+    <h2>About The School</h2>
+    <p><strong>Established:</strong> June 2005</p>
+    <p><strong>School Hours:</strong> 10:30 AM – 3:30 PM</p>
+    <p><strong>Mission:</strong> To provide quality primary education in a safe, inclusive, and child-friendly environment.</p>
+    <p><strong>Facilities:</strong> Classrooms, Playground, Mid-Day Meal, Basic Library</p>
   </section>
 
-  <main>
-    <section id="about" class="card">
-      <h2 class="section-title">About The School</h2>
-      <div class="two-col">
-        <div>
-          <p><strong>Established:</strong> --</p>
-          <p><strong>Mission:</strong> To provide quality primary education to every child in a safe environment.</p>
-          <p><strong>Facilities:</strong> Classrooms, Playground, Mid-Day Meal, Basic Library</p>
-          <h3 style="margin-top:12px">Headmaster's Message</h3>
-          <p style="color:var(--muted)">Welcome to our school. We are dedicated to nurturing young minds and building strong foundations.</p>
-        </div>
-        <aside>
-          <div class="card">
-            <h3 style="margin:0">Latest Notices</h3>
-            <div class="notices" style="margin-top:10px">
-              <div class="notice">Admissions Open for Session 2025–26 — Apply Now</div>
-              <div class="notice">Annual Sports Day on 15 December 2025</div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
+  <!-- ACADEMICS -->
+  <section id="academics" class="card">
+    <h2>Academics</h2>
+    <p>Nursery to Grade 5 — JKBOSE aligned curriculum with focus on literacy, numeracy, activities & assessments.</p>
 
-    <section id="academics" class="card" style="margin-top:14px">
-      <h2 class="section-title">Academics</h2>
-      <p style="color:var(--muted)">Nursery to Class 5 — JKBOSE-aligned curriculum. Regular assessments, basic remedial support, and activities focused on literacy & numeracy.</p>
-      <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
-        <div class="card" style="flex:1;min-width:220px">📘 Curriculum & Syllabus (Download)</div>
-        <div class="card" style="flex:1;min-width:220px">📅 Academic Calendar (PDF)</div>
-        <div class="card" style="flex:1;min-width:220px">🏠 Homework & Study Material</div>
-      </div>
-    </section>
+    <ul>
+      <li><a href="#">Curriculum & Syllabus (Download)</a></li>
+      <li><a href="#">Academic Calendar (PDF)</a></li>
+      <li><a href="#">Homework & Study Material</a></li>
+    </ul>
+  </section>
 
-    <section id="admissions" class="card" style="margin-top:14px">
-      <h2 class="section-title">Admissions</h2>
-      <p style="color:var(--muted)">Age Eligibility: Nursery (3–4 yrs), LKG, UKG, Grade 1 — please bring birth certificate and local proof.</p>
-      <p><strong>Contact for admissions:</strong> 7006261694, 9596449881</p>
+  <!-- ADMISSIONS -->
+  <section id="admissions" class="card">
+    <h2>Admissions</h2>
 
-      <h3 style="margin-top:10px">Online Admission Form</h3>
-      <p style="color:var(--muted)">We recommend using a free Google Form. Add the form link here after creating it.</p>
-      <div style="margin-top:10px">
-        <a class="btn" href="https://docs.google.com/forms" target="_blank">Create Google Form</a>
-      </div>
-    </section>
+    <p><strong>Classes:</strong> Nursery to Grade 5</p>
+    <p><strong>Benefits:</strong> Free Books, Free Uniform</p>
 
-    <section id="staff" class="card" style="margin-top:14px">
-      <h2 class="section-title">Our Staff</h2>
-      <div class="staff-grid">
-        <!-- Example staff cards: replace images and details -->
-        <div class="card staff"><img src="assets/staff1.jpg" alt="" onerror="this.style.display='none'"><div><strong>Mohammad Ashraf Rather</strong><div style="font-size:13px;color:var(--muted)">Head of Institution</div></div></div>
-        <div class="card staff"><img src="assets/staff2.jpg" alt="" onerror="this.style.display='none'"><div><strong>Teacher</strong><div style="font-size:13px;color:var(--muted)">Class 3</div></div></div>
-        <div class="card staff"><img src="assets/staff3.jpg" alt="" onerror="this.style.display='none'"><div><strong>Teacher</strong><div style="font-size:13px;color:var(--muted)">Class 1</div></div></div>
-      </div>
-    </section>
+    <h3>Required Documents:</h3>
+    <ul>
+      <li>Admission Form</li>
+      <li>Apaar Form</li>
+      <li>Birth Certificate</li>
+      <li>Student Aadhar Card</li>
+      <li>Parent Aadhar Card</li>
+      <li>Blood Group Report</li>
+      <li>Two Passport Size Photographs</li>
+    </ul>
 
-    <section id="gallery" class="card" style="margin-top:14px">
-      <h2 class="section-title">Gallery</h2>
-      <div class="gallery">
-        <img src="assets/photo1.jpg" alt="" onerror="this.style.display='none'">
-        <img src="assets/photo2.jpg" alt="" onerror="this.style.display='none'">
-        <img src="assets/photo3.jpg" alt="" onerror="this.style.display='none'">
-        <img src="assets/photo4.jpg" alt="" onerror="this.style.display='none'">
-        <img src="assets/photo5.jpg" alt="" onerror="this.style.display='none'">
-        <img src="assets/photo6.jpg" alt="" onerror="this.style.display='none'">
-      </div>
-    </section>
+    <p><strong>Contact for admissions:</strong> 7006261694, 9596449881</p>
+  </section>
 
-    <section id="downloads" class="card" style="margin-top:14px">
-      <h2 class="section-title">Downloads</h2>
-      <ul style="color:var(--muted);">
-        <li>Admission Form (PDF)</li>
-        <li>Academic Calendar 2025–26 (PDF)</li>
-        <li>School Development Plan (PDF)</li>
-      </ul>
-    </section>
+  <!-- STAFF -->
+  <section id="staff" class="card">
+    <h2>Our Staff</h2>
 
-    <section id="contact" class="card" style="margin-top:14px">
-      <h2 class="section-title">Contact Us</h2>
-      <p style="color:var(--muted)">Address: Pethgam Wagoora — replace with exact postal address</p>
-      <p style="color:var(--muted)">Phone: 7006261694, 9596449881 | Email: pspathgam@gmail.com</p>
-
-      <h3 style="margin-top:10px">Send a Message</h3>
-      <form id="contactForm" onsubmit="submitContact(event)">
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <input required placeholder="Your name" id="cname" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e8eefb">
-          <input required placeholder="Phone or email" id="cinfo" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e8eefb">
-        </div>
-        <textarea required placeholder="Message" id="cmessage" style="width:100%;margin-top:8px;padding:10px;border-radius:8px;border:1px solid #e8eefb;min-height:90px"></textarea>
-        <div style="margin-top:8px"><button class="btn">Send</button></div>
-      </form>
-      <div id="cfmsg" style="margin-top:8px;color:green;display:none">Thanks — message will be sent to the school's email.</div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div>© Government Primary School Pethgam Wagoora — 2025</div>
-      <div style="font-size:13px;color:var(--muted)">Built with ❤️ — Free on GitHub Pages</div>
+    <div class="staff-grid">
+      <div class="card">Mohammad Ashraf Rather<br><small>Head of Institution</small></div>
+      <div class="card">Mohammad Iqbal Rather<br><small>Teacher</small></div>
+      <div class="card">Zamrooda Bano<br><small>Teacher</small></div>
+      <div class="card">Masrat Begum<br><small>Aaya</small></div>
+      <div class="card">Shaheena Vano<br><small>Cook-Cum-Helper</small></div>
     </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="card">
+    <h2>Results & Examinations</h2>
+    <p>Assessments followed as per JKBOSE guidelines:</p>
+
+    <ul>
+      <li>FA-1 to FA-6 (Formative Assessments)</li>
+      <li>SA-1 (Summative Assessment)</li>
+    </ul>
+
+    <h3>Download Results</h3>
+    <ul>
+      <li><a href="#">FA-1 Results (PDF)</a></li>
+      <li><a href="#">FA-2 Results (PDF)</a></li>
+      <li><a href="#">SA-1 Annual Results (PDF)</a></li>
+    </ul>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="card">
+    <h2>Gallery</h2>
+    <p>Photos of activities & events will appear here.</p>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <section id="downloads" class="card">
+    <h2>Downloads</h2>
+
+    <ul>
+      <li><a href="#">Admission Form (PDF)</a></li>
+      <li><a href="#">Academic Calendar 2025–26 (PDF)</a></li>
+      <li><a href="#">Prospectus (PDF)</a></li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Government Primary School Pethgam Wagoora | UDISE: 01022202207
   </footer>
 
-  <script>
-    function submitContact(e){
-      e.preventDefault();
-      // This is a client-only site. To receive messages use one of these free options:
-      // 1) Use Google Forms and embed it (recommended)
-      // 2) Use Formspree (free plan) and replace the form action to send email
-      // For now we show a friendly message and instruct user.
-      document.getElementById('cfmsg').style.display='block';
-      window.scrollTo({top:document.getElementById('cfmsg').offsetTop - 60, behavior:'smooth'});
-    }
-
-    // Small utility: auto-fill sample notices (you can replace with JSON or CMS later)
-    (function(){
-      // Example: load notices from a JSON file in assets/notices.json (optional)
-    })();
-  </script>
 </body>
 </html>
-   
