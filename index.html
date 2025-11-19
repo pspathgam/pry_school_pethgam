@@ -1,220 +1,132 @@
-         <!DOCTYPE html>
-<style>
-/* ---------- FORCE-APPLY: colourful child-friendly theme ---------- */
-:root{
-  --sky-blue: #4fa7ff;
-  --sun-yellow: #ffdd57;
-  --grass-green: #44c767;
-  --soft-red: #ff6f61;
-  --dark-blue: #003b8b;
-  --text-dark: #061625;
-  --page-bg: #f0f8ff;
-  --card-bg: #ffffff;
-}
-
-/* Global override */
-html,body { background: var(--page-bg) !important; color: var(--text-dark) !important; font-family: "Poppins", Arial, sans-serif !important; }
-
-/* Header */
-header, .topbar, .site-header {
-  background: linear-gradient(90deg, var(--sky-blue), #2e93ff) !important;
-  color: black !important;
-  padding: 18px !important;
-  text-align:center !important;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12) !important;
-}
-
-/* Title & subtitle pill so black text is readable on blue */
-.site-title, header h1 { color: black !important; font-weight:900 !important; font-size:22px !important; }
-.site-subtitle-pill {
-  display:inline-block !important;
-  background: #ffffff !important;
-  color: #000 !important;
-  padding:6px 12px !important;
-  border-radius:12px !important;
-  font-weight:700 !important;
-  box-shadow:0 3px 8px rgba(0,0,0,0.12) !important;
-  margin-top:8px !important;
-}
-
-/* Navbar links */
-nav, .navbar, .menu { background: transparent !important; }
-nav a, .navbar a { color: #032b6e !important; font-weight:700 !important; text-decoration:none !important; }
-nav a:hover { color: var(--soft-red) !important; }
-
-/* Notice bar */
-.notice-strip {
-  background: var(--grass-green) !important;
-  color: #fff !important;
-  padding:10px 12px !important;
-  font-weight:700 !important;
-  overflow:hidden !important;
-  white-space:nowrap !important;
-}
-
-/* Cards / sections */
-.card, .section, .panel, .box {
-  background: var(--card-bg) !important;
-  border-radius:14px !important;
-  padding:16px !important;
-  margin:16px !important;
-  box-shadow:0 6px 18px rgba(0,0,0,0.06) !important;
-  border: none !important;
-}
-
-/* Section headers */
-.section-title, h2 { color: var(--dark-blue) !important; font-weight:800 !important; }
-
-/* Staff cards */
-.staff-grid { display:grid !important; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)) !important; gap:12px !important; }
-.staff-card { background:var(--card-bg) !important; border-left:8px solid var(--sun-yellow) !important; text-align:center !important; padding:12px !important; border-radius:10px !important; }
-
-/* Buttons */
-button, .btn, a.button { background: var(--soft-red) !important; color:#fff !important; padding:10px 14px !important; border-radius:8px !important; text-decoration:none !important; border:none !important; font-weight:700 !important; }
-button:hover, a.button:hover { background:#ff4f41 !important; }
-
-/* Footer */
-footer, .site-footer { background: var(--dark-blue) !important; color:#fff !important; padding:14px !important; text-align:center !important; }
-
-/* Ensure links inside cards show the theme */
-.card a { color: var(--sky-blue) !important; font-weight:700 !important; }
-.card a:hover { color: var(--soft-red) !important; }
-
-/* responsive tweaks */
-@media (max-width:700px){
-  .site-title { font-size:18px !important; }
-  .site-subtitle-pill { font-size:13px !important; padding:5px 10px !important; }
-}
-</style>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Government Primary School Pethgam Wagoora</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>Government Primary School Pethgam Wagoora</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="school-title">GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</div>
-    <div>Nursery – Grade 5 | UDISE: 01022202207</div>
-  </header>
+<header>
+  <h1>Government Primary School Pethgam Wagoora</h1>
+  <h2>Nursery to Grade 5</h2>
+</header>
 
-  <!-- NAVBAR -->
-  <nav>
-    <a href="#about">About</a>
-    <a href="#academics">Academics</a>
-    <a href="#admissions">Admissions</a>
-    <a href="#staff">Staff</a>
-    <a href="#results">Results</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#downloads">Downloads</a>
-  </nav>
+<!-- MENU BUTTONS -->
+<div class="menu-bar">
+  <a href="#about">About</a>
+  <a href="#facilities">Facilities</a>
+  <a href="#admission">Admission</a>
+  <a href="#staff">Staff</a>
+  <a href="#exam">Examination</a>
+  <a href="#results">Results</a>
+  <a href="#contact">Contact</a>
+</div>
 
-  <!-- NOTICE BAR -->
-  <div class="notice-strip">
-    <span class="notice-content">
-      🔔 Admissions open for Session 2025–26 | New academic session starts 1 Dec 2025 |
-      Annual Sports Day – 15 December 2025 |
-    </span>
+<!-- NOTICE STRIP -->
+<div class="notice-strip">
+  <span>School Closed for Winter Vacation: 1st December 2025 to 28th February 2026 | Admissions Open from Nursery to Grade 5 | Free Books, Free Uniforms & Free Health Check-up</span>
+</div>
+
+<!-- ABOUT -->
+<div class="section" id="about">
+  <h2>About Us</h2>
+  <p><strong>Established:</strong> June 2005</p>
+  <p><strong>School Hours:</strong> 10:30 AM – 3:30 PM</p>
+</div>
+
+<!-- FACILITIES -->
+<div class="section" id="facilities">
+  <h2>Facilities</h2>
+  <ul>
+    <li>Free Text Books</li>
+    <li>Free Uniform</li>
+    <li>Free Health Check-up with Free Medicines</li>
+    <li>Free Transportation to Hospitals for Referral Students</li>
+    <li>Medical Aids & Support</li>
+    <li>Quality Education with Activity-Based Learning</li>
+  </ul>
+</div>
+
+<!-- ADMISSION -->
+<div class="section" id="admission">
+  <h2>Admission Details</h2>
+  <p><strong>Benefits:</strong></p>
+  <ul>
+    <li>Free Books</li>
+    <li>Free Uniform</li>
+    <li>Free Health Check-up & Medicines</li>
+    <li>Free Medical Aids</li>
+    <li>Free Transport for Medical Referrals</li>
+  </ul>
+
+  <p><strong>Required Documents:</strong></p>
+  <ul>
+    <li>Admission Form</li>
+    <li>Apaar Form</li>
+    <li>Birth Certificate</li>
+    <li>Student Aadhar Card</li>
+    <li>Parent Aadhar Card</li>
+    <li>Blood Group Report</li>
+    <li>Two Passport Size Photos</li>
+  </ul>
+</div>
+
+<!-- STAFF -->
+<div class="section" id="staff">
+  <h2>Teaching Staff</h2>
+  <div class="staff-grid">
+    <div class="staff-card">
+      <img src="https://via.placeholder.com/110" alt="Staff Photo">
+      <p><strong>Mohammad Iqbal Rather</strong><br>Teacher</p>
+    </div>
+    <div class="staff-card">
+      <img src="https://via.placeholder.com/110" alt="Staff Photo">
+      <p><strong>Zamrooda Bano</strong><br>Teacher</p>
+    </div>
   </div>
 
-  <!-- ABOUT SECTION -->
-  <section id="about" class="card">
-    <h2>About The School</h2>
-    <p><strong>Established:</strong> June 2005</p>
-    <p><strong>School Hours:</strong> 10:30 AM – 3:30 PM</p>
-    <p><strong>Mission:</strong> To provide quality primary education in a safe, inclusive, and child-friendly environment.</p>
-    <p><strong>Facilities:</strong> Classrooms, Playground, Mid-Day Meal, Basic Library</p>
-  </section>
-
-  <!-- ACADEMICS -->
-  <section id="academics" class="card">
-    <h2>Academics</h2>
-    <p>Nursery to Grade 5 — JKBOSE aligned curriculum with focus on literacy, numeracy, activities & assessments.</p>
-
-    <ul>
-      <li><a href="#">Curriculum & Syllabus (Download)</a></li>
-      <li><a href="#">Academic Calendar (PDF)</a></li>
-      <li><a href="#">Homework & Study Material</a></li>
-    </ul>
-  </section>
-
-  <!-- ADMISSIONS -->
-  <section id="admissions" class="card">
-    <h2>Admissions</h2>
-
-    <p><strong>Classes:</strong> Nursery to Grade 5</p>
-    <p><strong>Benefits:</strong> Free Books, Free Uniform</p>
-
-    <h3>Required Documents:</h3>
-    <ul>
-      <li>Admission Form</li>
-      <li>Apaar Form</li>
-      <li>Birth Certificate</li>
-      <li>Student Aadhar Card</li>
-      <li>Parent Aadhar Card</li>
-      <li>Blood Group Report</li>
-      <li>Two Passport Size Photographs</li>
-    </ul>
-
-    <p><strong>Contact for admissions:</strong> 7006261694, 9596449881</p>
-  </section>
-
-  <!-- STAFF -->
-  <section id="staff" class="card">
-    <h2>Our Staff</h2>
-
-    <div class="staff-grid">
-      <div class="card">Mohammad Ashraf Rather<br><small>Head of Institution</small></div>
-      <div class="card">Mohammad Iqbal Rather<br><small>Teacher</small></div>
-      <div class="card">Zamrooda Bano<br><small>Teacher</small></div>
-      <div class="card">Masrat Begum<br><small>Aaya</small></div>
-      <div class="card">Shaheena Vano<br><small>Cook-Cum-Helper</small></div>
+  <h2>Non-Teaching Staff</h2>
+  <div class="staff-grid">
+    <div class="staff-card">
+      <img src="https://via.placeholder.com/110" alt="Staff Photo">
+      <p><strong>Masrat Begum</strong><br>AAYA</p>
     </div>
-  </section>
+    <div class="staff-card">
+      <img src="https://via.placeholder.com/110" alt="Staff Photo">
+      <p><strong>Shaheena Vano</strong><br>Cook-cum-Helper</p>
+    </div>
+  </div>
+</div>
 
-  <!-- RESULTS -->
-  <section id="results" class="card">
-    <h2>Results & Examinations</h2>
-    <p>Assessments followed as per JKBOSE guidelines:</p>
+<!-- EXAM / RESULTS -->
+<div class="section" id="exam">
+  <h2>Examination Structure</h2>
+  <ul>
+    <li>FA-1 to FA-6 — 5 Marks each</li>
+    <li>Co-Curricular Activities — 20 Marks per Subject</li>
+    <li>Summative Assessment — 50 Marks</li>
+    <li><strong>Total Marks per Subject: 100</strong></li>
+  </ul>
+</div>
 
-    <ul>
-      <li>FA-1 to FA-6 (Formative Assessments)</li>
-      <li>SA-1 (Summative Assessment)</li>
-    </ul>
+<div class="section" id="results">
+  <h2>Subjects</h2>
+  <p>English • Mathematics • EVS • Urdu • Kashmiri</p>
+</div>
 
-    <h3>Download Results</h3>
-    <ul>
-      <li><a href="#">FA-1 Results (PDF)</a></li>
-      <li><a href="#">FA-2 Results (PDF)</a></li>
-      <li><a href="#">SA-1 Annual Results (PDF)</a></li>
-    </ul>
-  </section>
+<!-- LOGIN BUTTONS -->
+<div class="section">
+  <h2>Login</h2>
+  <a class="button">Student Login</a>
+  <a class="button">HOI Login</a>
+  <a class="button">Teacher Login</a>
+</div>
 
-  <!-- GALLERY -->
-  <section id="gallery" class="card">
-    <h2>Gallery</h2>
-    <p>Photos of activities & events will appear here.</p>
-  </section>
-
-  <!-- DOWNLOADS -->
-  <section id="downloads" class="card">
-    <h2>Downloads</h2>
-
-    <ul>
-      <li><a href="#">Admission Form (PDF)</a></li>
-      <li><a href="#">Academic Calendar 2025–26 (PDF)</a></li>
-      <li><a href="#">Prospectus (PDF)</a></li>
-    </ul>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    Government Primary School Pethgam Wagoora | UDISE: 01022202207
-  </footer>
+<footer id="contact">
+  Government Primary School Pethgam Wagoora • UDISE: 01022202207
+</footer>
 
 </body>
 </html>
