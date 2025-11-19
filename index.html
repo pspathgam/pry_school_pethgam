@@ -172,78 +172,161 @@
     <label>Bank Account Number</label>
     <input type="text" name="bankacc">
 
-    <label>Bank Name</label>
-    <input type="text" name="bankname">
+    <label><section id="admissions" class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="display-4 fw-bold text-success mb-4">🚪 Admissions</h2>
+            <p class="lead text-muted">Welcome to New Admissions (Nursery to Grade 5)</p>
+        </div>
+    </div>
 
-    <label>Bank Branch</label>
-    <input type="text" name="bankbranch">
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4 p-md-5">
+                    <h4 class="card-title text-primary mb-3">Government Primary School Pethgam Wagoora</h4>
+                    <p class="card-text">
+                        Offers **high-quality education** in a child-friendly environment with **family-free facilities** under Samagra Shiksha.
+                        Join us in providing a foundation for your child's success.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <label>IFSC Code</label>
-    <input type="text" name="ifsc">
+    <div class="row mb-5">
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100 border-success shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">✅ Benefits for Students</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">📘 Free Textbooks</li>
+                    <li class="list-group-item">👕 Free Uniform</li>
+                    <li class="list-group-item">🩺 Health Care Check-up & Medicines</li>
+                    <li class="list-group-item">💊 Free Medical Aids</li>
+                    <li class="list-group-item">📚 Free Accommodation (for Referred Students)</li>
+                    <li class="list-group-item">🌟 Quality Education</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100 border-info shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">🛠️ Key Facilities</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">📖 Free Textbooks</li>
+                    <li class="list-group-item">🩺 Free Health Care</li>
+                    <li class="list-group-item">👕 Free Uniform</li>
+                    <li class="list-group-item">🍎 Mid-day Meal Support</li>
+                    <li class="list-group-item">📚 Library Access</li>
+                    <li class="list-group-item">💡 Quality Learning Environment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <label>Category</label>
-    <select name="category">
-      <option>SC</option>
-      <option>ST</option>
-      <option>OBC</option>
-      <option>GENERAL</option>
-    </select>
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-danger">
+                <div class="card-body p-4 p-md-5">
+                    <h4 class="card-title text-danger mb-4">📝 Admission Workflow</h4>
 
-    <label>Blood Group</label>
-    <input type="text" name="bg">
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="button" class="btn btn-primary btn-lg" 
+                                onclick="window.location.href='YOUR_ADMISSION_FORM_LINK';">
+                            STEP 1: Apply Online - Click Here to Start
+                        </button>
+                    </div>
+                    <p class="text-center text-muted mb-4">
+                        *This button should link to your online admission form (e.g., Google Form, custom portal).
+                    </p>
 
-    <label>Ration Card Number</label>
-    <input type="text" name="rcard">
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="button" class="btn btn-warning btn-lg text-dark" 
+                                onclick="window.location.href='YOUR_DOWNLOAD_FORM_SCRIPT';">
+                            STEP 2: Download Filled Admission Form (Hard Copy)
+                        </button>
+                    </div>
+                    <p class="text-center text-muted mb-4">
+                        *This button requires a script that allows the applicant to download the filled form after Step 1.
+                    </p>
 
-    <label>Ration Card Type</label>
-    <input type="text" name="rtype">
+                    <div class="alert alert-success text-center" role="alert">
+                        **STEP 3: Submit Hard Copy**<br>
+                        Kindly submit the downloaded, filled, and signed Hard Copy of the Admission Form along with all required documents to the School Office.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <label>Class Joining</label>
-    <input type="text" name="cjoin" required>
-
-    <label>PEN Number (If Transfer Case)</label>
-    <input type="text" name="pen">
-
-    <h4>Parent's Declaration</h4>
-    <textarea name="decl" rows="4">
-I hereby declare that the information provided above is true to the best of my knowledge and I agree to abide by the school rules.
-    </textarea>
-
-    <hr>
-
-    <!-- ========== APAAR FORM (Page 2) ========== -->
-    <h3>APAAR Consent Form (Page 2)</h3>
-
-    <p>
-      Consent by Father/Mother/Legal Guardian of the student for APAAR ID generation as per
-      Ministry of Education guidelines.
-    </p>
-
-    <label>Parent/Guardian Name</label>
-    <input type="text" name="pgname" required>
-
-    <label>Type of ID (Aadhaar / PAN / EPIC / DL / Passport)</label>
-    <input type="text" name="idtype" required>
-
-    <label>ID Number</label>
-    <input type="text" name="idnum" required>
-
-    <label>Place of Physical Consent</label>
-    <input type="text" name="place" required>
-
-    <label>Date</label>
-    <input type="date" name="pdate" required>
-
-    <label>Signature of Parent/Guardian (type name)</label>
-    <input type="text" name="psign" required>
-
-    <hr>
-
-    <button type="button" onclick="downloadPDF()" class="admission-btn">
-      Download Filled Form (PDF – 2 Pages)
-    </button>
-  </form>
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-primary">
+                <div class="card-body p-4 p-md-5">
+                    <h4 class="card-title text-primary mb-3">📄 Required Documents & Information</h4>
+                    <p>Please keep the following documents ready before applying:</p>
+                    <ul>
+                        <li>Birth Certificate</li>
+                        <li>Parents/Guardian Aadhaar Cards</li>
+                        <li>Student's Aadhaar Card</li>
+                        <li>Ration Card (if applicable)</li>
+                        <li>Recent Passport Size Photographs (2)</li>
+                    </ul>
+                    <hr>
+                    <h5 class="text-info">School Contact Information</h5>
+                    <p>
+                        **Wagoora Babareshi Road Near Zonal Education Office Wagoora**<br>
+                        Email: pspethgam@gmail.com<br>
+                        UDISE Code: 01022202207
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+<div id="apaar-consent-text" style="display:none;">
+    <h3>APAAR Consent Form (Page 2)</h3>
+    <p>
+        <strong>GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</strong><br>
+        Wagoora Babareshi Road Near Zonal Education Office Wagoora<br>
+        **UDISE Code:** 01022202207. | **Zone:** Wagoora
+    </p>
+    <p class="lead"><strong>Consent by Father/Mother/Legal Guardian of the Student for APAAR ID Generation</strong></p>
+    <p>
+        I, **(Father /Mother / Legal Guardian)** of **(Student's Full Name)** with my identity proof as **(Aadhar / PAN / EPIC Voter ID / Driving License / Passport)** and identity Proof Number **(Identity Proof Number)** voluntarily give my consent to share his/her Aadhaar Number and demographic information issued by UIDAI with Ministry of Education for the sole purpose of creation of APAAR ID and opening of DIGILOCKER account of my child for the following intents and purposes.
+    </p>
+    <p>
+        I understand that my APAAR ID may be used and shared for limited purposes as may be notified by Ministry of Education from time-to-time for educational and related activities. Further I am also aware that my personal identifiable information (Name, Address, Age, Date of Birth, Gender and Photograph) may be made available to entities engaged in various educational activities such as UDISE+ database, scholarships, maintenance academic records, other stakeholders like Educational Institutions and recruitment agencies.
+    </p>
+    <p>
+        I authorise Ministry of Education to use my Aadhaar number for performing Aadhaar based authentication with UIDAI as per provision of the Aadhaar (Targeted Delivery of Financial and Other Subsidies, Benefits, and Services) Act, 2016 for the aforesaid purpose. I understand that UIDAI will share my e-KYC details, or response of "Yes" with Ministry of Education upon successful authentication.
+    </p>
+    <p>
+        I understand that the information shared by me shall be kept Confidential and shall not be divulged to any third party except as may be required by law.
+    </p>
+    <p>
+        I understand that I can withdraw my consent for all or any of the purposes at any time by a written request and on withdrawal of my consent, the processing of my shared information will stop, however, any personal data already been processed shall remain unaffected on such withdrawal of consent.
+    </p>
+    <div style="margin-top: 30px;">
+        <p><strong>Place of Physical Consent:</strong> _______________________</p>
+        <p><strong>Date of Physical Consent:</strong> _______________________</p>
+        <p><strong>Signature of Parent/Guardian:</strong> _______________________ (type name)</p>
+    </div>
+
+    <hr style="margin: 40px 0;">
+
+    <p style="text-align: center;"><strong>******************Consent by Head of the School******************</strong></p>
+    <p>
+        I, **Mohmad Ashraf Rather** as Head of the School or any authorized teacher/staff hereby declare that the Father/Mother/Legal Guardian of **(Student's Full Name)** as mentioned above has given the Consent for Providing AADHAAR to create APAAR ID, opening of DIGILOCKER Account and Identity Verification in UDISE Plus Date: **(Date)**
+    </p>
+    <div style="margin-top: 30px;">
+        <p><strong>Date:</strong> _______________________</p>
+        <p><strong>Signature of HoI:</strong> _______________________</p>
+    </div>
+</div>
 
 <section id="facilities" class="section">
     <h2>Facilities</h2>
