@@ -72,42 +72,44 @@
   </div>
 </section>
 
-    <!-- ADMISSION SECTION -->
-<section id="admissions" class="admission-section">
-  <h2>Admissions</h2>
+    <section class="admission-section">
+  <h2>📘 Online Admission – 2025</h2>
 
-  <div class="admission-card">
-    <h3>Admission Details</h3>
-    <p>Admissions are now open for Nursery to Grade 5 for the academic session.</p>
+  <div class="card-container">
 
-    <h4>Benefits</h4>
-    <ul>
-      <li>Free Textbooks</li>
-      <li>Free Uniform</li>
-      <li>Free Health Check-up with Free Medicines</li>
-      <li>Free Medical Aids</li>
-      <li>Free Transportation for Referred Students</li>
-      <li>Quality Child-Centered Education</li>
-    </ul>
+    <div class="admission-card">
+      <h3>New Admission</h3>
+      <p>Fill the form online, upload student photo, and download pre-filled PDF.</p>
+      <div class="btn" onclick="openForm()">Apply Now</div>
+    </div>
 
-    <h4>Required Documents</h4>
-    <ul>
-      <li>Admission Form</li>
-      <li>APAAR Consent Form</li>
-      <li>Birth Certificate</li>
-      <li>Aadhaar of Student</li>
-      <li>Aadhaar of Parents</li>
-      <li>Blood Group Report</li>
-      <li>Two Passport Size Photographs</li>
-      <li>Ration Card</li>
-    </ul>
-
-    <h4>Admission Guidelines</h4>
-    <p>Please ensure all documents are uploaded clearly. After online submission, bring a printed hard-copy to the school office for verification.</p>
-
-    <a href="admission-form.html" class="apply-btn">Apply Now</a>
   </div>
 </section>
+
+<!-- POPUP FORM -->
+<div id="formPopup">
+  <div class="form-box">
+
+    <h3>Admission Form</h3>
+
+    <input type="text" id="studentName" placeholder="Student Full Name">
+    <input type="text" id="fatherName" placeholder="Father's Name">
+    <input type="text" id="motherName" placeholder="Mother's Name">
+    <input type="text" id="dob" placeholder="Date of Birth (DD/MM/YYYY)">
+    <input type="text" id="contact" placeholder="Parent Contact Number">
+
+    <label>Upload Photo:</label>
+    <input type="file" id="photoUpload" accept="image/*">
+
+    <div class="btn" onclick="submitForm()">Submit Now</div>
+
+    <div class="success-box" id="successBox">
+      <p class="success-text">✔ Submitted Successfully</p>
+      <div class="btn" onclick="generatePDF()">Download Now</div>
+    </div>
+
+  </div>
+</div>
     
 
 <section id="facilities" class="section">
