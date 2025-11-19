@@ -1,118 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Government Primary School Pethgam Wagoora</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPS Pethgam – Admission</title>  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f2f6ff;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+    h2 {
+      text-align: center;
+      padding: 20px;
+      margin-top: 10px;
+      color: #003366;
+    }
 
-</head>
-    <script>
-// Popup controls
-function openForm() {
-  const popup = document.getElementById('formPopup');
-  popup.style.display = 'flex';
-  popup.setAttribute('aria-hidden', 'false');
-  // Reset form view
-  document.getElementById('admissionForm').reset();
-  document.getElementById('photoPreview').style.display = 'none';
-  document.getElementById('successBox').style.display = 'none';
-}
+    /* Card Section */
+    .card-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
 
-function closeForm() {
-  document.getElementById('formPopup').style.display = 'none';
-  document.getElementById('formPopup').setAttribute('aria-hidden', 'true');
-}
+    .admission-card {
+      background: #fff;
+      padding: 20px;
+      width: 90%;
+      max-width: 380px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-// Photo preview
-function previewPhoto(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const img = document.getElementById('previewImg');
-    img.src = e.target.result;
-    document.getElementById('photoPreview').style.display = 'block';
-  };
-  reader.readAsDataURL(file);
-}
+    .btn {
+      background: #0a8a26;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
 
-// Handle form submit (shows success and keeps form data for PDF)
-function handleSubmit(e) {
-  e.preventDefault();
-  // Basic validation: required fields
-  const name = document.getElementById('studentName').value.trim();
-  const contact = document.getElementById('contact').value.trim();
-  const dob = document.getElementById('dob').value;
-  const applyClass = document.getElementById('applyClass').value;
+    .btn:hover {
+      background: #06681d;
+    }
 
-  if (!name || !contact || !dob || !applyClass) {
-    alert('Please fill required fields: Name, DOB, Class and Contact.');
-    return;
-  }
+    /* Popup */
+    #formPopup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.55);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-  // Show success box
-  document.getElementById('successBox').style.display = 'block';
+    .form-box {
+      background: white;
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+      border-radius: 14px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
 
-  // Optionally auto-close form after a delay:
-  // setTimeout(closeForm, 1200);
-}
+    .form-box h3 {
+      text-align: center;
+      color: #003366;
+    }
 
-// PDF generation (reads fields and inserted photo)
-function generateAdmissionPDF() {
-  // Use jsPDF from window.jspdf
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
-  const margin = 36;
-  const pageWidth = pdf.internal.pageSize.getWidth();
-  const usableWidth = pageWidth - margin * 2;
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
 
-  // Gather form data
-  const form = document.getElementById('admissionForm');
-  const formData = new FormData(form);
-  const entries = {};
-  formData.forEach((v,k) => entries[k] = v);
+    #photoPreview {
+      width: 120px;
+      height: 140px;
+      background: #eee;
+      display: block;
+      margin: 10px auto;
+      border-radius: 8px;
+      object-fit: cover;
+    }
 
-  // Page 1 - Student Details
-  // Draw elegant border (simple rectangle)
-  pdf.setLineWidth(1.2);
-  pdf.rect(margin/2, margin/2, pageWidth - margin, pdf.internal.pageSize.getHeight() - margin, 'S');
+    .success-box {
+      display: none;
+      text-align: center;
+      padding-top: 10px;
+    }
 
-  pdf.setFontSize(16);
-  pdf.text('GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA', pageWidth/2, 60, { align: 'center' });
+    .close-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      background: #ff4444;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+  </style>  <script>
+    function openForm() {
+      document.getElementById('formPopup').style.display = "flex";
+    }
 
-  pdf.setFontSize(12);
-  let y = 100;
-  const lineGap = 18;
+    function closeForm() {
+      document.getElementById('formPopup').style.display = "none";
+    }
 
-  const leftColX = margin + 6;
-  const rightColX = pageWidth/2 + 10;
+    function previewPhoto(event) {
+      const img = document.getElementById('photoPreview');
+      img.src = URL.createObjectURL(event.target.files[0]);
+    }
 
-  pdf.text(`Student Name: ${entries.studentName || ''}`, leftColX, y);
-  pdf.text(`Father's Name: ${entries.fatherName || ''}`, rightColX, y);
-  y += lineGap;
-  pdf.text(`Mother's Name: ${entries.motherName || ''}`, leftColX, y);
-  pdf.text(`Date of Birth: ${entries.dob || ''}`, rightColX, y);
-  y += lineGap;
-  pdf.text(`Gender: ${entries.gender || ''}`, leftColX, y);
-  pdf.text(`Applying For Class: ${entries.applyClass || ''}`, rightColX, y);
-  y += lineGap;
-  pdf.text(`Contact: ${entries.contact || ''}`, leftColX, y);
-  pdf.text(`Aadhaar: ${entries.aadhaar || ''}`, rightColX, y);
-  y += lineGap;
-  // Address - wrap text
-  pdf.text('Address:', leftColX, y);
-  const address = entries.address || '';
-  const splitAddr = pdf.splitTextToSize(address, usableWidth - 20);
-  pdf.text(splitAddr, leftColX, y + lineGap);
-  y += lineGap * (splitAddr.length + 1);
+    function submitAdmission() {
+      const success = document.getElementById('successBox');
+      success.style.display = "block";
+    }
 
-  // Previous school
-  pdf.text(`Previous School: ${entries.prevSchool || ''}`, leftColX, y);
-  y += lineGap * 1.2;
+    function generateAdmissionPDF() {
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ unit: "pt", format: "a4" });
 
+      pdf.setFontSize(16);
+      pdf.text("GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA", 70, 50);
+      pdf.setFontSize(12);
+
+      let name = document.getElementById("studentName").value;
+      let father = document.getElementById("fatherName").value;
+      let mother = document.getElementById("motherName").value;
+      let dob = document.getElementById("dob").value;
+      let contact = document.getElementById("contact").value;
+
+      pdf.text(`Student Name: ${name}`, 50, 120);
+      pdf.text(`Father Name: ${father}`, 50, 150);
+      pdf.text(`Mother Name: ${mother}`, 50, 180);
+      pdf.text(`Date of Birth: ${dob}`, 50, 210);
+      pdf.text(`Contact: ${contact}`, 50, 240);
+
+      // Add image if uploaded
+      let file = document.getElementById("photoUpload").files[0];
+      if (file) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+          pdf.addImage(e.target.result, "JPEG", 380, 110, 130, 160);
+          pdf.save("Admission_Form.pdf");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        pdf.save("Admission_Form.pdf");
+      }
+    }
+  </script></head>
+<body>  <section class="admission-section">
+    <h2>📘 Online Admission – 2025</h2><div class="card-container">
+  <div class="admission-card">
+    <h3>New Admission</h
   // Insert photo if available (preview image element holds dataURL)
   const previewImg = document.getElementById('previewImg');
   if (previewImg && previewImg.src) {
