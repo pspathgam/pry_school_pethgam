@@ -1,231 +1,112 @@
-/* ================================
-   COLOUR PALETTE (Option A)
-   Elegant + Primary School Friendly
-   ================================ */
+/* ----------------------------------
+   SCHOOL WEBSITE THEME
+---------------------------------- */
 
 :root {
-  --primary: #2A7FFF;        /* Soft Royal Blue */
-  --secondary: #FFC947;      /* Warm School Yellow */
-  --accent: #4CAF50;         /* Positive Green */
-  --light-bg: #F7FAFF;       /* Soft Blue-White Background */
-  --soft-card: #FFFFFF;      /* Clean White Cards */
-  --text-dark: #1E293B;      /* Slate Grey Text */
-  --text-light: #475569;     /* Light Grey Text */
+  --fast-blue: #2e8cff;
+  --fast-blue-light: #eaf3ff;
+  --dark-text: #000000;
+  --light-text: #333;
+  --card-bg: #ffffff;
+  --border: #d6e6ff;
+  --heading: #0a2a60;
 }
 
-/* ================================
-   GENERAL BODY
-   ================================ */
-
+/* GLOBAL */
 body {
-  background-color: var(--light-bg);
-  color: var(--text-dark);
-  font-family: system-ui, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  background: #f4f8ff;
+  color: var(--light-text);
 }
-
-/* ================================
-   HEADER & NAVBAR
-   ================================ */
-
-header, .navbar {
-  background-color: var(--primary);
-  color: white !important;
-}
-
-.navbar a {
-  color: white !important;
-}
-
-.navbar a:hover {
-  color: var(--secondary) !important;
-}
-
-/* ================================
-   BUTTONS
-   ================================ */
-
-.btn, button {
-  background-color: var(--primary) !important;
-  color: white !important;
-  border-radius: 6px;
-  transition: 0.2s;
-}
-
-.btn:hover, button:hover {
-  background-color: var(--secondary) !important;
-  color: black !important;
-}
-
-/* Highlight Buttons (like “Admissions Open”) */
-.btn-highlight {
-  background-color: var(--secondary) !important;
-  color: black !important;
-  font-weight: 600;
-}
-
-/* ================================
-   CARDS (Notices, Gallery, Staff, etc.)
-   ================================ */
-
-.card, .info-card {
-  background-color: var(--soft-card);
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  padding: 18px;
-  border: none;
-}
-
-/* ================================
-   NOTICE HIGHLIGHT (Yellow Bar)
-   ================================ */
-
-.notice-box, .announcement, .latest-notices {
-  background: white;
-  border-left: 5px solid var(--secondary);
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  border-radius: 10px;
-}
-
-/* ================================
-   QUICK INFO BOX
-   ================================ */
-
-.quick-info {
-  background-color: var(--light-bg);
-  padding: 18px;
-  border-radius: 14px;
-  border: 1px solid #E2E8F0;
-}
-
-/* ================================
-   HEADINGS
-   ================================ */
 
 h1, h2, h3 {
-  color: var(--primary);
-  font-weight: 700;
+  color: var(--heading);
+  margin-top: 0;
 }
 
-h4, h5, h6 {
-  color: var(--text-dark);
-}
-
-/* ================================
-   LINKS
-   ================================ */
-
-a {
-  color: var(--primary);
-}
-
-a:hover {
-  color: var(--secondary);
-}
-
-/* ================================
-   FOOTER
-   ================================ */
-
-footer {
-  background-color: #1E56D9;   /* Darker Blue */
-  color: white !important;
-  padding: 20px 0;
-}
-
-footer a {
-  color: white !important;
-}
-
-footer a:hover {
-  color: var(--secondary) !important;
-}
-/* ================================
-   COLOUR PALETTE (Option A)
-   Elegant + Primary School Friendly
-   ================================ */
-
-:root {
-  --primary: #2A7FFF;        /* Soft Royal Blue */
-  --secondary: #FFC947;      /* Warm School Yellow */
-  --accent: #4CAF50;         /* Positive Green */
-  --light-bg: #F7FAFF;       /* Soft Blue-White Background */
-  --soft-card: #FFFFFF;      /* Clean White Cards */
-  --text-dark: #1E293B;      /* Slate Grey Text */
-  --text-light: #475569;     /* Light Grey Text */
+section {
+  margin: 20px;
 }
 
 /* HEADER */
-header, .navbar {
-  background-color: var(--primary);
-  color: white !important;
+header {
+  background: var(--fast-blue);
+  color: var(--dark-text);
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.navbar a {
-  color: white !important;
+.school-title {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 5px;
 }
 
-.navbar a:hover {
-  color: var(--secondary) !important;
-}
-
-/* BUTTONS */
-.btn, button {
-  background-color: var(--primary) !important;
-  color: white !important;
-  border-radius: 6px;
-  transition: 0.2s;
-}
-
-.btn:hover, button:hover {
-  background-color: var(--secondary) !important;
-  color: black !important;
-}
-
-/* SUBTITLE VISIBILITY FIX */
-.site-subtitle, .site-description {
-  color: white !important;
+/* NAVBAR */
+nav {
+  background: #ffffff;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
   font-weight: 600;
+  border-bottom: 1px solid var(--border);
 }
 
-/* CARDS */
-.card, .info-card {
-  background-color: var(--soft-card);
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-  padding: 18px;
-  border: none;
+nav a {
+  text-decoration: none;
+  color: var(--heading);
 }
 
-/* NOTICE / ANNOUNCEMENT BOX */
-.notice-box, .announcement, .latest-notices {
-  background: white;
-  border-left: 5px solid var(--secondary);
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  border-radius: 10px;
-}
-
-/* SCROLLING NEWS BAR */
-.scroll-news {
-  background: var(--secondary);
-  color: #000;
+/* NOTICE BAR */
+.notice-strip {
+  background: var(--fast-blue);
+  color: black;
+  font-weight: 700;
   padding: 8px;
-  font-weight: 600;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+/* SCROLLING TEXT ANIMATION */
+.notice-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 12s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+/* CARD CONTAINER */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* GRID LAYOUTS */
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
 }
 
 /* FOOTER */
 footer {
-  background-color: #1E56D9;
-  color: white !important;
-}
-
-footer a {
-  color: white !important;
-}
-
-footer a:hover {
-  color: var(--secondary) !important;
+  background: var(--heading);
+  color: white;
+  text-align: center;
+  padding: 12px;
+  margin-top: 25px;
+  font-size: 14px;
 }
