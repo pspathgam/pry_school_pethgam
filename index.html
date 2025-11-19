@@ -72,29 +72,177 @@
   </div>
 </section>
 
-<section id="admissions" class="section">
-    <h2>Admissions</h2>
+<section id="admissions" class="admission-section">
+  <h2>Admissions</h2>
 
-    <h3>Benefits</h3>
+  <!-- ========== Admission Info ========== -->
+  <div class="admission-info">
+    <h3>Welcome to New Admissions (Nursery to Grade 5)</h3>
+    <p>
+      Government Primary School Pethgam Wagoora offers high-quality education in a 
+      child-friendly environment with fully free facilities under Samagra Shiksha.
+    </p>
+
+    <h4>Benefits for Students</h4>
     <ul>
-        <li>Free Text Books</li>
-        <li>Free School Uniform</li>
-        <li>Free Health Check-up + Medicines</li>
-        <li>Free Medical Aids</li>
-        <li>Free Referral Transport</li>
-        <li>Quality Education</li>
+      <li>Free Textbooks</li>
+      <li>Free Uniform</li>
+      <li>Free Health Check-up & Medicines</li>
+      <li>Free Medical Aids</li>
+      <li>Free Transportation for Referred Students</li>
+      <li>Quality Education</li>
     </ul>
 
-    <h3>Required Documents</h3>
+    <h4>Documents Required</h4>
     <ul>
-        <li>Admission Form</li>
-        <li>Apaar Form</li>
-        <li>Birth Certificate</li>
-        <li>Student Aadhaar</li>
-        <li>Parent Aadhaar</li>
-        <li>Blood Group Report</li>
-        <li>2 Passport Photos</li>
+      <li>Admission Form (Filled Online)</li>
+      <li>Apaar Consent Form</li>
+      <li>Birth Certificate</li>
+      <li>Student Aadhaar Card</li>
+      <li>Parents Aadhaar Cards</li>
+      <li>Blood Group Report</li>
+      <li>Ration Card (if applicable)</li>
+      <li>Two Passport Size Photographs</li>
     </ul>
+  </div>
+
+  <!-- ========== Admission Form ========== -->
+  <h3>Online Admission Form</h3>
+
+  <form id="admissionForm" class="admission-form">
+    <h4 class="form-title">Government Primary School Pethgam Wagoora<br>
+      Wagoora Babareshi Road Near Zonal Education Office Wagoora<br>
+      Email: pspethgam@gmail.com — UDISE Code: 01022202207
+    </h4>
+
+    <h3>Admission Form (Page 1)</h3>
+
+    <label>Student’s First Name</label>
+    <input type="text" name="sfn" required>
+
+    <label>Middle Name</label>
+    <input type="text" name="smn">
+
+    <label>Last Name</label>
+    <input type="text" name="sln" required>
+
+    <label>Name as per Aadhaar — First Name</label>
+    <input type="text" name="aan1" required>
+
+    <label>Middle Name</label>
+    <input type="text" name="aan2">
+
+    <label>Last Name</label>
+    <input type="text" name="aan3" required>
+
+    <label>Father’s Name (First, Middle, Last)</label>
+    <input type="text" name="ffn" required>
+    <input type="text" name="fmn">
+    <input type="text" name="fln" required>
+
+    <label>Mother’s Name (First, Middle, Last)</label>
+    <input type="text" name="mfn" required>
+    <input type="text" name="mmn">
+    <input type="text" name="mln" required>
+
+    <label>Residence</label>
+    <input type="text" name="residence" required>
+
+    <label>Tehsil</label>
+    <input type="text" name="tehsil" required>
+
+    <label>District</label>
+    <input type="text" name="district" required>
+
+    <label>Father’s Contact Number</label>
+    <input type="text" name="fcontact" required>
+
+    <label>Mother’s Contact Number</label>
+    <input type="text" name="mcontact">
+
+    <label>Aadhaar Number</label>
+    <input type="text" name="aadhaar" required>
+
+    <label>Date of Birth</label>
+    <input type="date" name="dob" required>
+
+    <label>Date of Birth (in Words)</label>
+    <input type="text" name="dobwords" required>
+
+    <label>Bank Account Number</label>
+    <input type="text" name="bankacc">
+
+    <label>Bank Name</label>
+    <input type="text" name="bankname">
+
+    <label>Bank Branch</label>
+    <input type="text" name="bankbranch">
+
+    <label>IFSC Code</label>
+    <input type="text" name="ifsc">
+
+    <label>Category</label>
+    <select name="category">
+      <option>SC</option>
+      <option>ST</option>
+      <option>OBC</option>
+      <option>GENERAL</option>
+    </select>
+
+    <label>Blood Group</label>
+    <input type="text" name="bg">
+
+    <label>Ration Card Number</label>
+    <input type="text" name="rcard">
+
+    <label>Ration Card Type</label>
+    <input type="text" name="rtype">
+
+    <label>Class Joining</label>
+    <input type="text" name="cjoin" required>
+
+    <label>PEN Number (If Transfer Case)</label>
+    <input type="text" name="pen">
+
+    <h4>Parent's Declaration</h4>
+    <textarea name="decl" rows="4">
+I hereby declare that the information provided above is true to the best of my knowledge and I agree to abide by the school rules.
+    </textarea>
+
+    <hr>
+
+    <!-- ========== APAAR FORM (Page 2) ========== -->
+    <h3>APAAR Consent Form (Page 2)</h3>
+
+    <p>
+      Consent by Father/Mother/Legal Guardian of the student for APAAR ID generation as per
+      Ministry of Education guidelines.
+    </p>
+
+    <label>Parent/Guardian Name</label>
+    <input type="text" name="pgname" required>
+
+    <label>Type of ID (Aadhaar / PAN / EPIC / DL / Passport)</label>
+    <input type="text" name="idtype" required>
+
+    <label>ID Number</label>
+    <input type="text" name="idnum" required>
+
+    <label>Place of Physical Consent</label>
+    <input type="text" name="place" required>
+
+    <label>Date</label>
+    <input type="date" name="pdate" required>
+
+    <label>Signature of Parent/Guardian (type name)</label>
+    <input type="text" name="psign" required>
+
+    <hr>
+
+    <button type="button" onclick="downloadPDF()" class="admission-btn">
+      Download Filled Form (PDF – 2 Pages)
+    </button>
+  </form>
 </section>
 
 <section id="facilities" class="section">
@@ -183,5 +331,39 @@
     <p>© 2025 Government Primary School Pethgam Wagoora</p>
 </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+
+  const form = document.getElementById("admissionForm");
+  const data = new FormData(form);
+
+  let y = 10;
+
+  pdf.setFontSize(16);
+  pdf.text("Admission Form (Page 1)", 10, y);
+  y += 10;
+
+  data.forEach((value, key) => {
+    if (y > 275) {
+      pdf.addPage();
+      y = 10;
+    }
+    pdf.setFontSize(12);
+    pdf.text(`${key}: ${value}`, 10, y);
+    y += 7;
+  });
+
+  // Add page 2 manually
+  pdf.addPage();
+  pdf.setFontSize(16);
+  pdf.text("APAAR Consent Form (Page 2)", 10, 10);
+
+  pdf.save("Admission_Form_GPS_Pethgam.pdf");
+}
+</script>
 </body>
 </html>
