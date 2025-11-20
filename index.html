@@ -1,217 +1,52 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GPS Pethgam – Admission</title>  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f2f6ff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Primary School Pethgam Wagoora</title>
 
-    h2 {
-      text-align: center;
-      padding: 20px;
-      margin-top: 10px;
-      color: #003366;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 
-    /* Card Section */
-    .card-container {
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .admission-card {
-      background: #fff;
-      padding: 20px;
-      width: 90%;
-      max-width: 380px;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .btn {
-      background: #0a8a26;
-      color: white;
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 10px;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .btn:hover {
-      background: #06681d;
-    }
-
-    /* Popup */
-    #formPopup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.55);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .form-box {
-      background: white;
-      width: 100%;
-      max-width: 420px;
-      padding: 20px;
-      border-radius: 14px;
-      position: relative;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    .form-box h3 {
-      text-align: center;
-      color: #003366;
-    }
-
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    #photoPreview {
-      width: 120px;
-      height: 140px;
-      background: #eee;
-      display: block;
-      margin: 10px auto;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .success-box {
-      display: none;
-      text-align: center;
-      padding-top: 10px;
-    }
-
-    .close-btn {
-      position: absolute;
-      right: 10px;
-      top: 10px;
-      cursor: pointer;
-      background: #ff4444;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 6px;
-    }
-  </style>  <script>
-    function openForm() {
-      document.getElementById('formPopup').style.display = "flex";
-    }
-
-    function closeForm() {
-      document.getElementById('formPopup').style.display = "none";
-    }
-
-    function previewPhoto(event) {
-      const img = document.getElementById('photoPreview');
-      img.src = URL.createObjectURL(event.target.files[0]);
-    }
-
-    function submitAdmission() {
-      const success = document.getElementById('successBox');
-      success.style.display = "block";
-    }
-
-    function generateAdmissionPDF() {
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF({ unit: "pt", format: "a4" });
-
-      pdf.setFontSize(16);
-      pdf.text("GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA", 70, 50);
-      pdf.setFontSize(12);
-
-      let name = document.getElementById("studentName").value;
-      let father = document.getElementById("fatherName").value;
-      let mother = document.getElementById("motherName").value;
-      let dob = document.getElementById("dob").value;
-      let contact = document.getElementById("contact").value;
-
-      pdf.text(`Student Name: ${name}`, 50, 120);
-      pdf.text(`Father Name: ${father}`, 50, 150);
-      pdf.text(`Mother Name: ${mother}`, 50, 180);
-      pdf.text(`Date of Birth: ${dob}`, 50, 210);
-      pdf.text(`Contact: ${contact}`, 50, 240);
-
-      // Add image if uploaded
-      let file = document.getElementById("photoUpload").files[0];
-      if (file) {
-        let reader = new FileReader();
-        reader.onload = function(e) {
-          pdf.addImage(e.target.result, "JPEG", 380, 110, 130, 160);
-          pdf.save("Admission_Form.pdf");
-        };
-        reader.readAsDataURL(file);
-      } else {
-        pdf.save("Admission_Form.pdf");
-      }
-    }
-  </script></head>
-<body>  <section class="admission-section">
-    <h2>📘 Online Admission – 2025</h2><div class="card-container">
-  <div class="admission-card">
-    <h3>New Admission</h
-  // Insert photo if available (preview image element holds dataURL)
-  const previewImg = document.getElementById('previewImg');
-  if (previewImg && previewImg.src) {
-    // calculate size and position (top-right)
-    const imgW = 110;
-    const imgH = 140;
-    pdf.addImage(previewImg.src, 'JPEG', pageWidth - margin - imgW, 110, imgW, imgH);
-  }
-
-  // Footer sign boxes
-  const footerY = pdf.internal.pageSize.getHeight() - 120;
-  pdf.setLineWidth(0.5);
-  pdf.text('Parent/Guardian Signature', leftColX, footerY);
-  pdf.text('Head of Institution', pageWidth - margin - 140, footerY);
-  pdf.line(leftColX, footerY + 6, leftColX + 180, footerY + 6); // parent sign line
-  pdf.line(pageWidth - margin - 220, footerY + 6, pageWidth - margin - 20, footerY + 6); // hoi line
-
-  // Page 2 - APAAR / Consent / Declaration
-  pdf.addPage();
-  pdf.setFontSize(16);
-  pdf.text('APAAR Consent & Declaration (Page 2)', pageWidth/2, 60, { align: 'center' });
-  pdf.setFontSize(12);
-
-  const consentText = [
-    'I hereby declare that the information provided above is true to the best of my knowledge.',
-    'I agree to abide by school rules and provide required documents when asked.',
-    'I give consent for Aadhaar/identification verification if required by authorities.'
-  ];
-  let ty = 110;
-  consentText.forEach(line => {
-    const spl = pdf.splitTextToSize(line, usableWidth);
-    pdf.text(spl, margin + 10, ty);
-    ty += lineGap * (spl.length + 0.6);
-  });
-
-  // Save PDF
-  pdf.save('Admission_Form_GPS_Pethgam.pdf');
+<style>
+/* Basic popup fallback so it always works */
+#formPopup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  z-index: 9999;
 }
-    </script>
+
+.form-box {
+  background: #fff;
+  padding: 20px;
+  width: 95%;
+  max-width: 450px;
+  border-radius: 12px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+</style>
+
+</head>
+
 <body>
 
-<header class="header">
+<header class="header" style="text-align:center; padding:20px;">
     <h1>Government Primary School Pethgam Wagoora</h1>
     <p class="sub-heading">Nursery to 5th Grade</p>
+
+    <!-- NEW INFO ADDED -->
+    <p style="margin-top:10px; font-size:14px;">
+        📧 Email: <b>pspethgam@gmail.com</b> |
+        🏫 UDISE: <b>01022202207</b> |
+        📞 Contact: <b>7006261694, 9596449881</b>
+    </p>
 </header>
 
 <nav class="menu">
@@ -224,165 +59,160 @@
     <a href="#admin">Update Panel</a>
 </nav>
 
+
 <section class="notifications">
     <marquee>📢 Winter Vacation: 1 Dec 2025 – 28 Feb 2026 | 🎒 New Admissions Open (Nursery–5th) | 🌟 Visit Daily for Updates!</marquee>
 </section>
 
-<section class="about-section" id="about">
-  <h2>About Us</h2>
 
-  <div class="about-card">
-    <p>
-      Government Primary School Pethgam Wagoora (Nursery to Grade 5), established in June 2005, provides a joyful and child-friendly learning environment under the Samagra Shiksha Scheme.
-    </p>
-  </div>
+<!-- ABOUT SECTION -->
+<section id="about" class="about-section">
+    <h2>About Us</h2>
 
-  <div class="about-grid">
-    <div class="about-box">
-      <h3>School Information</h3>
-      <ul>
-        <li><b>Established:</b> June 2005</li>
-        <li><b>School Hours:</b> 10:30 AM – 3:30 PM</li>
-        <li><b>Classes Offered:</b> Nursery to Grade 5</li>
-      </ul>
+    <div class="about-card">
+        <p>
+            Government Primary School Pethgam Wagoora (Nursery to Grade 5), established in June 2005, provides a joyful and child-friendly learning environment under the Samagra Shiksha Scheme.
+        </p>
     </div>
 
-    <div class="about-box">
-      <h3>Child-Friendly Facilities</h3>
-      <ul>
-        <li>Free Textbooks</li>
-        <li>Free Uniform</li>
-        <li>Free Health Check-up & Medicines</li>
-        <li>Free Medical Aids</li>
-        <li>Free Transportation for Referred Students</li>
-        <li>Quality Education</li>
-      </ul>
-    </div>
-  </div>
+    <div class="about-grid">
+        <div class="about-box">
+            <h3>School Information</h3>
+            <ul>
+                <li><b>Established:</b> June 2005</li>
+                <li><b>School Hours:</b> 10:30 AM – 3:30 PM</li>
+                <li><b>Classes Offered:</b> Nursery to Grade 5</li>
+            </ul>
+        </div>
 
-  <div class="about-message">
-    <h3>Head of Institution’s Message</h3>
-    <p>
-      “Welcome to Government Primary School Pethgam Wagoora.  
-      Our commitment is to provide joyful learning experiences and build strong foundations for a bright future.”
-    </p>
-    <b>— Mohammad Ashraf Rather, Head of Institution</b>
-  </div>
+        <div class="about-box">
+            <h3>Child-Friendly Facilities</h3>
+            <ul>
+                <li>Free Textbooks</li>
+                <li>Free Uniform</li>
+                <li>Free Health Check-up & Medicines</li>
+                <li>Free Medical Aids</li>
+                <li>Free Transportation for Referred Students</li>
+                <li>Quality Education</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="about-message">
+        <h3>Head of Institution’s Message</h3>
+        <p>
+            “Welcome to Government Primary School Pethgam Wagoora.
+            Our commitment is to provide joyful learning experiences and build strong foundations for a bright future.”
+        </p>
+        <b>— Mohammad Ashraf Rather, Head of Institution</b>
+    </div>
 </section>
 
-    <section class="admission-section">
-  <h2>📘 Online Admission – 2025</h2>
 
-  <div class="card-container">
+<!-- ADMISSION SECTION -->
+<section class="admission-section" id="admissions">
+    <h2>📘 Online Admission – 2025</h2>
 
-    <div class="admission-card">
-      <h3>New Admission</h3>
-      <p>Fill the form online, upload student photo, and download pre-filled PDF.</p>
-      <div class="btn" onclick="openForm()">Apply Now</div>
+    <div class="card-container">
+        <div class="admission-card">
+            <h3>New Admission</h3>
+            <p>Fill the form online, upload student photo, and download pre-filled PDF.</p>
+            <div class="btn" onclick="openForm()">Apply Now</div>
+        </div>
     </div>
+</section>
 
-  </div>
-<!-- POPUP FORM (REPLACE OLD POPUP WITH THIS) -->
+
+<!-- POPUP FORM -->
 <div id="formPopup" aria-hidden="true">
-  <div class="form-box">
+    <div class="form-box">
 
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-      <h3 style="margin:0">Admission Form</h3>
-      <button type="button" onclick="closeForm()" style="background:#d9534f;color:#fff;border:none;padding:6px 10px;border-radius:8px;cursor:pointer;">✖ Close</button>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <h3 style="margin:0">Admission Form</h3>
+            <button type="button" onclick="closeForm()" style="background:#d9534f;color:#fff;border:none;padding:6px 10px;border-radius:8px;cursor:pointer;">✖ Close</button>
+        </div>
+
+        <form id="admissionForm" onsubmit="handleSubmit(event)">
+            <label>Student Full Name</label>
+            <input type="text" id="studentName" name="studentName" required>
+
+            <label>Father's Name</label>
+            <input type="text" id="fatherName" name="fatherName" required>
+
+            <label>Mother's Name</label>
+            <input type="text" id="motherName" name="motherName">
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                <div>
+                    <label>Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div>
+                    <label>Gender</label>
+                    <select id="gender" name="gender">
+                        <option value="">Select</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <label>Applying For Class</label>
+            <select id="applyClass" name="applyClass" required>
+                <option value="">Select Class</option>
+                <option>Nursery</option>
+                <option>KG</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+
+            <label>Address</label>
+            <textarea id="address" name="address"></textarea>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+                <div>
+                    <label>Parent Contact</label>
+                    <input type="tel" id="contact" name="contact" required>
+                </div>
+
+                <div>
+                    <label>Aadhaar (if any)</label>
+                    <input type="text" id="aadhaar" name="aadhaar">
+                </div>
+            </div>
+
+            <label>Previous School (if any)</label>
+            <input type="text" id="prevSchool" name="prevSchool">
+
+            <label>Upload Photo</label>
+            <input type="file" id="photoUpload" accept="image/*" onchange="previewPhoto(event)">
+
+            <div id="photoPreview" style="display:none;">
+                <small>Photo preview:</small>
+                <img id="previewImg" style="width:100px;height:120px;object-fit:cover;margin-top:5px;border:1px solid #ccc;border-radius:6px;">
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Now</button>
+        </form>
+
+        <!-- Success Box -->
+        <div id="successBox" class="success-box" style="text-align:center; margin-top:12px; display:none;">
+            <p style="font-size:18px;">✔ Submitted Successfully</p>
+            <button class="btn" onclick="generateAdmissionPDF()">Download Now</button>
+        </div>
     </div>
-
-    <!-- The main form -->
-    <form id="admissionForm" onsubmit="handleSubmit(event)">
-      <label>Student Full Name</label>
-      <input type="text" id="studentName" name="studentName" placeholder="Full name" required>
-
-      <label>Father's Name</label>
-      <input type="text" id="fatherName" name="fatherName" placeholder="Father's name" required>
-
-      <label>Mother's Name</label>
-      <input type="text" id="motherName" name="motherName" placeholder="Mother's name">
-
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
-        <div>
-          <label>Date of Birth</label>
-          <input type="date" id="dob" name="dob" required>
-        </div>
-        <div>
-          <label>Gender</label>
-          <select id="gender" name="gender">
-            <option value="">Select</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-
-      <label>Applying For Class</label>
-      <select id="applyClass" name="applyClass" required>
-        <option value="">Select Class</option>
-        <option>Nursery</option>
-        <option>KG</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-
-      <label>Address</label>
-      <textarea id="address" name="address" rows="2" placeholder="Permanent address"></textarea>
-
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
-        <div>
-          <label>Parent Contact</label>
-          <input type="tel" id="contact" name="contact" placeholder="10-digit number" required>
-        </div>
-        <div>
-          <label>Aadhaar (if any)</label>
-          <input type="text" id="aadhaar" name="aadhaar" placeholder="Aadhaar number">
-        </div>
-      </div>
-
-      <label>Previous School (if any)</label>
-      <input type="text" id="prevSchool" name="prevSchool" placeholder="Previous school name">
-
-      <label>Upload Photo (mobile gallery)</label>
-      <input type="file" id="photoUpload" name="photo" accept="image/*" onchange="previewPhoto(event)">
-
-      <div id="photoPreview" style="margin-top:8px; display:none;">
-        <small>Photo preview:</small>
-        <img id="previewImg" src="" alt="photo preview" style="width:100px; height:120px; object-fit:cover; border-radius:8px; display:block; margin-top:6px; border:1px solid #ccc;">
-      </div>
-
-      <button type="submit" class="submit-btn">Submit Now</button>
-    </form>
-
-    <!-- Success box (hidden initially) -->
-    <div class="success-box" id="successBox" style="text-align:center; margin-top:12px;">
-      <p class="success-text" style="font-size:18px;">✔ Submitted Successfully</p>
-      <button class="btn" id="downloadBtn" onclick="generateAdmissionPDF()" style="margin-top:6px;">Download Now</button>
-    </div>
-
-  </div>
 </div>
-    
 
-<section id="facilities" class="section">
-    <h2>Facilities</h2>
-    <ul class="facility-list">
-        <li>📚 Free Textbooks</li>
-        <li>🎽 Free Uniform</li>
-        <li>🩺 Free Health Care</li>
-        <li>🏥 Referral Transport</li>
-        <li>✏️ Quality Learning Environment</li>
-    </ul>
-</section>
 
+<!-- STAFF SECTION -->
 <section id="staff" class="section">
     <h2>Our Staff</h2>
-
     <h3>Head of Institution</h3>
+
     <div class="staff-grid">
         <div class="staff-card">
             <img src="https://pspathgam.github.io/pry_school_pethgam/images/staff/mohammad-ashraf-rather.jpg.png">
@@ -416,11 +246,12 @@
 
         <div class="staff-card">
             <img src="https://pspathgam.github.io/pry_school_pethgam/images/staff/shaheena-bano.jpg.jpg">
-            <p><strong>Shaheena Vano</strong></p>
+            <p><strong>Shaheena Bano</strong></p>
             <small>Cook-Cum-Helper</small>
         </div>
     </div>
 </section>
+
 
 <section id="exam" class="section">
     <h2>Examinations</h2>
@@ -433,16 +264,12 @@
     </ul>
 </section>
 
+
 <section id="results" class="section">
     <h2>Results</h2>
     <p>Results will be uploaded soon.</p>
 </section>
 
-<section class="login-section">
-    <a class="login-btn student">Student Login</a>
-    <a class="login-btn teacher">Teacher Login</a>
-    <a class="login-btn hoi">HOI Login</a>
-</section>
 
 <section id="admin" class="section">
     <h2>Website Update Panel</h2>
@@ -450,56 +277,111 @@
     <a class="update-btn">Go to Update Panel</a>
 </section>
 
+
 <footer>
     <p>© 2025 Government Primary School Pethgam Wagoora</p>
 </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+<!-- JS LIBRARIES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+<!-- CLEANED & MERGED JAVASCRIPT -->
 <script>
-function downloadPDF() {
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF();
 
-  const form = document.getElementById("admissionForm");
-  const data = new FormData(form);
+// OPEN POPUP
+function openForm() {
+    const popup = document.getElementById('formPopup');
+    popup.style.display = 'flex';
+    popup.setAttribute('aria-hidden', 'false');
 
-  let y = 10;
-
-  pdf.setFontSize(16);
-  pdf.text("Admission Form (Page 1)", 10, y);
-  y += 10;
-
-  data.forEach((value, key) => {
-    if (y > 275) {
-      pdf.addPage();
-      y = 10;
-    }
-    pdf.setFontSize(12);
-    pdf.text(`${key}: ${value}`, 10, y);
-    y += 7;
-  });
-
-  // Add page 2 manually
-  pdf.addPage();
-  pdf.setFontSize(16);
-  pdf.text("APAAR Consent Form (Page 2)", 10, 10);
-
-  pdf.save("Admission_Form_GPS_Pethgam.pdf");
+    document.getElementById('admissionForm').reset();
+    document.getElementById('photoPreview').style.display = 'none';
+    document.getElementById('successBox').style.display = 'none';
 }
+
+// CLOSE POPUP
+function closeForm() {
+    const popup = document.getElementById('formPopup');
+    popup.style.display = 'none';
+    popup.setAttribute('aria-hidden', 'true');
+}
+
+// PHOTO PREVIEW
+function previewPhoto(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('previewImg').src = e.target.result;
+        document.getElementById('photoPreview').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+}
+
+// SHOW SUCCESS BOX
+function handleSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('studentName').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+    const dob = document.getElementById('dob').value;
+    const applyClass = document.getElementById('applyClass').value;
+
+    if (!name || !contact || !dob || !applyClass) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    document.getElementById('successBox').style.display = 'block';
+}
+
+
+// GENERATE PDF
+function generateAdmissionPDF() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
+
+    const formData = new FormData(document.getElementById('admissionForm'));
+    const e = {};
+    formData.forEach((v,k) => e[k] = v);
+
+    pdf.setFontSize(18);
+    pdf.text("Admission Form - Government Primary School Pethgam Wagoora", 300, 40, { align: "center" });
+
+    pdf.setFontSize(12);
+    let y = 90;
+
+    const fields = [
+        ["Student Name", e.studentName],
+        ["Father Name", e.fatherName],
+        ["Mother Name", e.motherName],
+        ["DOB", e.dob],
+        ["Gender", e.gender],
+        ["Applying For Class", e.applyClass],
+        ["Address", e.address],
+        ["Contact", e.contact],
+        ["Aadhaar", e.aadhaar],
+        ["Previous School", e.prevSchool]
+    ];
+
+    fields.forEach(([label, value]) => {
+        pdf.text(`${label}: ${value || ""}`, 40, y);
+        y += 22;
+    });
+
+    // INSERT PHOTO
+    const img = document.getElementById('previewImg');
+    if (img && img.src) {
+        pdf.addImage(img.src, "JPEG", 380, 90, 140, 170);
+    }
+
+    pdf.save("Admission_Form_GPS_Pethgam.pdf");
+}
+
 </script>
+
 </body>
 </html>
-<script>
-function openForm() {
-  document.getElementById("formPopup").style.display = "flex";
-}
-
-function submitForm() {
-  document.getElementById("successBox").style.display = "block";
-}
-
-function closeForm() {
-  document.getElementById("formPopup").style.display = "none";
-}
-</script>
