@@ -1,6 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Government Primary School Pethgam Wagoora</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#f7fbff; --card:#ffffff; --muted:#475569; --brand:#0f62d0;
+    --accent:#1e90ff;
+    --btn-start:#4facfe;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    margin:0;
+    background:linear-gradient(180deg,#f3f9ff,#fbfcff);
+    color:#102a43;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* Header */
+  header.site-header{
+    background: linear-gradient(90deg,var(--brand),#0b4fb0);
+    color:#fff;
+    padding:14px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 6px 18px rgba(11,68,150,0.12);
+  }
+  .header-left{display:flex;align-items:center;gap:12px}
+  .logo{width:82px;height:82px;border-radius:10px;object-fit:cover;border:3px solid rgba(255,255,255,0.18);display:block}
+  .site-title{line-height:1}
+  .site-title h1{margin:0;font-size:18px;font-weight:800;font-family:"Fredoka One","Nunito",sans-serif}
+  .site-title p.sub{margin:3px 0 0;font-size:13px;opacity:0.95; font-weight:600}
+
+  /* contact block */
+  .contact-info{font-size:13px;text-align:right}
+  .contact-info div{line-height:1.2}
+
+  /* Top ticker below header */
+  .top-row{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 14px;background:linear-gradient(90deg,#eef7ff,#ffffff);border-bottom:1px solid rgba(15,86,208,0.04)}
+  .notifications-scroll{flex:1;margin-left:12px;overflow:hidden;border-radius:12px;background:linear-gradient(90deg,#fff,#f7fbff);padding:8px 10px;box-shadow:0 2px 6px rgba(2,6,23,0.04)}
+  .ticker{white-space:nowrap;display:inline-block;animation:scroll-left 18s linear infinite;font-weight:700}
+  @keyframes scroll-left{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+
+  /* Menu - single child-friendly 3D color */
+  nav.menu{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 14px;background:transparent;border-bottom:1px solid rgba(15,86,208,0.03);justify-content:center}
+  nav.menu .menu-logo{width:40px;height:40px;border-radius:8px;object-fit:cover;margin-right:8px}
+  /* 3D button style (all same) */
+  nav.menu a {
+    display:inline-block;
+    padding:10px 16px;
+    border-radius:12px;
+    background: linear-gradient(180deg,#5daaff,#1e90ff);
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+    box-shadow: 0 6px 0 #0c58a3, 0 10px 20px rgba(0,0,0,0.08);
+    transition: all .12s ease;
+  }
+  nav.menu a:active { transform: translateY(4px); box-shadow:0 2px 0 #0c58a3; }
+  nav.menu a:hover { filter:brightness(1.05); transform: translateY(-3px); }
+
+  /* Layout grid */
+  .container{max-width:1100px;margin:18px auto;padding:0 12px;display:grid;grid-template-columns:1fr 340px;gap:18px}
+  @media (max-width:960px){.container{grid-template-columns:1fr;padding:12px} nav.menu{justify-content:flex-start;overflow:auto}}
+
+  /* Cards & hero */
+  .card{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 8px 20px rgba(12,40,90,0.05)}
+  .hero{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px;text-align:center}
+  .hero h2{margin:6px 0 0;color:var(--brand);font-family:"Fredoka One", "Nunito", sans-serif}
+  .small{color:#475569;font-size:14px}
+
+  /* Rainbow accent */
+  .rainbar{height:10px;border-radius:10px;margin-top:10px;display:flex;overflow:hidden;box-shadow:0 6px 18px rgba(12,40,90,0.03)}
+  .rainbar > div{flex:1;height:10px}
+  .r1{background:#ff8a80} .r2{background:#ffd180} .r3{background:#fff59d}
+  .r4{background:#b9f6ca} .r5{background:#80d8ff} .r6{background:#b388ff}
+
+  /* Buttons (global) */
+  .btn-3d{display:inline-block;padding:12px 20px;border-radius:14px;background:linear-gradient(180deg,#5daaff,#1e90ff);color:#fff;font-weight:900;cursor:pointer;border:none;box-shadow:0 10px 0 rgba(24,88,200,0.12), 0 12px 24px rgba(20,70,160,0.08)}
+  .apply-btn{background:linear-gradient(180deg,#ffb74d,#fb8c00);box-shadow:0 10px 0 #ef6c00;color:#fff;font-weight:900;border-radius:14px;padding:12px 20px}
+  .btn-ghost{background:#fff;border:2px solid #e6f0ff;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:700;color:var(--brand)}
+
+  /* Right column news (vertical scroll) */
+  .vertical-news{height:360px;overflow:hidden;border-radius:10px;background:linear-gradient(180deg,#fff,#f7fbff);padding:10px}
+  .news-list{display:block;animation:scroll-up 18s linear infinite}
+  .news-item{padding:8px 6px;border-bottom:1px dashed #e6eefb}
+  @keyframes scroll-up{0%{transform:translateY(0)}33%{transform:translateY(-33%)}66%{transform:translateY(-66%)}100%{transform:translateY(0)}}
+
+  /* Quick links, mission */
+  .quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px}
+  .mission{background:linear-gradient(180deg,#fff,#f7fcff);padding:14px;border-radius:12px;border-left:6px solid #80d8ff}
+
+  /* POPUP (modal) */
+  #formPopup{ position: fixed; inset:0; display:none; background: rgba(6,12,30,0.55); z-index:99999; align-items:center; justify-content:center; padding:18px;}
+  .wizard{ width:100%; max-width:1000px; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfcff); display:grid; grid-template-columns:1fr 360px; overflow:hidden; box-shadow:0 30px 60px rgba(8,24,64,0.25);}
+  @media (max-width:920px){ .wizard{grid-template-columns:1fr} .wizard .right{order:2} }
+  .wizard .left{padding:18px 20px 24px}
+  .wizard h3{margin:0 0 10px;color:var(--brand);font-size:18px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  label{font-weight:700;font-size:13px;margin-top:8px;display:block}
+  input[type="text"],input[type="tel"],input[type="date"],select,textarea{ width:100%; padding:10px;border-radius:8px;border:1px solid #dbe7ff;background:#fff;margin-top:6px;font-size:14px}
+  textarea{min-height:80px;resize:vertical}
+  .preview{width:100%;height:220px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px dashed #e6eefb}
+  .submitted{padding:14px;background:linear-gradient(180deg,#e9fff0,#d7fbe4);border-radius:10px;color:#087a3a;font-weight:800;text-align:center}
+  .muted{color:#6b7280;font-size:13px}
+  .steps{display:flex;gap:8px;margin-top:12px}
+  .step{flex:1;padding:10px;border-radius:10px;text-align:center;background:linear-gradient(180deg,#fff,#f5f9ff);color:var(--muted);font-weight:800;box-shadow:0 6px 0 rgba(10,60,150,0.03)}
+  .step.active{background:linear-gradient(90deg,#b9f6ca,#80d8ff);color:#08306b}
+
+  /* small responsive tweaks */
+  @media (max-width:520px){
+    .site-title h1{font-size:16px}
+    .logo{width:64px;height:64px}
+  }
+  /* printable adjustments for A4 printing */
+  @media print {
+    #formPopup{display:block !important; position:static; background:none}
+    .wizard{box-shadow:none; grid-template-columns:1fr 300px}
+    nav.menu, .top-row, footer, .news-box { display:none }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" role="banner">
+  <div class="header-left">
+    <img class="logo" src="https://pspathgam.github.io/ps-pethgam-wagoora/assets/images/school-logo.png.png" alt="School Logo">
+    <div class="site-title">
+      <h1>Government Primary School Pethgam Wagoora</h1>
+      <p class="sub">Wagoora Babareshi Road — Near Zonal Education Office, Wagoora — 193109</p>
+    </div>
+  </div>
+
+  <div class="contact-info" aria-label="Contact information">
+    <div><strong>UDISE Code:</strong> 01022202207</div>
+    <div><strong>Email:</strong> pspethgam@gmail.com</div>
+    <div><strong>Contact:</strong> 9596449881, 7006261694</div>
+  </div>
+</header>
+
+<!-- Top row: ticker + live date/time -->
+<div class="top-row" role="region" aria-label="Announcements and time">
+  <div style="font-weight:800;color:#08306b">Online Admission — 2025</div>
+  <div class="notifications-scroll" aria-hidden="false">
+    <div class="ticker" id="notifTicker">
+      📢 Admissions Open • 🗓 Winter Vacation: 1 Dec — 28 Feb • 🎉 Children's Day • 📌 Upload DOB & Aadhaar • Contact: 9596449881
+    </div>
+  </div>
+  <div id="liveClock" style="font-weight:800;color:#08306b"></div>
+</div>
+
+<!-- Menu -->
+<nav class="menu" role="navigation" aria-label="Main menu">
+  <img class="menu-logo" src="https://pspathgam.github.io/ps-pethgam-wagoora/assets/images/school-logo.png.png" alt="">
+  <a href="#" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'}); return false;">Home</a>
+  <a href="#" onclick="document.getElementById('mission').scrollIntoView({behavior:'smooth'}); return false;">Mission</a>
+  <a href="#" onclick="document.getElementById('quick').scrollIntoView({behavior:'smooth'}); return false;">Quick Links</a>
+  <a href="#" onclick="openForm();return false;">Admissions</a>
+  <a href="#" onclick="document.getElementById('newsList').scrollIntoView({behavior:'smooth'}); return false;">News</a>
+  <a href="#" onclick="document.getElementById('staff').scrollIntoView({behavior:'smooth'}); return false;">Staff</a>
+  <a href="#" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Contact</a>
+</nav>
+
+<div class="container" id="home">
+  <main>
+    <section class="card hero" aria-labelledby="heroTitle">
+      <img src="https://pspathgam.github.io/ps-pethgam-wagoora/assets/images/school-logo.png.png" alt="logo" style="width:110px;border-radius:12px;display:block;margin:6px auto">
+      <h2 id="heroTitle">Welcome to Government Primary School Pethgam Wagoora</h2>
+      <div class="small">Excellence in foundational education • Nursery to Grade 5</div>
+
+      <div class="rainbar" aria-hidden="true"><div class="r1"></div><div class="r2"></div><div class="r3"></div><div class="r4"></div><div class="r5"></div><div class="r6"></div></div>
+
+      <div class="admission-card card" style="margin-top:16px">
+        <h3 style="margin:0">Online Admission — 2025</h3>
+        <p class="small">Apply online, upload student photo and download a prefilled A4 admission PDF. Please keep scanned DOB, Aadhaar and previous TC (if applicable) ready.</p>
+        <div style="margin-top:14px">
+          <button class="apply-btn" onclick="openForm()">Apply Now</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="mission" style="margin-top:14px">
+      <h3>School Mission</h3>
+      <div class="mission">
+        <p><strong>Our mission</strong> is to provide child-centered, joyful, and inclusive education that builds strong foundational skills in literacy, numeracy, and values. We aim to nurture confident learners through activity-based teaching, community participation and supportive school environment.</p>
+      </div>
+    </section>
+
+    <section class="card" id="quick" style="margin-top:14px">
+      <h3>Quick Links</h3>
+      <div class="quick-grid">
+        <div class="card small"><strong>Admissions</strong><p class="small">Apply online via the form</p></div>
+        <div class="card small"><strong>Student Profile</strong><p class="small">Search by PEN</p></div>
+        <div class="card small"><strong>Examinations</strong><p class="small">FA/SA schedule & marks</p></div>
+        <div class="card small"><strong>Circulars</strong><p class="small">Important orders & notices</p></div>
+      </div>
+    </section>
+
+    <section class="card" id="staff" style="margin-top:14px">
+      <h3>Staff</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:10px">
+        <div style="width:180px;text-align:center" class="card">
+          <img src="https://pspathgam.github.io/pry_school_pethgam/images/staff/mohammad-ashraf-rather.jpg.png" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
+          <div style="font-weight:800;margin-top:6px">Mohammad Ashraf Rather</div>
+          <div class="muted">Head of Institution</div>
+        </div>
+        <div style="width:180px;text-align:center" class="card">
+          <img src="https://pspathgam.github.io/pry_school_pethgam/images/staff/mohammad-iqbal-rather.jpg.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
+          <div style="font-weight:800;margin-top:6px">Mohammad Iqbal Rather</div>
+          <div class="muted">Teacher</div>
+        </div>
+        <div style="width:180px;text-align:center" class="card">
+          <img src="https://pspathgam.github.io/pry_school_pethgam/images/staff/masrat-begum.jpg.jpg" style="width:100%;height:140px;object-fit:cover;border-radius:8px">
+          <div style="font-weight:800;margin-top:6px">Masrat Begum</div>
+          <div class="muted">Aaya</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="right-column">
+    <div class="card vertical-news" role="complementary">
+      <h4 style="margin-top:0">News, Views & Events</h4>
+      <div class="news-list" id="newsList" aria-live="polite">
+        <div class="news-item"><strong>14 Nov</strong> - Children's Day celebration in school auditorium</div>
+        <div class="news-item"><strong>01 Dec</strong> - Winter vacation begins</div>
+        <div class="news-item"><strong>05 Jan</strong> - Parent Teacher Meeting (Class 1 & 2)</div>
+        <div class="news-item"><strong>20 Feb</strong> - Annual Sports Day practice</div>
+        <div class="news-item"><strong>28 Feb</strong> - School reopens</div>
+        <!-- repeats for continuous scroll -->
+        <div class="news-item"><strong>14 Nov</strong> - Children's Day celebration in school auditorium</div>
+        <div class="news-item"><strong>01 Dec</strong> - Winter vacation begins</div>
+        <div class="news-item"><strong>05 Jan</strong> - Parent Teacher Meeting (Class 1 & 2)</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h4 style="margin-top:0">Contact & Location</h4>
+      <div class="small">Wagoora Baberashi Road — Near Zonal Education Office</div>
+      <div style="margin-top:8px"><strong>Email:</strong> pspethgam@gmail.com</div>
+      <div><strong>Phone:</strong> 9596449881, 7006261694</div>
+    </div>
+  </aside>
+</div>
+
+<footer style="text-align:center;padding:18px;margin-top:18px;background:linear-gradient(180deg,#eef6ff,#e9f4ff)">
+  <div style="font-weight:800">Government Primary School Pethgam Wagoora</div>
+  <div class="small">UDISE Code: 01022202207 • Wagoora — 193109 • Email: pspethgam@gmail.com</div>
+</footer>
+
+<!-- POPUP: TWO-PAGE WIZARD -->
+<div id="formPopup" role="dialog" aria-hidden="true" aria-labelledby="wizardTitle">
+  <div class="wizard" role="document" aria-modal="true">
+    <div class="left" aria-live="polite">
+      <h3 id="wizardTitle">Admission Form — Page 1 of 2</h3>
+
+      <!-- PAGE 1 -->
+      <div id="page1">
+        <div style="margin-bottom:8px; font-weight:700">
+          <div>GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</div>
+          <div style="font-weight:600">Wagoora Babareshi Road Near Zonal Education Office Wagoora</div>
+          <div style="margin-top:6px">Email ID: pspethgam@gmail.com • UDISE Code: 01022202207</div>
+        </div>
+
+        <hr>
+
+        <label>ADMISSION FORM</label>
+        <div style="margin-top:6px;font-weight:800">Student's Name</div>
+        <div class="row">
+          <div>
+            <label>First Name</label>
+            <input id="stu_first" type="text" placeholder="First">
+          </div>
+          <div>
+            <label>Middle Name</label>
+            <input id="stu_middle" type="text" placeholder="Middle">
+          </div>
+        </div>
+        <div style="margin-top:6px">
+          <label>Last Name</label>
+          <input id="stu_last" type="text" placeholder="Last">
+        </div>
+
+        <div style="margin-top:10px;font-weight:800">Name As Per Aadhaar</div>
+        <div class="row">
+          <div>
+            <label>First Name</label>
+            <input id="aad_first" type="text">
+          </div>
+          <div>
+            <label>Middle Name</label>
+            <input id="aad_middle" type="text">
+          </div>
+        </div>
+        <div style="margin-top:6px">
+          <label>Last Name</label>
+          <input id="aad_last" type="text">
+        </div>
+
+        <div style="margin-top:10px;font-weight:800">Parent Details</div>
+        <div class="row">
+          <div>
+            <label>Father's Name (First Middle Last)</label>
+            <input id="father_name" type="text">
+          </div>
+          <div>
+            <label>Mother's Name (First Middle Last)</label>
+            <input id="mother_name" type="text">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <div>
+            <label>Residence</label>
+            <input id="residence" type="text">
+          </div>
+          <div>
+            <label>Tehsil</label>
+            <input id="tehsil" type="text">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <div>
+            <label>District</label>
+            <input id="district" type="text">
+          </div>
+          <div>
+            <label>Father's Contact Number</label>
+            <input id="father_contact" type="tel">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <div>
+            <label>Mother's Contact Number</label>
+            <input id="mother_contact" type="tel">
+          </div>
+          <div>
+            <label>Aadhaar Number</label>
+            <input id="aadhaar_no" type="text">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <div>
+            <label>Date of Birth (in figures)</label>
+            <input id="dob_fig" type="date">
+          </div>
+          <div>
+            <label>Date of Birth (in words)</label>
+            <input id="dob_words" type="text" placeholder="e.g. Twenty Five August Two Thousand Ten">
+          </div>
+        </div>
+
+        <div style="margin-top:10px;font-weight:800">Bank & Category Details</div>
+        <div class="row">
+          <div>
+            <label>Bank Account Number</label>
+            <input id="bank_acc" type="text">
+          </div>
+          <div>
+            <label>Bank Name</label>
+            <input id="bank_name" type="text">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <div>
+            <label>Bank Branch</label>
+            <input id="bank_branch" type="text">
+          </div>
+          <div>
+            <label>IFSC Code</label>
+            <input id="ifsc" type="text">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px">
+          <div>
+            <label>Category</label>
+            <select id="category">
+              <option>GENERAL</option><option>SC</option><option>ST</option><option>OBC</option>
+            </select>
+          </div>
+          <div>
+            <label>Blood Group</label>
+            <input id="blood_group" type="text">
+          </div>
+        </div>
+
+        <div style="margin-top:8px">
+          <label>Ration Card Number</label>
+          <input id="ration_no" type="text">
+        </div>
+
+        <div style="margin-top:8px">
+          <label>Ration Card Type</label>
+          <input id="ration_type" type="text">
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <button class="btn-ghost" type="button" onclick="closeForm()">Close</button>
+          <div style="flex:1"></div>
+          <button class="btn-3d" type="button" onclick="nextPage(2)">Next →</button>
+        </div>
+      </div>
+
+      <!-- PAGE 2 -->
+      <div id="page2" style="display:none; padding-top:6px;">
+        <div style="margin-bottom:8px; font-weight:700">
+          <div>GOVERNMENT PRIMARY SCHOOL PETHGAM WAG
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <title>GPS Pethgam Wagoora – Admission Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
