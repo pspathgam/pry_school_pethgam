@@ -266,191 +266,43 @@
   <div class="small">UDISE Code: 01022202207 • Wagoora — 193109 • Email: pspethgam@gmail.com</div>
 </footer>
 
-<!-- POPUP: TWO-PAGE ADMISSION WIZARD -->
-<div id="formPopup" role="dialog" aria-hidden="true" aria-labelledby="wizardTitle">
-  <div class="wizard" role="document" aria-modal="true">
-    <div class="left" aria-live="polite">
-      <h3 id="wizardTitle">Admission Form — Page 1 of 2</h3>
+      <!-- ================== ADMISSION SECTION ================== -->
+<section id="admissions" class="page-section">
+  <h2>📘 Online Admission – 2025</h2>
 
-      <!-- PAGE 1 -->
-      <div id="page1">
-        <div style="margin-bottom:8px; font-weight:700">
-          <div>GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</div>
-          <div style="font-weight:600">Wagoora Babareshi Road — Near Zonal Education Office, Wagoora</div>
-          <div style="margin-top:6px">Email ID: pspethgam@gmail.com • UDISE Code: 01022202207</div>
-        </div>
+  <div class="admission-card">
+      <h3>New Admission</h3>
+      <p>Fill the details and download the pre-filled PDF.</p>
+      <button class="btn" onclick="openForm()">Apply Now</button>
+  </div>
+</section>
 
-        <hr>
+<!-- ============== POPUP ADMISSION FORM ============== -->
+<div id="formPopup" class="popup">
+  <div class="popup-content">
 
-        <label>ADMISSION FORM</label>
-        <div style="margin-top:6px;font-weight:800">Student's Name</div>
-        <div class="row">
-          <div>
-            <label>First Name</label>
-            <input id="stu_first" type="text" placeholder="First">
-          </div>
-          <div>
-            <label>Middle Name</label>
-            <input id="stu_middle" type="text" placeholder="Middle">
-          </div>
-        </div>
-        <div style="margin-top:6px">
-          <label>Last Name</label>
-          <input id="stu_last" type="text" placeholder="Last">
-        </div>
+    <h2>Admission Form</h2>
 
-        <div style="margin-top:10px;font-weight:800">Name As Per Aadhaar</div>
-        <div class="row">
-          <div>
-            <label>First Name</label>
-            <input id="aad_first" type="text">
-          </div>
-          <div>
-            <label>Middle Name</label>
-            <input id="aad_middle" type="text">
-          </div>
-        </div>
-        <div style="margin-top:6px">
-          <label>Last Name</label>
-          <input id="aad_last" type="text">
-        </div>
+    <span class="close-btn" onclick="closeForm()">×</span>
 
-        <div style="margin-top:10px;font-weight:800">Parent Details</div>
-        <div class="row">
-          <div>
-            <label>Father's Name (First Middle Last)</label>
-            <input id="father_name" type="text">
-          </div>
-          <div>
-            <label>Mother's Name (First Middle Last)</label>
-            <input id="mother_name" type="text">
-          </div>
-        </div>
+    <input type="text" id="studentName" placeholder="Student Name">
+    <input type="text" id="fatherName" placeholder="Father's Name">
+    <input type="text" id="motherName" placeholder="Mother's Name">
+    <input type="text" id="dob" placeholder="Date of Birth (DD/MM/YYYY)">
+    <input type="text" id="contact" placeholder="Parent Contact Number">
 
-        <div class="row" style="margin-top:8px">
-          <div>
-            <label>Residence</label>
-            <input id="residence" type="text">
-          </div>
-          <div>
-            <label>Tehsil</label>
-            <input id="tehsil" type="text">
-          </div>
-        </div>
+    <label>Upload Photo:</label>
+    <input type="file" id="photoUpload" accept="image/*">
 
-        <div class="row" style="margin-top:8px">
-          <div>
-            <label>District</label>
-            <input id="district" type="text">
-          </div>
-          <div>
-            <label>Father's Contact Number</label>
-            <input id="father_contact" type="tel">
-          </div>
-        </div>
+    <button class="btn" onclick="submitForm()">Submit</button>
 
-        <div class="row" style="margin-top:8px">
-          <div>
-            <label>Mother's Contact Number</label>
-            <input id="mother_contact" type="tel">
-          </div>
-          <div>
-            <label>Aadhaar Number</label>
-            <input id="aadhaar_no" type="text">
-          </div>
-        </div>
+    <div id="successMsg" class="success-box">
+      <p>✔ Submitted Successfully!</p>
+      <button class="btn" onclick="generatePDF()">Download PDF</button>
+    </div>
 
-        <div class="row" style="margin-top:8px">
-          <div>
-            <label>Date of Birth (in figures)</label>
-            <input id="dob_fig" type="date">
-          </div>
-          <div>
-            <label>Date of Birth (in words)</label>
-            <input id="dob_words" type="text" placeholder="e.g. Twenty Five August Two Thousand Ten">
-          </div>
-        </div>
-
-        <div style="margin-top:10px;font-weight:800">Bank & Category Details</div>
-        <div class="row">
-          <div>
-            <label>Bank Account Number</label>
-            <input id="bank_acc" type="text">
-          </div>
-          <div>
-            <label>Bank Name</label>
-            <input id="bank_name" type="text">
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:8px">
-          <div>
-            <label>Bank Branch</label>
-            <input id="bank_branch" type="text">
-          </div>
-          <div>
-            <label>IFSC Code</label>
-            <input id="ifsc" type="text">
-          </div>
-        </div>
-
-        <div class="row" style="margin-top:8px">
-          <div>
-            <label>Category</label>
-            <select id="category">
-              <option>GENERAL</option><option>SC</option><option>ST</option><option>OBC</option>
-            </select>
-          </div>
-          <div>
-            <label>Blood Group</label>
-            <input id="blood_group" type="text">
-          </div>
-        </div>
-
-        <div style="margin-top:8px">
-          <label>Ration Card Number</label>
-          <input id="ration_no" type="text">
-        </div>
-
-        <div style="margin-top:8px">
-          <label>Ration Card Type</label>
-          <input id="ration_type" type="text">
-        </div>
-
-        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
-          <button class="btn-3d btn-ghost" type="button" onclick="closeForm()" style="background:#fff;border:2px solid #e6f0ff;color:var(--brand)">Close</button>
-          <div style="flex:1"></div>
-          <button class="btn-3d" type="button" onclick="nextPage(2)">Next →</button>
-        </div>
-      </div>
-
-      <!-- PAGE 2 -->
-      <div id="page2" style="display:none; padding-top:6px;">
-        <div style="margin-bottom:8px; font-weight:700">
-          <div>GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</div>
-          <div style="font-weight:600">Wagoora Babareshi Road — Near Zonal Education Office, Wagoora</div>
-          <div style="margin-top:6px">UDISE Code: 01022202207</div>
-        </div>
-
-        <hr>
-
-        <div class="row">
-          <div>
-            <label>Class Joining</label>
-            <select id="class_join">
-              <option>Nursery</option><option>KG</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-            </select>
-          </div>
-          <div>
-            <label>PEN Number (for transferring students)</label>
-            <input id="pen_no" type="text">
-          </div>
-        </div>
-
-        <div style="margin-top:8px">
-          <label>Parent Declaration</label>
-          <textarea id="declaration_text">I do hereby declare that the above information provided by me is true to the best of my knowledge and belief. I further declare that I will abide by the rules and regulations laid down by the school and the department from time to time and I will co-operate with the institution for the betterment of my ward. I hereby give my consent to provide the AADHAAR for the demographic authentication of t
-
+  </div>
+</div>
 <!-- ========================================================= -->
 <!--                    STUDENT PROFILE PAGE                   -->
 <!-- ========================================================= -->
