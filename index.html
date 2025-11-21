@@ -454,43 +454,27 @@ setInterval(updateClock, 1000);
 updateClock();
 
 </script>
+<script>
+    // JS to open/close Admission Form
+    const applyBtn = document.getElementById("applyBtn");
+    const formOverlay = document.getElementById("formOverlay");
+    const closeFormBtn = document.getElementById("closeForm");
 
+    applyBtn.addEventListener("click", () => {
+        formOverlay.style.display = "block";
+    });
+
+    closeFormBtn.addEventListener("click", () => {
+        formOverlay.style.display = "none";
+    });
+
+    // JS to open mobile-friendly downloadable form
+    const downloadBtn = document.getElementById("downloadFormBtn");
+    downloadBtn.addEventListener("click", () => {
+        window.location.href = "assets/forms/admission-form.pdf";
+    });
+</script>
+</body>
+</html>
 </body>
           </html>
-
-
-
-
-
-
-
-    
-              </div>
-          <div>
-            <label>Blood Group</label>
-            <input id="blood_group" type="text">
-          </div>
-        </div>
-
-        <div style="margin-top:8px">
-          <label>Ration Card Number</label>
-          <input id="ration_no" type="text">
-        </div>
-
-        <div style="margin-top:8px">
-          <label>Ration Card Type</label>
-          <input id="ration_type" type="text">
-        </div>
-
-        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
-          <button class="btn-ghost" type="button" onclick="closeForm()">Close</button>
-          <div style="flex:1"></div>
-          <button class="btn-3d" type="button" onclick="nextPage(2)">Next →</button>
-        </div>
-      </div>
-
-      <!-- PAGE 2 -->
-      <div id="page2" style="display:none; padding-top:6px;">
-        <div style="margin-bottom:8px; font-weight:700">
-          <div>GOVERNMENT PRIMARY SCHOOL PETHGAM WAG
-
