@@ -324,3 +324,81 @@ form input, form select, textarea {
 .submit-btn:hover {
   background: #003c9e;
 }
+/* POPUP BACKGROUND */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* POPUP BOX */
+.popup-content {
+  background: white;
+  width: 90%;
+  max-width: 450px;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  animation: popupAppear 0.3s ease-out;
+}
+
+/* ANIMATION */
+@keyframes popupAppear {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  right: 12px;
+  top: 5px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* INPUT FIELDS */
+.popup-content input {
+  width: 95%;
+  margin: 7px auto;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #888;
+}
+
+/* SUCCESS BOX */
+.success-box {
+  display: none;
+  margin-top: 15px;
+  padding: 12px;
+  background: #dcffe4;
+  border-left: 5px solid green;
+  border-radius: 7px;
+}
+
+/* BUTTON STYLING */
+.btn {
+  background: linear-gradient(#ffdd66, #f0b400);
+  padding: 12px 20px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #c99500;
+  transition: 0.1s;
+}
+
+.btn:active {
+  box-shadow: 0 1px 0 #c99500;
+  transform: translateY(3px);
+}
