@@ -1,416 +1,636 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Government Primary School Pethgam Wagoora</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;800&display=swap" rel="stylesheet">
-  <meta name="description" content="Government Primary School Pethgam Wagoora - official site">
-  <style>
-    :root{
-      --brand:#0b76ef; /* blue */
-      --accent:#ffb400; /* warm yellow */
-      --card1:#e8f6ff;
-      --card2:#fff4e0;
-      --card3:#eefdf3;
-      --card4:#f7eefc;
-      --muted:#666;
-      --glass: rgba(255,255,255,0.85);
-      font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:#fafafa;color:#222;line-height:1.45}
-    a{color:var(--brand);text-decoration:none}
-    .topbar{background:#0b76ef;color:#fff;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;font-size:14px}
-    .topbar a{color:#fff}
-    .header{background:linear-gradient(90deg,var(--brand),#2fa1ff);color:#fff;padding:18px 12px}
-    .header-inner{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{width:68px;height:68px;border-radius:8px;background:#fff;padding:6px}
-    .brand h1{margin:0;font-size:20px}
-    .nav{display:flex;gap:8px}
-    .nav .btn{background:transparent;border:2px solid rgba(255,255,255,0.14);padding:8px 10px;border-radius:8px;color:#fff;font-weight:700}
-    /* colorful menu buttons */
-    .nav .btn:nth-child(1){background:linear-gradient(135deg,#ffecd2,#fcb69f);color:#333}
-    .nav .btn:nth-child(2){background:linear-gradient(135deg,#e6f7ff,#bfe9ff);color:#033}
-    .nav .btn:nth-child(3){background:linear-gradient(135deg,#fff3b3,#ffd36b);color:#333}
-    .nav .btn:nth-child(4){background:linear-gradient(135deg,#dff7e6,#b9f1c7);color:#043}
-    .nav .btn:nth-child(5){background:linear-gradient(135deg,#f6e9ff,#e7ccff);color:#2a0}
-    .nav .btn:hover{transform:translateY(-2px)}
-    .container{max-width:1200px;margin:18px auto;padding:0 12px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Primary School Pethgam Wagoora - Dynamic CMS</title>
+    <style>
+        /* BASE STYLES */
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background-color: #f7f7f7; color: #333; }
+        h1, h2, h3, h4 { color: #0056b3; }
+        a { text-decoration: none; color: #0056b3; }
+        a:hover { color: #003d82; }
+        .content-section { padding: 20px; }
+        .full-width { width: 100%; box-sizing: border-box; }
 
-    /* Hero */
-    .hero{height:320px;border-radius:12px;overflow:hidden;position:relative}
-    .slides{height:100%;display:flex;transition:transform .6s ease}
-    .slide{min-width:100%;background-size:cover;background-position:center;display:flex;align-items:center}
-    .slide .content{background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0));color:#fff;padding:22px;border-radius:8px;margin:24px;width:52%}
-    .cta{display:inline-block;background:var(--accent);padding:8px 12px;border-radius:8px;margin-right:8px;font-weight:700}
+        /* HEADER AND CONTACT INFO */
+        header { background-color: #fff; padding: 10px 20px; border-bottom: 2px solid #0056b3; }
+        .contact-info { font-size: 0.9em; margin-bottom: 5px; color: #555; }
+        .logo-section { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+        .logo-section h1 { margin: 0; font-size: 1.5em; flex-grow: 1; }
 
-    /* Ticker */
-    .ticker{display:flex;gap:12px;align-items:center;background:var(--accent);padding:10px;border-radius:8px;margin-top:14px}
-    .ticker .label{font-weight:800;padding:6px 10px;background:#fff;border-radius:6px}
-    .marquee{overflow:hidden;flex:1}
-    .marquee p{display:inline-block;white-space:nowrap;animation:marquee 18s linear infinite;margin:0}
-    @keyframes marquee{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+        /* NAVIGATION - 3D BUTTON EFFECT */
+        .nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;}
+        .nav .btn {
+            padding: 10px 15px;
+            background-color: #0056b3; 
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 0 0 #003d82; /* 3D effect base */
+            transform: translateY(0);
+        }
+        .nav .btn:active {
+            transform: translateY(4px); /* Press down */
+            box-shadow: 0 0 0 0 #003d82; /* Shadow disappears on press */
+        }
+        .nav .btn:hover {
+            background-color: #007bff;
+        }
+        .nav .btn.admin { background-color: #dc3545; box-shadow: 0 4px 0 0 #a0202d; }
+        .nav .btn.admin:active { transform: translateY(4px); box-shadow: 0 0 0 0 #a0202d; }
 
-    /* Quick links */
-    .quick-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
-    .card{background:var(--glass);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(12,24,40,0.06);display:flex;flex-direction:column;gap:8px}
-    .card .icon{width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900}
-    .card:nth-child(1){background:var(--card1)}
-    .card:nth-child(2){background:var(--card2)}
-    .card:nth-child(3){background:var(--card3)}
-    .card:nth-child(4){background:var(--card4)}
+        /* HERO SLIDER (simple) */
+        .hero { position: relative; height: 400px; overflow: hidden; margin-bottom: 20px; }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; width: 300%; /* For 3 slides */ }
+        .slide { width: 33.333%; height: 400px; background-size: cover; background-position: center; flex-shrink: 0; position: relative; }
+        .slide .content { background-color: rgba(0, 0, 0, 0.5); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; height: 100%; box-sizing: border-box; }
+        .slide h2 { color: #ffc107; }
+        .cta-row .cta { background-color: #28a745; color: white; padding: 10px 20px; border-radius: 5px; margin: 0 10px; transition: background-color 0.3s; }
+        .cta-row .cta:hover { background-color: #218838; }
 
-    /* News & Events horizontal scroll */
-    .news-grid{display:flex;gap:10px;margin-top:10px}
-    .news-item{background:#fff;padding:12px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.04);width:320px}
+        /* TICKER - YELLOW BACKGROUND */
+        .ticker { background-color: #fff3cd; border: 1px solid #ffeeba; padding: 8px 20px; margin-bottom: 20px; display: flex; align-items: center; color: #856404; }
+        .ticker .label { font-weight: bold; margin-right: 15px; background-color: #ffc107; padding: 3px 8px; border-radius: 3px; }
+        .marquee { overflow: hidden; white-space: nowrap; flex-grow: 1; }
+        .marquee p { display: inline-block; padding-left: 100%; animation: marquee 20s linear infinite; margin: 0; }
+        @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
-    .two-col{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-top:12px}
-    .principal{background:#fff;padding:12px;border-radius:8px}
-    .stats{background:#fff;padding:12px;border-radius:8px}
-    .counter{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+        /* QUICK LINKS CARDS - COLOURS & SHADOWS FIXED */
+        .quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 20px; }
+        .quick-links .card { text-align: center; padding: 20px; border-radius: 8px; box-shadow: 0 6px 12px rgba(0,0,0,0.2); transition: transform 0.2s; }
+        .quick-links .card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.25); }
+        .quick-links .card .icon { font-size: 2em; margin-bottom: 10px; width: 50px; height: 50px; line-height: 50px; border-radius: 50%; display: inline-block; color: white; }
 
-    /* Gallery */
-    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:10px}
-    .gallery-grid img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+        .quick-links .card:nth-child(1) { background-color: #007bff; } .quick-links .card:nth-child(1) .icon { background-color: #0056b3; }
+        .quick-links .card:nth-child(1) h3, .quick-links .card:nth-child(1) p { color: white; } .quick-links .card:nth-child(1) a { color: #ffc107; font-weight: bold; }
 
-    /* Heroes section */
-    .heroes{margin-top:18px}
-    .heroes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    .hero-card{background:#fff;padding:10px;border-radius:8px;text-align:center}
-    .hero-card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
-    .hero-card h4{margin:8px 0 4px}
-    .hero-card p{margin:0;color:var(--muted);font-size:14px}
+        .quick-links .card:nth-child(2) { background-color: #28a745; } .quick-links .card:nth-child(2) .icon { background-color: #1e7e34; }
+        .quick-links .card:nth-child(2) h3, .quick-links .card:nth-child(2) p { color: white; } .quick-links .card:nth-child(2) a { color: #ffc107; font-weight: bold; }
 
-    /* Footer */
-    .footer{margin-top:20px;background:#fff;padding:18px;border-top:6px solid var(--brand)}
+        .quick-links .card:nth-child(3) { background-color: #ffc107; } .quick-links .card:nth-child(3) .icon { background-color: #e0a800; }
+        .quick-links .card:nth-child(3) h3, .quick-links .card:nth-child(3) p { color: #333; } .quick-links .card:nth-child(3) a { color: #0056b3; font-weight: bold; }
 
-    /* Admin panel modal */
-    .modal{position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:20px}
-    .modal .panel{background:#fff;padding:18px;border-radius:10px;max-width:920px;width:100%;max-height:90vh;overflow:auto}
-    .tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-    .tabs button{padding:8px 10px;border-radius:8px;border:1px solid #ddd;background:#f6f6f6}
-    .form-row{display:flex;gap:8px}
-    input,textarea,select{padding:8px;border-radius:6px;border:1px solid #ddd;width:100%}
-    table{width:100%;border-collapse:collapse}
-    table td,table th{padding:8px;border-bottom:1px solid #eee}
+        .quick-links .card:nth-child(4) { background-color: #17a2b8; } .quick-links .card:nth-child(4) .icon { background-color: #138496; }
+        .quick-links .card:nth-child(4) h3, .quick-links .card:nth-child(4) p { color: white; } .quick-links .card:nth-child(4) a { color: #ffc107; font-weight: bold; }
 
-    /* small screens */
-    @media(max-width:900px){.two-col{grid-template-columns:1fr}.header-inner{flex-direction:column;align-items:flex-start}.brand h1{font-size:16px}.slide .content{width:88%}}
-  </style>
+        /* NEWS & EVENTS - VERTICAL SCROLLING */
+        .news-container { height: 180px; overflow: hidden; padding: 0 20px; }
+        .news-scroller { animation: news-scroll 15s linear infinite; }
+        .news-item { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background-color: white; margin-bottom: 10px; width: 95%; }
+        .news-item h4 { color: #0056b3; margin-top: 0; }
+        /* Add more placeholder items to make it scrollable */
+        .news-scroller::after { content: ''; display: block; height: 100%; } 
+        @keyframes news-scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-33.333%); /* Scroll 3 items up */ }
+        }
+
+        /* HORIZONTAL SCROLLING SECTIONS (Gallery & Heroes) */
+        .scrolling-section { overflow-x: auto; white-space: nowrap; padding: 10px 20px 20px 20px; scroll-snap-type: x mandatory; }
+        .scrolling-section::-webkit-scrollbar { height: 8px; }
+        .scrolling-section::-webkit-scrollbar-thumb { background: #0056b3; border-radius: 10px; }
+        
+        .gallery-grid img { width: 280px; height: 180px; object-fit: cover; border-radius: 5px; margin-right: 15px; display: inline-block; scroll-snap-align: start; transition: transform 0.3s; }
+        .gallery-grid img:hover { transform: scale(1.03); }
+
+        .heroes-grid { display: flex; gap: 20px; }
+        .hero-card { width: 180px; padding: 15px; border: 1px solid #ffc107; border-radius: 8px; background-color: #fffaf0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); flex-shrink: 0; display: inline-block; scroll-snap-align: center; }
+        .hero-photo { width: 100px; height: 100px; background-color: #ccc; border-radius: 50%; margin: 0 auto 10px; overflow: hidden; line-height: 100px; font-weight: bold; color: #555; }
+
+        /* PRINCIPAL & STATS */
+        .two-col { display: flex; gap: 20px; padding: 20px; }
+        .principal { flex: 2; padding: 20px; background-color: #e9ecef; border-radius: 8px; }
+        .stats { flex: 1; padding: 20px; background-color: #d1ecf1; border-radius: 8px; text-align: center; }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+
+        /* ADMIN PANEL STYLES (Simple Modal) */
+        #adminModal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
+        .admin-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; border-radius: 10px; }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .close-btn:hover, .close-btn:focus { color: #000; text-decoration: none; cursor: pointer; }
+        
+        .admin-nav button { background-color: #0056b3; color: white; border: none; padding: 10px 15px; margin-right: 5px; cursor: pointer; border-radius: 5px; }
+        .admin-nav button.active { background-color: #28a745; }
+        .admin-section { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; }
+        .admin-section h4 { border-bottom: 2px solid #ffc107; padding-bottom: 5px; }
+        .admin-section input, .admin-section select { width: calc(100% - 22px); padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .admin-section button.add { background-color: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+        .admin-section button.remove { background-color: #dc3545; color: white; border: none; padding: 5px 10px; margin-left: 10px; cursor: pointer; border-radius: 4px; }
+        .list-item { background: #eee; padding: 10px; margin-bottom: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;}
+        
+        /* STUDENT SECTION */
+        .class-section { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; background-color: white; }
+        .student-list { display: flex; overflow-x: auto; gap: 15px; padding: 10px 0; }
+        .student-card { text-align: center; border: 1px solid #ddd; padding: 10px; border-radius: 8px; width: 150px; flex-shrink: 0; }
+        .student-photo-placeholder { width: 100px; height: 100px; background-color: #d1ecf1; border-radius: 50%; margin: 0 auto 10px; line-height: 100px; color: #0056b3; font-weight: bold; }
+
+
+        /* MEDIA QUERIES */
+        @media (max-width: 768px) {
+            .two-col { flex-direction: column; }
+            .footer-cols { flex-direction: column; gap: 20px; }
+            .admin-content { width: 95%; margin: 10px auto; }
+        }
+    </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="left">
-      <div><strong>Phone:</strong> 7006261694 | 9596449881</div>
-      <div><strong>Email:</strong> <a href="mailto:pspethgam@gmail.com">pspethgam@gmail.com</a></div>
-      <div class="udise"><strong>UDISE:</strong> 01022202207</div>
-    </div>
-    <div class="right">
-      <div>HOI: Mohammad Ashraf Rather</div>
-    </div>
-  </div>
 
-  <header class="header">
-    <div class="header-inner">
-      <div class="brand">
-        <img src="assets/images/logo.png" alt="GPS Pethgam Wagoora Logo" onerror="this.src='https://via.placeholder.com/64'">
-        <div>
-          <h1>Government Primary School Pethgam Wagoora</h1>
-          <p>Quality Education for Every Child</p>
+    <header>
+        <div class="contact-info">
+            Phone: **7006261694** | **9596449881** | Email: **pspethgam@gmail.com** | UDISE: **01022202207**
         </div>
-      </div>
+        <div class="logo-section">
+            <img src="assets/images/logo.png" alt="School Logo" onerror="this.style.display='none'">
+            <h1>Government Primary School Pethgam Wagoora</h1>
+        </div>
+        
+        <nav class="nav" aria-label="Main navigation">
+            <a class="btn" href="index.html">Home</a>
+            <a class="btn" href="about.html">About</a>
+            <a class="btn" href="admissions.html">Admissions</a>
+            <a class="btn" href="academics.html">Academics</a>
+            <a class="btn" href="students.html">Students</a>
+            <a class="btn" href="teachers.html">Teachers</a>
+            <a class="btn" href="gallery.html">Gallery</a>
+            <a class="btn" href="contact.html">Contact</a>
+            <button class="btn admin" onclick="openAdminModal()">Admin Panel</button>
+        </nav>
+    </header>
 
-      <nav class="nav" aria-label="Main navigation">
-        <a class="btn" href="#">Home</a>
-        <a class="btn" href="#about">About</a>
-        <a class="btn" href="#admissions">Admissions</a>
-        <a class="btn" href="#academics">Academics</a>
-        <a class="btn" href="#students">Students</a>
-        <a class="btn" href="#teachers">Teachers</a>
-        <a class="btn" href="#gallery">Gallery</a>
-        <a class="btn" href="#contact">Contact</a>
-        <button id="openAdmin" style="margin-left:8px;padding:8px 10px;border-radius:8px;background:#222;color:#fff;border:none">Admin Panel</button>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
     <section class="hero" aria-label="Hero banner">
-      <div class="slides" id="slides">
-        <div class="slide" style="background-image:url('assets/images/hero1.jpg')">
-          <div class="content">
-            <h2>Welcome to Government Primary School Pethgam Wagoora</h2>
-            <p>Creating a safe, inclusive and learning-focused environment for our children.</p>
-            <div class="cta-row">
-              <a class="cta" href="#admissions">Apply Online</a>
-              <a class="cta" href="#students">Check Results</a>
+        <div class="slides" id="heroSlides">
+            <div class="slide" style="background-image:url('assets/images/hero1.jpg'); background-color: #0056b3;">
+                <div class="content"><h2>Welcome to Government Primary School Pethgam Wagoora</h2><p>Creating a safe, inclusive and learning-focused environment for our children.</p><div class="cta-row"><a class="cta" href="admissions.html">Apply Online</a><a class="cta" href="students.html">Check Results</a></div></div>
             </div>
-          </div>
-        </div>
-        <div class="slide" style="background-image:url('assets/images/hero2.jpg')">
-          <div class="content">
-            <h2>Holistic education that builds character</h2>
-            <p>Activities, learning material and support for every student.</p>
-            <div class="cta-row">
-              <a class="cta" href="#academics">Syllabus & Time Table</a>
+            <div class="slide" style="background-image:url('assets/images/hero2.jpg'); background-color: #28a745;">
+                <div class="content"><h2>Holistic education that builds character</h2><p>Activities, learning material and support for every student.</p><div class="cta-row"><a class="cta" href="academics.html">Syllabus & Time Table</a></div></div>
             </div>
-          </div>
-        </div>
-        <div class="slide" style="background-image:url('assets/images/hero3.jpg')">
-          <div class="content">
-            <h2>Community driven progress</h2>
-            <p>Parents, teachers, and local community working together.</p>
-            <div class="cta-row">
-              <a class="cta" href="#contact">Contact Us</a>
+            <div class="slide" style="background-image:url('assets/images/hero3.jpg'); background-color: #ffc107;">
+                <div class="content"><h2>Community driven progress</h2><p>Parents, teachers, and local community working together.</p><div class="cta-row"><a class="cta" href="contact.html">Contact Us</a></div></div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <div class="ticker" role="region" aria-label="Latest announcements">
-      <div class="label">Announcements</div>
-      <div class="marquee">
-        <p id="tickerText">Admissions open for Nursery to Grade 5 — Apply online | School reopens on 1st November 2025 | Parent-teacher meeting on 10 December 2025 | Mid-day meal schedule updated.</p>
-      </div>
+        <div class="label">Announcements</div>
+        <div class="marquee">
+            <p id="tickerContent"> Admissions open for Nursery to Grade 5 — Apply online | School reopens on 1st November 2025 | Parent-teacher meeting on 10 December 2025 | Mid-day meal schedule updated. </p>
+        </div>
     </div>
 
-    <section class="quick-links">
-      <div class="card">
-        <div class="icon">A</div>
-        <h3>Admissions 2025–26</h3>
-        <p>Online forms & guidance.</p>
-        <a href="#admissions">Open</a>
-      </div>
-      <div class="card">
-        <div class="icon">B</div>
-        <h3>Biometric Attendance</h3>
-        <p>Teacher & Student attendance portal (Android).</p>
-        <a href="#students">Open</a>
-      </div>
-      <div class="card">
-        <div class="icon">S</div>
-        <h3>Syllabus & Time Table</h3>
-        <p>Download class-wise syllabus.</p>
-        <a href="#academics">Open</a>
-      </div>
-      <div class="card">
-        <div class="icon">R</div>
-        <h3>Results</h3>
-        <p>Academic results & mark sheets.</p>
-        <a href="#students">Open</a>
-      </div>
+    <section class="quick-links content-section">
+        <div class="card"><div class="icon">A</div><h3>Admissions 2025–26</h3><p>Online forms & guidance.</p><a href="admissions.html">Open</a></div>
+        <div class="card"><div class="icon">B</div><h3>Biometric Attendance</h3><p>Teacher & Student attendance portal (Android).</p><a href="students.html">Open</a></div>
+        <div class="card"><div class="icon">S</div><h3>Syllabus & Time Table</h3><p>Download class-wise syllabus.</p><a href="academics.html">Open</a></div>
+        <div class="card"><div class="icon">R</div><h3>Results</h3><p>Academic results & mark sheets.</p><a href="students.html">Open</a></div>
     </section>
 
-    <section>
-      <h3>News & Events</h3>
-      <div class="news-grid news-scroll" style="overflow:auto;white-space:nowrap" id="newsList">
-        <!-- news items populated by JS -->
-      </div>
-    </section>
-
-    <section style="margin-top:14px;">
-      <div class="two-col">
-        <div class="principal">
-          <h3>Principal's Message</h3>
-          <p>Welcome to Government Primary School Pethgam Wagoora. Our focus is on fostering curiosity, kindness and excellence in every child. Parents and community are key partners in this journey.</p>
-          <p><strong>- Mohammad Ashraf Rather (HOI)</strong></p>
+    <section class="content-section">
+        <h3>News & Events</h3>
+        <div class="news-container">
+            <div class="news-scroller" id="newsScroller">
+                </div>
         </div>
-
-        <aside class="stats">
-          <h4>School At A Glance</h4>
-          <div class="counter"><strong class="count-to" data-to="320">320</strong><span>Students Enrolled</span></div>
-          <div class="counter"><strong class="count-to" data-to="12">12</strong><span>Teachers</span></div>
-          <div class="counter"><strong class="count-to" data-to="10">10</strong><span>Classrooms</span></div>
-          <div class="counter"><strong class="count-to" data-to="4500">4500</strong><span>Library Books</span></div>
-        </aside>
-      </div>
     </section>
 
-    <section style="margin-top:14px;" id="gallery">
-      <h3>Gallery</h3>
-      <div class="gallery-grid" id="scrollGallery">
-        <!-- gallery images populated by JS -->
-      </div>
-      <p style="margin-top:8px"><a href="#gallery">View full gallery</a></p>
-    </section>
-
-    <section class="heroes" aria-label="Our Heroes">
-      <h3>Our Heroes</h3>
-      <div class="heroes-grid" id="heroes">
-        <!-- placeholders -->
-        <div class="hero-card">
-          <img src="https://via.placeholder.com/400x300?text=Student+1" alt="Student 1">
-          <h4>Student Name</h4>
-          <p>Class: 4 • Achievement: Best Reader</p>
+    <section class="heroes">
+        <h3 style="color: #28a745;">🏆 Our Heroes (Student Achievements)</h3>
+        <div class="scrolling-section">
+            <div class="heroes-grid" id="heroesGrid">
+                </div>
         </div>
-        <div class="hero-card">
-          <img src="https://via.placeholder.com/400x300?text=Student+2" alt="Student 2">
-          <h4>Student Name</h4>
-          <p>Class: 5 • Achievement: Sports Star</p>
-        </div>
-        <div class="hero-card">
-          <img src="https://via.placeholder.com/400x300?text=Teacher" alt="Teacher">
-          <h4>Miss Ruqaya</h4>
-          <p>Class: UKG • Achievement: Creative Teaching</p>
-        </div>
-      </div>
+    </section>
+    
+    <section class="content-section">
+        <h3>👨‍🎓 Our Students</h3>
+        <div id="studentClassesContainer">
+            </div>
     </section>
 
-    <!-- Simple results area that reads from localStorage -->
-    <section style="margin-top:18px" id="students">
-      <h3>Student Results</h3>
-      <div id="resultsArea">No results available yet. Use Admin Panel to add results.</div>
+    <section class="content-section" style="margin-top:20px;">
+        <div class="two-col">
+            <div class="principal">
+                <h3>Principal's Message</h3>
+                <p>Welcome to Government Primary School Pethgam Wagoora. Our focus is on fostering curiosity, kindness and excellence in every child. We are committed to providing quality education supported by dedicated teachers and essential resources. Parents and community are key partners in this journey.</p>
+                <p><strong>- Mohammad Ashraf Rather (HOI)</strong></p>
+            </div> 
+            <div class="stats">
+                <h3>School At A Glance</h3>
+                <div class="stat-grid">
+                    <div class="stat-item"><div class="number">350+</div><div class="label">Students Enrolled</div></div>
+                    <div class="stat-item"><div class="number">10</div><div class="label">Teachers</div></div>
+                    <div class="stat-item"><div class="number">8</div><div class="label">Classrooms</div></div>
+                    <div class="stat-item"><div class="number">1500+</div><div class="label">Library Books</div></div>
+                </div>
+            </div>
+        </div>
     </section>
 
-  </main>
+    <section class="content-section" style="margin-top:14px;">
+        <h3>Photo Gallery Preview</h3>
+        <div class="scrolling-section">
+            <div class="gallery-grid">
+                <img src="assets/images/gallery1.jpg" alt="Children in classroom" onerror="this.src='https://via.placeholder.com/320x180/0056b3/ffffff?text=Classroom'">
+                <img src="assets/images/gallery2.jpg" alt="School building exterior" onerror="this.src='https://via.placeholder.com/320x180/28a745/ffffff?text=School+Building'">
+                <img src="assets/images/gallery3.jpg" alt="Students playing games" onerror="this.src='https://via.placeholder.com/320x180/ffc107/333333?text=Sports+Day'">
+                <img src="assets/images/gallery4.jpg" alt="Teacher interacting with students" onerror="this.src='https://via.placeholder.com/320x180/17a2b8/ffffff?text=Learning+Activity'">
+                <img src="https://via.placeholder.com/320x180/dc3545/ffffff?text=Culture+Event" alt="Culture Event">
+                <img src="https://via.placeholder.com/320x180/6c757d/ffffff?text=Field+Trip" alt="Field Trip">
+            </div>
+        </div>
+        <p style="margin-top:8px; text-align: center;"><a href="gallery.html" style="font-weight: bold;">View full gallery →</a></p>
+    </section> 
 
-  <footer class="footer">
-    <div class="inner">
-      <div>
-        <h4>Government Primary School Pethgam Wagoora</h4>
-        <small>Address: Pethgam Wagoora, (add full postal address here)</small>
-        <br>
-        <small>Phone: 7006261694 | 9596449881 | Email: <a href="mailto:pspethgam@gmail.com">pspethgam@gmail.com</a></small>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <small><a href="#admissions">Admissions</a> • <a href="#academics">Academics</a> • <a href="#contact">Contact</a></small>
-      </div>
-      <div>
-        <h4>Follow</h4>
-        <small>Facebook / X / Instagram (add links)</small>
-      </div>
+    <footer>
+        <div class="footer-cols">
+            <div>
+                <h4>Contact Details</h4>
+                <p>Government Primary School Pethgam Wagoora<br>
+                Address: Pethgam Wagoora, Baramulla, J&K (add full postal address here)</p>
+                <p>Phone: 7006261694 | 9596449881<br>
+                Email: pspethgam@gmail.com</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="admissions.html">Admissions</a>
+                <a href="academics.html">Academics</a>
+                <a href="contact.html">Contact</a>
+                <button onclick="openAdminModal()" style="background: none; border: none; color: white; padding: 0; cursor: pointer; display: block; text-align: left; margin-bottom: 5px;">Admin Login</button>
+            </div>
+            <div>
+                <h4>Follow Us</h4>
+                <a href="#" style="margin-bottom: 5px;">Facebook</a>
+                <a href="#" style="margin-bottom: 5px;">X (Twitter)</a>
+                <a href="#" style="margin-bottom: 5px;">Instagram</a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Government Primary School Pethgam Wagoora. All rights reserved.
+        </div>
+    </footer>
+
+    <div id="adminModal" class="modal">
+        <div class="admin-content">
+            <span class="close-btn" onclick="closeAdminModal()">&times;</span>
+            <h2>Admin Panel Login</h2>
+            <div id="loginForm">
+                <p>Username: <input type="text" id="adminUser" value="admin" class="full-width"></p>
+                <p>Password: <input type="password" id="adminPass" value="12345" class="full-width"></p>
+                <button onclick="attemptLogin()" class="btn admin">Login</button>
+                <p style="color: red;" id="loginError"></p>
+            </div>
+            
+            <div id="adminDashboard" style="display:none;">
+                <h3>Dashboard</h3>
+                <div class="admin-nav">
+                    <button id="navBtnNews" onclick="showAdminSection('news')">News & Ticker</button>
+                    <button id="navBtnHeroes" onclick="showAdminSection('heroes')">Heroes</button>
+                    <button id="navBtnStudents" onclick="showAdminSection('students')">Students</button>
+                    <button onclick="logout()">Logout</button>
+                </div>
+
+                <div id="admin-news" class="admin-section">
+                    <h4>Manage News Items</h4>
+                    <input type="text" id="newsInput" placeholder="Enter new news item text">
+                    <button onclick="addNews()" class="add">Add News</button>
+                    <div id="newsList" style="margin-top: 15px;"></div>
+                    
+                    <h4 style="margin-top: 25px;">Manage Ticker Text</h4>
+                    <input type="text" id="tickerInput" placeholder="Enter full scrolling ticker text" class="full-width">
+                    <button onclick="updateTickerText()" class="add">Update Ticker</button>
+                </div>
+
+                <div id="admin-heroes" class="admin-section">
+                    <h4>Add New Hero</h4>
+                    <input type="text" id="heroNameInput" placeholder="Hero Name (e.g., Zoya Sheikh)">
+                    <select id="heroClassInput" class="full-width">
+                         <option value="Class 1">Class 1</</option><option value="Class 2">Class 2</option>
+                        <option value="Class 3">Class 3</option><option value="Class 4">Class 4</option>
+                        <option value="Class 5">Class 5</option>
+                    </select>
+                    <input type="text" id="heroAchievementInput" placeholder="Achievement (e.g., Math Olympiad Winner)">
+                    <button onclick="addHero()" class="add">Add Hero</button>
+                    <h4 style="margin-top: 25px;">Current Heroes</h4>
+                    <div id="heroesList"></div>
+                </div>
+
+                <div id="admin-students" class="admin-section">
+                    <h4>Add New Student</h4>
+                    <input type="text" id="studentNameInput" placeholder="Student Name (e.g., Ali Bhat)">
+                    <select id="studentClassInput" class="full-width">
+                        <option value="Class 1">Class 1</option><option value="Class 2">Class 2</option>
+                        <option value="Class 3">Class 3</option><option value="Class 4">Class 4</option>
+                        <option value="Class 5">Class 5</option>
+                    </select>
+                    <button onclick="addStudent()" class="add">Add Student</button>
+                    <h4 style="margin-top: 25px;">Current Students</h4>
+                    <div id="studentsList"></div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div style="max-width:1200px;margin:auto;padding-top:12px"><small>&copy; 2025 Government Primary School Pethgam Wagoora. All rights reserved.</small></div>
-  </footer>
+    
+    <script>
+      // ==========================================================
+        // DYNAMIC CONTENT DATA STORE (LOCALSTORAGE)
+        // ==========================================================
+        const CLASSES = ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5"];
+        const DEFAULT_NEWS = [
+            "Admissions for 2026 session begin next week.",
+            "Parent-Teacher meeting scheduled for 10 December 2025.",
+            "Mid-day meal schedule updated.",
+            "School closed on 25th December for winter break."
+        ];
+        const DEFAULT_HEROES = [
+            { name: "Aamir Khan", class: "Class 5", achievement: "Top Scorer - Math Olympiad 2025" },
+            { name: "Zoya Sheikh", class: "Class 4", achievement: "District Level Art Contest Winner" }
+        ];
+        const DEFAULT_STUDENTS = [
+            { name: "Sana Jan", class: "Class 5" },
+            { name: "Umar Dar", class: "Class 5" },
+            { name: "Farooq Wani", class: "Class 3" }
+        ];
+        
+        function initData() {
+            if (!localStorage.getItem('news')) {
+                localStorage.setItem('news', JSON.stringify(DEFAULT_NEWS));
+            }
+            if (!localStorage.getItem('heroes')) {
+                localStorage.setItem('heroes', JSON.stringify(DEFAULT_HEROES));
+            }
+            if (!localStorage.getItem('students')) {
+                localStorage.setItem('students', JSON.stringify(DEFAULT_STUDENTS));
+            }
+            if (!localStorage.getItem('ticker')) {
+                localStorage.setItem('ticker', document.getElementById('tickerContent').innerText);
+            }
+          }
+      // ==========================================================
+        // FRONT-END RENDERING FUNCTIONS
+        // ==========================================================
 
-  <!-- Admin Modal -->
-  <div class="modal" id="adminModal" aria-hidden="true">
-    <div class="panel" role="dialog" aria-modal="true" aria-label="Admin panel">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <h3>Admin Panel</h3>
-        <div><button onclick="closeAdmin()" style="padding:6px 10px;border-radius:6px">Close</button></div>
-      </div>
+        function renderAll() {
+            renderNews();
+            renderHeroes();
+            renderStudents();
+            renderTicker();
+        }
 
-      <div style="margin-bottom:10px">
-        <label style="font-weight:700">Quick login (default):</label>
-        <span style="color:var(--muted)">&nbsp;username: <strong>admin</strong> | password: <strong>admin123</strong></span>
-      </div>
+        function renderTicker() {
+            const tickerText = localStorage.getItem('ticker') || DEFAULT_NEWS.join(' - ');
+            document.getElementById('tickerContent').innerText = tickerText;
+        }
 
-      <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-        <input id="adminUser" placeholder="username" value="" style="width:160px">
-        <input id="adminPass" placeholder="password" type="password" style="width:160px">
-        <button id="adminLoginBtn">Login</button>
-        <button id="adminLogoutBtn" style="display:none">Logout</button>
-      </div>
+        function renderNews() {
+            const news = JSON.parse(localStorage.getItem('news') || '[]');
+            const scroller = document.getElementById('newsScroller');
+            scroller.innerHTML = '';
+            
+            // Duplicate news items to ensure continuous scrolling effect
+            const newsToScroll = [...news, ...news];
 
-      <div id="adminContent" style="display:none">
-        <div class="tabs">
-          <button data-tab="results" class="tabBtn">Manage Results</button>
-          <button data-tab="students" class="tabBtn">Add Student</button>
-          <button data-tab="news" class="tabBtn">News & Events</button>
-          <button data-tab="notifications" class="tabBtn">Announcements</button>
-          <button data-tab="gallery" class="tabBtn">Gallery Images</button>
-        </div>
+            newsToScroll.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'news-item';
+                div.innerHTML = `<h4>Latest Update</h4><p>${item}</p>`;
+                scroller.appendChild(div);
+            });
+            // Stop animation temporarily if there are too few items to scroll
+            if (news.length < 3) {
+                 scroller.style.animationPlayState = 'paused';
+            } else {
+                 scroller.style.animationPlayState = 'running';
+            }
+        }
 
-        <div id="tabResults" class="tabPane" style="display:none">
-          <h4>Add Result</h4>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <input id="resName" placeholder="Student name">
-            <input id="resClass" placeholder="Class">
-            <input id="resMarks" placeholder="Marks / Max (e.g. 78/100)">
-            <button onclick="saveResult()">Save Result</button>
-          </div>
-          <h4 style="margin-top:12px">Existing Results</h4>
-          <div id="resultsTable"></div>
-        </div>
+        function renderHeroes() {
+            const heroes = JSON.parse(localStorage.getItem('heroes') || '[]');
+            const grid = document.getElementById('heroesGrid');
+            grid.innerHTML = '';
 
-        <div id="tabStudents" class="tabPane" style="display:none">
-          <h4>Add Student</h4>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <input id="stuName" placeholder="Student name">
-            <input id="stuClass" placeholder="Class">
-            <input id="stuDob" placeholder="DOB (YYYY-MM-DD)">
-            <input id="stuPhoto" placeholder="Photo URL (optional)">
-            <button onclick="saveStudent()">Save Student</button>
-          </div>
-          <h4 style="margin-top:12px">Student List</h4>
-          <div id="studentsTable"></div>
-        </div>
+            heroes.forEach(hero => {
+                const card = document.createElement('div');
+                card.className = 'hero-card';
+                card.innerHTML = `
+                    <div class="hero-photo">Photo</div>
+                    <h4>${hero.name}</h4>
+                    <p>${hero.class}</p>
+                    <p style="font-weight: bold; color: #dc3545;">${hero.achievement}</p>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        function renderStudents() {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const container = document.getElementById('studentClassesContainer');
+            container.innerHTML = '';
 
-        <div id="tabNews" class="tabPane" style="display:none">
-          <h4>Add News / Event</h4>
-          <input id="newsTitle" placeholder="Title"><br><br>
-          <textarea id="newsBody" rows="3" placeholder="Short description"></textarea><br>
-          <button onclick="saveNews()">Save News</button>
-          <h4 style="margin-top:12px">Current News & Events</h4>
-          <div id="newsTable"></div>
-        </div>
+            CLASSES.forEach(className => {
+                const classStudents = students.filter(s => s.class === className);
+                
+                const section = document.createElement('div');
+                section.className = 'class-section';
+                section.innerHTML = `<h4>${className} (${classStudents.length} Students)</h4>`;
+                
+                const studentList = document.createElement('div');
+                studentList.className = 'student-list';
 
-        <div id="tabNotifications" class="tabPane" style="display:none">
-          <h4>Update Ticker / Announcements</h4>
-          <textarea id="tickerEditor" rows="2"></textarea><br>
-          <button onclick="saveTicker()">Update Announcements</button>
-        </div>
+                classStudents.forEach(student => {
+                    const card = document.createElement('div');
+                    card.className = 'student-card';
+                    card.innerHTML = `
+                        <div class="student-photo-placeholder">P</div>
+                        <p style="font-weight: bold; margin: 5px 0 0;">${student.name}</p>
+                    `;
+                    studentList.appendChild(card);
+                });
+                
+                section.appendChild(studentList);
+                container.appendChild(section);
+            });
+        }
 
-        <div id="tabGallery" class="tabPane" style="display:none">
-          <h4>Gallery Images</h4>
-          <input id="galleryUrl" placeholder="Image URL"><button onclick="addGallery()">Add</button>
-          <div id="galleryTable"></div>
-        </div>
+      // ==========================================================
+        // ADMIN PANEL FUNCTIONS
+        // ==========================================================
+        const ADMIN_USER = 'admin';
+        const ADMIN_PASS = '12345'; // SIMPLE HASHING/SECURITY IS BEYOND STATIC JS SCOPE
 
-      </div>
+        function openAdminModal() {
+            document.getElementById('adminModal').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('adminDashboard').style.display = 'none';
+        }
 
-    </div>
-  </div>
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
 
-  <script>
-    // Basic hero slider
-    let idx=0; const slides=document.getElementById('slides');
-    setInterval(()=>{ idx=(idx+1)%3; slides.style.transform = `translateX(-${idx*100}%)`; },5000);
+        function attemptLogin() {
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+            const error = document.getElementById('loginError');
 
-    // Admin open/close
-    const adminModal = document.getElementById('adminModal');
-    document.getElementById('openAdmin').addEventListener('click', ()=>{ adminModal.style.display='flex'; document.getElementById('adminModal').setAttribute('aria-hidden','false'); });
-    function closeAdmin(){ adminModal.style.display='none'; document.getElementById('adminModal').setAttribute('aria-hidden','true'); }
+            if (user === ADMIN_USER && pass === ADMIN_PASS) {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                showAdminSection('news'); // Default to News section
+                error.innerText = '';
+            } else {
+                error.innerText = 'Invalid username or password.';
+            }
+        }
+        
+        function logout() {
+            document.getElementById('adminDashboard').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('loginError').innerText = 'Logged out successfully.';
+            renderAll(); // Re-render front-end just in case
+        }
 
-    // Admin login logic (very simple local check)
-    const loginBtn = document.getElementById('adminLoginBtn');
-    const logoutBtn = document.getElementById('adminLogoutBtn');
-    loginBtn.addEventListener('click', ()=>{
-      const u=document.getElementById('adminUser').value||'admin';
-      const p=document.getElementById('adminPass').value||'';
-      if((u==='admin' && p==='admin123') || (u==='admin' && p==='')){
-        document.getElementById('adminContent').style.display='block';
-        loginBtn.style.display='none'; logoutBtn.style.display='inline-block';
-        document.getElementById('adminUser').value=''; document.getElementById('adminPass').value='';
-        initAdmin();
-      } else alert('Invalid credentials (default admin / admin123)');
-    });
-    logoutBtn.addEventListener('click', ()=>{ document.getElementById('adminContent').style.display='none'; loginBtn.style.display='inline-block'; logoutBtn.style.display='none'; });
+        function showAdminSection(sectionName) {
+            document.querySelectorAll('.admin-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.querySelectorAll('.admin-nav button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById(`admin-${sectionName}`).style.display = 'block';
+            document.getElementById(`navBtn${sectionName.charAt(0).toUpperCase() + sectionName.slice(1)}`).classList.add('active');
 
-    // Tab switching
-    document.querySelectorAll('.tabBtn').forEach(b=>b.addEventListener('click', ()=>{
-      document.querySelectorAll('.tabPane').forEach(p=>p.style.display='none');
-      document.getElementById('tab'+b.dataset.tab.charAt(0).toUpperCase()+b.dataset.tab.slice(1)).style.display='block';
-    }));
+            // Render specific lists when section is opened
+            if (sectionName === 'news') renderAdminNewsList();
+            if (sectionName === 'heroes') renderAdminHeroesList();
+            if (sectionName === 'students') renderAdminStudentsList();
+      }
 
-    // LocalStorage helpers
-    function getLS(k, fallback){ try{ return JSON.parse(localStorage.getItem(k))||fallback; }catch(e){return fallback;} }
-    function setLS(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+// --- NEWS MANAGEMENT ---
+        function addNews() {
+            const input = document.getElementById('newsInput');
+            if (input.value.trim() !== '') {
+                const news = JSON.parse(localStorage.getItem('news') || '[]');
+                news.unshift(input.value.trim()); // Add to the beginning
+                localStorage.setItem('news', JSON.stringify(news));
+                input.value = '';
+                renderAdminNewsList();
+                renderNews();
+            }
+        }
 
-    // Results
-    function saveResult(){ const name=document.getElementById('resName').value.trim(); const cls=document.getElementById('resClass').value.trim(); const marks=document.getElementById('resMarks').value.trim();
-      if(!name||!cls||!marks){ alert('Please fill name, class and marks'); return; }
-      const arr=getLS('gps_results',[]); arr.unshift({name,cls,marks,date:new Date().toISOString()}); setLS('gps_results',arr); renderResults(); document.getElementById('resName').value=''; document.getElementById('resClass').value=''; document.getElementById('resMarks').value='';
-    }
-    function renderResults(){ const arr=getLS('gps_results',[]); if(!arr.length){ document.getElementById('resultsTable').innerHTML='<div>No results yet</div>'; document.getElemen
+        function removeNews(index) {
+            const news = JSON.parse(localStorage.getItem('news') || '[]');
+            news.splice(index, 1);
+            localStorage.setItem('news', JSON.stringify(news));
+            renderAdminNewsList();
+            renderNews();
+        }
 
- 
+        function renderAdminNewsList() {
+            const news = JSON.parse(localStorage.getItem('news') || '[]');
+            const listDiv = document.getElementById('newsList');
+            listDiv.innerHTML = news.map((item, index) => `
+                <div class="list-item">
+                    <span>${item}</span>
+                    <button class="remove" onclick="removeNews(${index})">Remove</button>
+                </div>
+            `).join('');
+        }
+        
+        function updateTickerText() {
+            const input = document.getElementById('tickerInput');
+            localStorage.setItem('ticker', input.value.trim());
+            renderTicker();
+            alert("Ticker text updated!");
+      }
+      // --- HEROES MANAGEMENT ---
+        function addHero() {
+            const name = document.getElementById('heroNameInput').value.trim();
+            const classVal = document.getElementById('heroClassInput').value;
+            const achievement = document.getElementById('heroAchievementInput').value.trim();
+
+            if (name && achievement) {
+                const heroes = JSON.parse(localStorage.getItem('heroes') || '[]');
+                heroes.unshift({ name, class: classVal, achievement });
+                localStorage.setItem('heroes', JSON.stringify(heroes));
+                document.getElementById('heroNameInput').value = '';
+                document.getElementById('heroAchievementInput').value = '';
+                renderAdminHeroesList();
+                renderHeroes();
+            } else {
+                alert("Please fill in Name and Achievement.");
+            }
+        }
+        
+        function removeHero(index) {
+            const heroes = JSON.parse(localStorage.getItem('heroes') || '[]');
+            heroes.splice(index, 1);
+            localStorage.setItem('heroes', JSON.stringify(heroes));
+            renderAdminHeroesList();
+            renderHeroes();
+        }
+
+        function renderAdminHeroesList() {
+            const heroes = JSON.parse(localStorage.getItem('heroes') || '[]');
+            const listDiv = document.getElementById('heroesList');
+            listDiv.innerHTML = heroes.map((hero, index) => `
+                <div class="list-item">
+                    <span>${hero.name} (${hero.class}) - ${hero.achievement}</span>
+                    <button class="remove" onclick="removeHero(${index})">Remove</button>
+                </div>
+            `).join('');
+        }
+     // --- STUDENTS MANAGEMENT ---
+        function addStudent() {
+            const name = document.getElementById('studentNameInput').value.trim();
+            const classVal = document.getElementById('studentClassInput').value;
+
+            if (name) {
+                const students = JSON.parse(localStorage.getItem('students') || '[]');
+                students.push({ name, class: classVal });
+                localStorage.setItem('students', JSON.stringify(students));
+                document.getElementById('studentNameInput').value = '';
+                renderAdminStudentsList();
+                renderStudents();
+            } else {
+                alert("Please enter a student name.");
+            }
+        }
+
+        function removeStudent(index) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            students.splice(index, 1);
+            localStorage.setItem('students', JSON.stringify(students));
+            renderAdminStudentsList();
+            renderStudents();
+        }
+        
+        function renderAdminStudentsList() {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const listDiv = document.getElementById('studentsList');
+            listDiv.innerHTML = students.map((student, index) => `
+                <div class="list-item">
+                    <span>${student.name} (${student.class})</span>
+                    <button class="remove" onclick="removeStudent(${index})">Remove</button>
+                </div>
+            `).join('');
+        }
+      // ==========================================================
+        // INITIALIZATION AND EVENT LISTENERS
+        // ==========================================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initData(); // Load or initialize default data
+            renderAll(); // Render all front-end sections
+        });
+    </script>
 </body>
 </html>
-</body>
-          </html>
+
+
+
+
+          
