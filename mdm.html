@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>MDM Statement — GPS Pethgam Wagoora</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body{font-family:Arial;margin:0;background:#fff;color:#111}
+    header{background:#222;color:#fff;padding:10px;display:flex;justify-content:space-between;align-items:center}
+    header h2{margin:0;font-size:16px}
+    main{max-width:1100px;margin:12px auto;padding:12px}
+    .form{background:#f7fbff;padding:12px;border-radius:8px;margin-bottom:12px}
+    input,select{padding:8px;border-radius:6px;border:1px solid #ddd;margin:6px 0;width:100%}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .btn{padding:10px 12px;border-radius:8px;background:#ffc107;border:none;color:#043;font-weight:700}
+    .table-preview{border:2px solid #111;padding:6px;margin-top:10px}
+    table{width:100%;border-collapse:collapse}
+    table td, table th{border:1px solid #111;padding:6px;text-align:center}
+    .big{font-weight:800}
+  </style>
+</head>
+<body>
+  <header>
+    <h2>MDM Statement Generator — GOVT PRIMARY SCHOOL PETHGAM WAGOORA</h2>
+    <div><a href="index.html" style="color:#fff">Home</a></div>
+  </header>
+
+  <main>
+    <div class="form">
+      <h3>Fill Monthly Data</h3>
+      <div style="display:flex;gap:8px">
+        <div style="flex:1"><label>Month</label><input id="mdmMonth" placeholder="September 2025"></div>
+        <div style="flex:1"><label>Scheme</label><select id="mdmScheme"><option>Primary</option><option>Pre-Primary</option></select></div>
+      </div>
+      <div class="grid">
+        <div><label>Total Roll</label><input id="mdmRoll" type="number" value="0"></div>
+        <div><label>No. of Working Days</label><input id="mdmWorkDays" type="number" value="0"></div>
+        <div><label>No. of days MDM served</label><input id="mdmDaysServed" type="number" value="0"></div>
+        <div><label>No of Students Covered</label><input id="mdmStudentsCovered" type="number" value="0"></div>
+
+        <div><label>No of Meals Served</label><input id="mdmMeals" type="number" value="0"></div>
+        <div><label>Opening Balance of Rice (kg)</label><input id="mdmOpenRice" type="number" value="0"></div>
+        <div><label>Food Grains Lifted (kg)</label><input id="mdmLifted" type="number" value="0"></div>
+        <div><label>Food Grains Utilized (kg)</label><input id="mdmUtilized" type="number" value="0"></div>
+
+        <div><label>Closing Balance of Food Grains (kg)</label><input id="mdmCloseGrains" type="number" value="0"></div>
+        <div><label>Opening Balance of Funds</label><input id="mdmOpenFunds" type="number" value="0"></div>
+        <div><label>Funds Utilized on cooking cost</label><input id="mdmUtilizedFunds" type="number" value="0"></div>
+        <div><label>Funds Received on cooking cost</label><input id="mdmReceivedFunds" type="number" value="0"></div>
+
+        <div><label>Closing Balance of Funds</label><input id="mdmCloseFunds" type="number" value="0"></div>
+        <div><label>No. of Cooks working</label><input id="mdmCooks" type="number" value="0"></div>
+        <div><label>MDM School A/C (16 digits)</label><input id="mdmAccount" placeholder="0486040500000273"></div>
+        <div><label>Cook Name & A/C</label><input id="mdmCookName" placeholder="SHAHEENA BANO — 0486040100006054"></div>
+      </div>
+
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button class="btn" onclick="generateMDM()">Generate Statement</button>
+        <button class="btn" onclick="clearMDMForm()">Clear</button>
+      </div>
+    </div>
+
+    <div id="previewArea" class="table-preview"></div>
+  </main>
+
+<script>
+  function generateMDM(){
+    const data = {
+      month: document.getElementById('mdmMonth').value || 'Month',
+      scheme: document.getElementById('mdmScheme').value,
+      roll: document.getElementById('mdmRoll').value||0,
+      workDays: document.getElementById('mdmWorkDays').value||0,
+      daysServed: document.getElementById('mdmDaysServed').value||0,
+      studentsCovered: document.getElementById('mdmStudentsCovered').value||0,
+      meals: document.getElementById('mdmMeals').value||0,
+      openRice: document.getElementById('mdmOpenRice').value||0,
+      lifted: document.getElementById('mdmLifted').value||0,
+      utilized: document.getElementById('mdmUtilized').value||0,
+      closeGrains: document.getElementById('mdmCloseGrains').value||0,
+      openFunds: document.getElementById('mdmOpenFunds').value||0,
+      utilizedFunds: document.getElementById('mdmUtilizedFunds').value||0,
+      receivedFunds: document.getElementById('mdmReceivedFunds').value||0,
+      closeFunds: document.getElementById('mdmCloseFunds').value||0,
+      cooks: document.getElementById('mdmCooks').value||0,
+      acNo: document.getElementById('mdmAccount').value||'',
+      cookInfo: document.getElementById('mdmCookName').value||''
+    };
+    localStorage.setItem('gps_mdm', JSON.stringify(data)); renderMDMPreview(data);
+    // store doc record
+    const docs = JSON.parse(localStorage.getItem('gps_docs')||'[]'); docs.unshift({title: `MDM Statement — ${data.month}`, date: Date.now()}); localStorage.setItem('gps_docs', JSON.stringify(docs));
+  }
+
+  function renderMDMPreview(d){
+    const preview = document.getElementById('previewArea');
+    preview.innerHTML = mdmHtml(d);
+  }
+
+  function mdmHtml(d){
+    // Build table matching structure in your screenshot (simplified)
+    return `
+      <div style="padding:10px;font-family:Arial">
+        <div style="text-align:center">
+          <h2 style="margin:0">GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</h2>
+          <h4 style="margin:2px 0">Month Wise/Department Wise Expenditure Statement under MDM Scheme</h4>
+          <div style="margin-top:6px"><strong>${d.month}</strong></div>
+        </div>
+
+        <table style="width:100%;margin-top:10px;border-collapse:collapse">
+          <thead>
+            <tr>
+              <th>Scheme</th><th>Total Roll</th><th>No. Working Days</th><th>No. days MDM served</th>
+              <th>No of Students Covered</th><th>No of Meals Served</th><th>Opening Balance Rice (kg)</th>
+              <th>Food Grains Lifted (kg)</th><th>Food Grains Utilized (kg)</th><th>Closing Balance of Food Grains</th>
+              <th>Opening Balance of Funds</th><th>Funds Utilized</th><th>Funds Received</th><th>Closing Balance of Funds</th><th>No of Cooks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>${d.scheme}</td><td>${d.roll}</td><td>${d.workDays}</td><td>${d.daysServed}</td><td>${d.studentsCovered}</td><td>${d.meals}</td><td>${d.openRice}</td>
+              <td>${d.lifted}</td><td>${d.utilized}</td><td>${d.closeGrains}</td><td>${d.openFunds}</td><td>${d.utilizedFunds}</td><td>${d.receivedFunds}</td><td>${d.closeFunds}</td><td>${d.cooks}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:12px;text-align:left">
+          <div><strong>MDM A/C of School (16 digits):</strong> <span class="big">${d.acNo}</span></div>
+          <div style="margin-top:8px"><strong>Account Number of Cooks</strong></div>
+          <table style="width:100%;margin-top:6px">
+            <thead><tr><th>S No</th><th>Name of the Cook</th><th>A/C No (16 digits)</th></tr></thead>
+            <tbody><tr><td>1</td><td style="text-align:left">${d.cookInfo.split('—')[0]||''}</td><td>${(d.cookInfo.split('—')[1]||'').trim()}</td></tr></tbody>
+          </table>
+        </div>
+
+        <div style="margin-top:12px;display:flex;justify-content:space-between">
+          <div>MDM I/C Name: ____________________ <br> Contact No: ________ <br> Sig.</div>
+          <div>Headmaster: ____________________</div>
+        </div>
+
+        <div style="margin-top:8px;text-align:center">
+          <button onclick="printMDM()" class="btn" style="padding:8px 12px;background:#28a745;color:white;border:none;border-radius:6px">Print / Save as PDF</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function printMDM(){
+    const d = JSON.parse(localStorage.getItem('gps_mdm')||'{}');
+    const html = mdmHtml(d);
+    const w = window.open('','_blank');
+    w.document.write(`<html><head><title>MDM Statement — ${d.month||''}</title><style>body{font-family:Arial;padding:20px} table{border-collapse:collapse} table,th,td{border:1px solid #111;padding:6px}</style></head><body>${html}<script>setTimeout(()=>window.print(),200)</script></body></html>`);
+    w.document.close();
+  }
+
+  function clearMDMForm(){ document.querySelectorAll('#mdmMonth,#mdmRoll,#mdmWorkDays,#mdmDaysServed,#mdmStudentsCovered,#mdmMeals,#mdmOpenRice,#mdmLifted,#mdmUtilized,#mdmCloseGrains,#mdmOpenFunds,#mdmUtilizedFunds,#mdmReceivedFunds,#mdmCloseFunds,#mdmCooks,#mdmAccount,#mdmCookName').forEach(i=>i.value=''); document.getElementById('previewArea').innerHTML=''; }
+  // render saved
+  document.addEventListener('DOMContentLoaded', ()=>{ const d = JSON.parse(localStorage.getItem('gps_mdm')||'{}'); if(Object.keys(d).length) renderMDMPreview(d); });
+</script>
+</body>
+</html>
+
