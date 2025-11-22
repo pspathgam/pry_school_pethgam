@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Staff — GPS Pethgam Wagoora</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{--brand:#0b76ef;--card:#fff;--muted:#666}
+    body{font-family:Arial;margin:0;background:#f7fbff;color:#123}
+    header{background:var(--brand);color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center}
+    header a{color:#fff;margin-left:8px;text-decoration:none}
+    main{max-width:1100px;margin:16px auto;padding:12px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{padding:8px 10px;border-radius:8px;border:none;background:#ffc107;color:#043;font-weight:700}
+    .grid{display:flex;gap:12px;flex-wrap:wrap}
+    .staff-card{width:220px;padding:12px;border-radius:10px;background:var(--card);box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center}
+    .photo{width:100px;height:100px;border-radius:50%;margin:0 auto 8px;overflow:hidden;background:#e6f7ff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px}
+    input,select{padding:8px;border:1px solid #ddd;border-radius:6px;width:100%;margin-bottom:8px}
+    .form{max-width:420px}
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex;align-items:center;gap:12px">
+      <img src="https://via.placeholder.com/60" alt="logo" style="height:46px">
+      <div>
+        <div style="font-weight:800">GOVT PRIMARY SCHOOL PETHGAM WAGOORA</div>
+        <div style="font-size:12px;opacity:0.9">Staff Directory</div>
+      </div>
+    </div>
+    <div><a href="index.html" style="color:#fff">Home</a></div>
+  </header>
+
+  <main>
+    <div style="display:flex;gap:20px;align-items:flex-start">
+      <div class="form card" style="background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)">
+        <h3>Add / Edit Staff</h3>
+        <input id="staffName" placeholder="Full name">
+        <input id="staffRole" placeholder="Designation (e.g. Teacher / Cook)">
+        <input id="staffPhone" placeholder="Phone">
+        <input id="staffPhoto" placeholder="Photo URL (optional)">
+        <select id="staffType"><option value="teaching">Teaching</option><option value="non-teaching">Non-Teaching</option></select>
+        <div style="display:flex;gap:8px">
+          <button class="btn" onclick="saveStaff()">Save</button>
+          <button class="btn" onclick="clearStaffForm()">Clear</button>
+        </div>
+        <input type="hidden" id="editingStaffId">
+      </div>
+
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <h3>Staff List</h3>
+          <div>
+            <select id="filterType" onchange="renderStaff()"><option value="">All</option><option value="teaching">Teaching</option><option value="non-teaching">Non-Teaching</option></select>
+            <button class="btn" onclick="downloadAllStaffCards()">Download All Cards (PDF)</button>
+          </div>
+        </div>
+
+        <div class="grid" id="staffGrid"></div>
+      </div>
+    </div>
+  </main>
+
+<script>
+  // Storage key
+  const KEY = 'gps_staff';
+  function getStaff(){ return JSON.parse(localStorage.getItem(KEY)||'[]'); }
+  function setStaff(a){ localStorage.setItem(KEY, JSON.stringify(a)); }
+  function uid(){ return 's'+Date.now(); }
+
+  function saveStaff(){
+    const name = document.getElementById('staffName').value.trim();
+    const role = document.getElementById('staffRole').value.trim();
+    const phone = document.getElementById('staffPhone').value.trim();
+    const photo = document.getElementById('staffPhoto').value.trim();
+    const type = document.getElementById('staffType').value;
+    if(!name || !role){ alert('Name & role required'); return; }
+    const editing = document.getElementById('editingStaffId').value;
+    const arr = getStaff();
+    if(editing){
+      const i = arr.findIndex(x=>x.id===editing);
+      if(i>=0){ arr[i] = {...arr[i], name, role, phone, photo, type}; }
+    } else {
+      arr.push({id:uid(), name, role, phone, photo, type});
+    }
+    setStaff(arr); renderStaff(); clearStaffForm();
+  }
+  function clearStaffForm(){ document.getElementById('staffName').value=''; document.getElementById('staffRole').value=''; document.getElementById('staffPhone').value=''; document.getElementById('staffPhoto').value=''; document.getElementById('editingStaffId').value=''; }
+  function editStaff(id){
+    const s = getStaff().find(x=>x.id===id); if(!s) return;
+    document.getElementById('staffName').value=s.name; document.getElementById('staffRole').value=s.role; document.getElementById('staffPhone').value=s.phone; document.getElementById('staffPhoto').value=s.photo; document.getElementById('staffType').value=s.type; document.getElementById('editingStaffId').value=s.id;
+  }
+  function delStaff(id){ if(!confirm('Delete staff?')) return; const arr=getStaff().filter(x=>x.id!==id); setStaff(arr); renderStaff(); }
+  function renderStaff(){
+    const grid = document.getElementById('staffGrid'); grid.innerHTML='';
+    const arr = getStaff();
+    const filter = document.getElementById('filterType').value;
+    arr.filter(s => !filter || s.type===filter).forEach(s =>{
+      const div = document.createElement('div'); div.className='staff-card';
+      const photoHtml = s.photo ? `<img src="${s.photo}" style="width:100%;height:100%;object-fit:cover">` : (s.name? s.name.charAt(0):'S');
+      div.innerHTML = `<div class="photo">${s.photo?'<img src="'+s.photo+'">':(s.name? s.name.charAt(0):'S')}</div>
+        <div style="font-weight:800">${s.name}</div>
+        <div style="color:#666">${s.role}</div>
+        <div style="color:#666;font-size:13px">${s.phone||''}</div>
+        <div style="display:flex;gap:6px;margin-top:8px;justify-content:center">
+          <button onclick="editStaff('${s.id}')" style="padding:6px;border-radius:6px">Edit</button>
+          <button onclick="delStaff('${s.id}')" style="padding:6px;border-radius:6px">Delete</button>
+          <button onclick="downloadStaffCard('${s.id}')" style="padding:6px;border-radius:6px">Card</button>
+        </div>`;
+      grid.appendChild(div);
+    });
+  }
+
+  // Download single staff card
+  function downloadStaffCard(id){
+    const s = getStaff().find(x=>x.id===id); if(!s) return;
+    const html = `<div style="text-align:center;font-family:Arial">
+      <h2>GOVT PRIMARY SCHOOL PETHGAM WAGOORA</h2>
+      <h3>Staff Card</h3>
+      <div style="margin-top:6px"><strong>${s.name}</strong></div>
+      <div>${s.role}</div>
+      <div style="margin-top:8px">${s.phone||''}</div>
+    </div>`;
+    openPrintable(html, `StaffCard_${s.name}`);
+  }
+
+  // Download all staff cards (one per page)
+  function downloadAllStaffCards(){
+    const arr = getStaff();
+    if(arr.length===0){ alert('No staff'); return; }
+    let html = '';
+    arr.forEach(s=> html += `<div style="page-break-after:always">${generateStaffHtml(s)}</div>`);
+    openPrintable(html, 'All_Staff_Cards');
+  }
+
+  function generateStaffHtml(s){
+    return `<div style="text-align:center;font-family:Arial">
+      <h2>GOVT PRIMARY SCHOOL PETHGAM WAGOORA</h2>
+      <h3>Staff Card</h3>
+      <div style="margin-top:6px"><strong>${s.name}</strong></div>
+      <div>${s.role}</div>
+      <div style="margin-top:8px">${s.phone||''}</div>
+    </div>`;
+  }
+
+  function openPrintable(content, title='Document'){
+    const w = window.open('','_blank');
+    w.document.write(`<html><head><title>${title}</title><style>body{font-family:Arial;padding:20px} table{width:100%;border-collapse:collapse} @media print { button{display:none} }</style></head><body>${content}<script>setTimeout(()=>window.print(),200)</script></body></html>`);
+    w.document.close();
+  }
+
+  // init
+  document.addEventListener('DOMContentLoaded', renderStaff);
+</script>
+</body>
+</html>
