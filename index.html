@@ -105,9 +105,23 @@
         .stats { flex: 1; padding: 20px; background-color: #d1ecf1; border-radius: 8px; text-align: center; }
         .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
 
-        /* ADMIN PANEL STYLES (Simple Modal) continued */
+        
+        /* ADMIN PANEL STYLES (Simple Modal) */
+        #adminModal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
+        .admin-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; border-radius: 10px; }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .close-btn:hover, .close-btn:focus { color: #000; text-decoration: none; cursor: pointer; }
+        
+        .admin-nav button { background-color: #0056b3; color: white; border: none; padding: 10px 15px; margin-right: 5px; cursor: pointer; border-radius: 5px; }
+        .admin-nav button.active { background-color: #28a745; }
+        .admin-section { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; }
+        .admin-section h4 { border-bottom: 2px solid #ffc107; padding-bottom: 5px; }
+        .admin-section input, .admin-section select { width: calc(100% - 22px); padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .admin-section button.add { background-color: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
+        .admin-section button.remove { background-color: #dc3545; color: white; border: none; padding: 5px 10px; margin-left: 10px; cursor: pointer; border-radius: 4px; }
+        .list-item { background: #eee; padding: 10px; margin-bottom: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;}
 .photo-input-group {
-    display: flex;
+    : flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 10px;
@@ -128,21 +142,6 @@
     height: 100%;
     object-fit: cover;
 }
-        /* ADMIN PANEL STYLES (Simple Modal) */
-        #adminModal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
-        .admin-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; border-radius: 10px; }
-        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
-        .close-btn:hover, .close-btn:focus { color: #000; text-decoration: none; cursor: pointer; }
-        
-        .admin-nav button { background-color: #0056b3; color: white; border: none; padding: 10px 15px; margin-right: 5px; cursor: pointer; border-radius: 5px; }
-        .admin-nav button.active { background-color: #28a745; }
-        .admin-section { display: none; margin-top: 20px; padding: 15px; border: 1px solid #ddd; }
-        .admin-section h4 { border-bottom: 2px solid #ffc107; padding-bottom: 5px; }
-        .admin-section input, .admin-section select { width: calc(100% - 22px); padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
-        .admin-section button.add { background-color: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
-        .admin-section button.remove { background-color: #dc3545; color: white; border: none; padding: 5px 10px; margin-left: 10px; cursor: pointer; border-radius: 4px; }
-        .list-item { background: #eee; padding: 10px; margin-bottom: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;}
-        
         /* STUDENT SECTION */
         .class-section { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; background-color: white; }
         .student-list { display: flex; overflow-x: auto; gap: 15px; padding: 10px 0; }
