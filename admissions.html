@@ -1,105 +1,282 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admissions - Government Primary School Pethgam Wagoora</title>
-    <link rel="stylesheet" href="style.css"> 
+  <meta charset="utf-8" />
+  <title>Students — GPS Pethgam Wagoora</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{--brand:#0b76ef;--card:#fff;--muted:#666}
+    body{font-family:Arial;margin:0;background:#f3fbff;color:#123}
+    header{background:var(--brand);color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center}
+    main{max-width:1200px;margin:16px auto;padding:12px}
+    .cols{display:flex;gap:12px}
+    .form{width:360px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;margin-bottom:8px}
+    .student-card{width:220px;padding:12px;border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center;margin:8px}
+    .photo{width:100px;height:100px;border-radius:50%;margin:0 auto 8px;overflow:hidden;background:#e6f7ff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px}
+    .grid{display:flex;flex-wrap:wrap;gap:8px}
+    .btn{padding:8px 10px;border-radius:8px;border:none;background:#ffc107;color:#043;font-weight:700}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
 </head>
 <body>
+  <header>
+    <div style="display:flex;gap:12px;align-items:center">
+      <img src="https://via.placeholder.com/60" alt="logo">
+      <div><strong>GOVT PRIMARY SCHOOL PETHGAM WAGOORA</strong><div style="font-size:12px">Student Database</div></div>
+    </div>
+    <div><a href="index.html" style="color:#fff">Home</a></div>
+  </header>
 
-    <header>
-        <div class="logo-container">
-            <img src="school-logo.png" alt="School Logo" class="school-logo">
-            <div class="school-title">Government Primary School</div>
-            <div class="school-subtitle">Pethgam Wagoora</div>
+  <main>
+    <div class="cols">
+      <div class="form">
+        <h3>Admission Form (Short)</h3>
+        <!-- Minimal fields reflecting the complex form; store full structure -->
+        <input id="stuFirst" placeholder="Student First Name">
+        <input id="stuMiddle" placeholder="Middle Name">
+        <input id="stuLast" placeholder="Last Name">
+        <input id="stuAadhaarName" placeholder="Name as per Aadhaar">
+        <input id="stuFather" placeholder="Father's Name">
+        <input id="stuMother" placeholder="Mother's Name">
+        <input id="stuResidence" placeholder="Residence">
+        <input id="stuTehsil" placeholder="Tehsil">
+        <input id="stuDistrict" placeholder="District">
+        <input id="stuFatherPhone" placeholder="Father's Contact">
+        <input id="stuMotherPhone" placeholder="Mother's Contact">
+        <input id="stuAadhaar" placeholder="Aadhaar Number">
+        <input id="stuDob" placeholder="DOB (DD-MM-YYYY)">
+        <input id="stuDobWords" placeholder="DOB in words">
+        <input id="stuBankAcc" placeholder="Bank Account No">
+        <input id="stuBankName" placeholder="Bank Name">
+        <input id="stuBranch" placeholder="Branch">
+        <input id="stuIFSC" placeholder="IFSC">
+        <input id="stuCategory" placeholder="Category (GEN/OBC/SC/ST)">
+        <input id="stuBlood" placeholder="Blood Group">
+        <input id="stuRation" placeholder="Ration Card No">
+        <input id="stuClass" placeholder="Class (e.g. 4th)">
+        <input id="stuRoll" placeholder="Roll No">
+        <input id="stuPhoto" placeholder="Photo URL">
+        <textarea id="stuDeclaration" placeholder="Parent Declaration" rows="3"></textarea>
+        <div style="display:flex;gap:8px">
+          <button class="btn" onclick="saveStudent()">Save Student</button>
+          <button class="btn" onclick="clearForm()">Clear</button>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="announcements.html">Announcements</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="results.html">Results</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="staff.html">Staff</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="admissions.html" class="active">Admissions</a></li> <li><a href="admin.html">Admin</a></li>
-            </ul>
-        </nav>
-    </header>
+      </div>
 
-    <main>
-        <section class="hero-sub">
-            <h1>Admissions Open for New Session (2025-2026)</h1>
-            <p>Welcome your child to a place of foundational learning and growth.</p>
-        </section>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>Students</h3>
+          <div>
+            <select id="classFilter" onchange="renderStudents()"><option value="">All Classes</option></select>
+            <button class="btn" onclick="downloadRollStatement()">Download Roll Statement (PDF)</button>
+            <button class="btn" onclick="downloadAllStudentCards()">Download All Student Cards (PDF)</button>
+          </div>
+        </div>
 
-        <section class="admission-steps">
-            <h2>Admission Process Guide</h2>
-            <ol>
-                <li>**Check Eligibility:** Review the age criteria for the desired class (Nursery to Class 5).</li>
-                <li>**Download Prospectus:** Download the official school prospectus for detailed information.</li>
-                <li>**Submit Inquiry Form:** Fill out the online inquiry form below to register interest.</li>
-                <li>**Document Verification:** Bring required documents (Birth Certificate, Address Proof, etc.) to the school office.</li>
-                <li>**Confirmation:** Receive confirmation and complete the fee payment.</li>
-            </ol>
-            <a href="#" class="cta-button" style="background-color: #2ecc71;">Download Prospectus / Application Form PDF</a>
-        </section>
+        <div class="grid" id="studentsGrid"></div>
+      </div>
+    </div>
+  </main>
 
-        <section class="online-inquiry-form">
-            <h2>Online Admission Inquiry Form</h2>
-            <p class="note">**Note:** This is an inquiry form only. Final admission requires document submission at the school office.</p>
-            
-            <form action="#" method="POST" id="admission-form">
-                
-                <div class="form-group">
-                    <label for="student-name">Student's Full Name:</label>
-                    <input type="text" id="student-name" name="student_name" required>
-                </div>
+<script>
+  const SKEY='gps_students';
+  function getStudents(){ return JSON.parse(localStorage.getItem(SKEY)||'[]'); }
+  function setStudents(a){ localStorage.setItem(SKEY, JSON.stringify(a)); }
+  function uid(){ return 'st'+Date.now(); }
 
-                <div class="form-group">
-                    <label for="class-apply">Applying for Class:</label>
-                    <select id="class-apply" name="class_apply" required>
-                        <option value="">-- Select Class --</option>
-                        <option value="Nursery">Nursery</option>
-                        <option value="Class 1">Class 1</option>
-                        <option value="Class 2">Class 2</option>
-                        <option value="Class 3">Class 3</option>
-                        <option value="Class 4">Class 4</option>
-                        <option value="Class 5">Class 5</option>
-                    </select>
-                </div>
+  function saveStudent(){
+    const s = {
+      id: document.getElementById('stuRoll').value.trim() || uid(),
+      name: (document.getElementById('stuFirst').value.trim()+' '+document.getElementById('stuMiddle').value.trim()+' '+document.getElementById('stuLast').value.trim()).trim(),
+      aadhaarName: document.getElementById('stuAadhaarName').value.trim(),
+      father: document.getElementById('stuFather').value.trim(),
+      mother: document.getElementById('stuMother').value.trim(),
+      residence: document.getElementById('stuResidence').value.trim(),
+      tehsil: document.getElementById('stuTehsil').value.trim(),
+      district: document.getElementById('stuDistrict').value.trim(),
+      fatherPhone: document.getElementById('stuFatherPhone').value.trim(),
+      motherPhone: document.getElementById('stuMotherPhone').value.trim(),
+      aadhaar: document.getElementById('stuAadhaar').value.trim(),
+      dob: document.getElementById('stuDob').value.trim(),
+      dobWords: document.getElementById('stuDobWords').value.trim(),
+      bankAcc: document.getElementById('stuBankAcc').value.trim(),
+      bankName: document.getElementById('stuBankName').value.trim(),
+      branch: document.getElementById('stuBranch').value.trim(),
+      ifsc: document.getElementById('stuIFSC').value.trim(),
+      category: document.getElementById('stuCategory').value.trim(),
+      blood: document.getElementById('stuBlood').value.trim(),
+      ration: document.getElementById('stuRation').value.trim(),
+      class: document.getElementById('stuClass').value.trim(),
+      roll: document.getElementById('stuRoll').value.trim(),
+      photo: document.getElementById('stuPhoto').value.trim(),
+      declaration: document.getElementById('stuDeclaration').value.trim()
+    };
+    // update if id exists
+    const arr = getStudents(); const idx = arr.findIndex(x=>x.id===s.id);
+    if(idx>=0) arr[idx]=s; else arr.push(s);
+    setStudents(arr); alert('Saved'); renderStudents(); populateClassFilter();
+  }
+  function clearForm(){
+    document.querySelectorAll('#stuFirst,#stuMiddle,#stuLast,#stuAadhaarName,#stuFather,#stuMother,#stuResidence,#stuTehsil,#stuDistrict,#stuFatherPhone,#stuMotherPhone,#stuAadhaar,#stuDob,#stuDobWords,#stuBankAcc,#stuBankName,#stuBranch,#stuIFSC,#stuCategory,#stuBlood,#stuRation,#stuClass,#stuRoll,#stuPhoto,#stuDeclaration').forEach(i=>i.value='');
+  }
 
-                <div class="form-group">
-                    <label for="parent-name">Parent / Guardian Full Name:</label>
-                    <input type="text" id="parent-name" name="parent_name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Contact Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
+  function renderStudents(){
+    const grid = document.getElementById('studentsGrid'); grid.innerHTML='';
+    const arr = getStudents();
+    const filter = document.getElementById('classFilter').value;
+    arr.filter(s => !filter || s.class===filter).forEach(s=>{
+      const box = document.createElement('div'); box.className='student-card';
+      box.innerHTML = `<div class="photo">${s.photo?'<img src="'+s.photo+'" style="width:100%;height:100%;object-fit:cover">':(s.name? s.name.charAt(0):'S')}</div>
+        <div style="font-weight:800">${s.name}</div>
+        <div class="small">${s.class||''} • Roll: ${s.roll||s.id}</div>
+        <div style="display:flex;gap:6px;justify-content:center;margin-top:8px">
+          <button onclick="editStudent('${s.id}')" class="btn">Edit</button>
+          <button onclick="deleteStudent('${s.id}')" class="btn">Delete</button>
+          <button onclick="downloadStudentAdmission('${s.id}')" class="btn">Admission PDF</button>
+          <button onclick="generateMarksheet('${s.id}')" class="btn">Marksheet</button>
+        </div>`;
+      grid.appendChild(box);
+    });
+  }
 
-                <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email">
-                </div>
+  function editStudent(id){
+    const s = getStudents().find(x=>x.id===id); if(!s) return;
+    // fill short form
+    const parts = (s.name||'').split(' ');
+    document.getElementById('stuFirst').value = parts[0]||'';
+    document.getElementById('stuMiddle').value = parts.slice(1,-1).join(' ')||'';
+    document.getElementById('stuLast').value = parts.slice(-1).join(' ')||'';
+    document.getElementById('stuAadhaarName').value = s.aadhaarName||'';
+    document.getElementById('stuFather').value = s.father||'';
+    document.getElementById('stuMother').value = s.mother||'';
+    document.getElementById('stuResidence').value = s.residence||'';
+    document.getElementById('stuTehsil').value = s.tehsil||'';
+    document.getElementById('stuDistrict').value = s.district||'';
+    document.getElementById('stuFatherPhone').value = s.fatherPhone||'';
+    document.getElementById('stuMotherPhone').value = s.motherPhone||'';
+    document.getElementById('stuAadhaar').value = s.aadhaar||'';
+    document.getElementById('stuDob').value = s.dob||'';
+    document.getElementById('stuDobWords').value = s.dobWords||'';
+    document.getElementById('stuBankAcc').value = s.bankAcc||'';
+    document.getElementById('stuBankName').value = s.bankName||'';
+    document.getElementById('stuBranch').value = s.branch||'';
+    document.getElementById('stuIFSC').value = s.ifsc||'';
+    document.getElementById('stuCategory').value = s.category||'';
+    document.getElementById('stuBlood').value = s.blood||'';
+    document.getElementById('stuRation').value = s.ration||'';
+    document.getElementById('stuClass').value = s.class||'';
+    document.getElementById('stuRoll').value = s.roll||s.id;
+    document.getElementById('stuPhoto').value = s.photo||'';
+    document.getElementById('stuDeclaration').value = s.declaration||'';
+  }
 
-                <div class="form-group">
-                    <label for="message">Any Specific Query (Optional):</label>
-                    <textarea id="message" name="message" rows="4"></textarea>
-                </div>
+  function deleteStudent(id){
+    if(!confirm('Delete student?')) return;
+    const arr = getStudents().filter(x=>x.id!==id); setStudents(arr); renderStudents(); populateClassFilter();
+  }
 
-                <button type="submit" class="cta-button submit-button">Submit Admission Inquiry</button>
-            </form>
-        </section>
-        
-    </main>
+  function populateClassFilter(){
+    const sel = document.getElementById('classFilter');
+    const classes = Array.from(new Set(getStudents().map(s=>s.class).filter(Boolean))).sort();
+    sel.innerHTML = '<option value="">All Classes</option>';
+    classes.forEach(c=> sel.innerHTML += `<option value="${c}">${c}</option>`);
+  }
 
-    <footer>
-        <p>&copy; 2025 Government Primary School Pethgam Wagoora. All Rights Reserved.</p>
-    </footer>
+  // Roll statement generator (download class roll)
+  function downloadRollStatement(){
+    const cls = document.getElementById('classFilter').value;
+    if(!cls){ alert('Select class first'); return; }
+    const students = getStudents().filter(s=>s.class===cls).sort((a,b)=> (a.roll||a.id).localeCompare(b.roll||b.id));
+    if(students.length===0){ alert('No students for class '+cls); return; }
+    let rows = '';
+    students.forEach((s, i)=> rows += `<tr><td>${i+1}</td><td>${s.roll||s.id}</td><td style="text-align:left">${s.name}</td><td>${s.father||''}</td></tr>`);
+    const html = `<div style="text-align:center"><h2>Roll Statement — Class ${cls}</h2><h3>GOVT PRIMARY SCHOOL PETHGAM WAGOORA</h3>
+      <table style="width:100%;border-collapse:collapse;margin-top:12px">
+        <thead><tr><th>Sr</th><th>Roll</th><th>Name</th><th>Father</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>`;
+    openPrintable(html, `RollStatement_Class_${cls}`);
+  }
 
+  // Download individual admission form (simple printable)
+  function downloadStudentAdmission(id){
+    const s = getStudents().find(x=>x.id===id); if(!s) return;
+    const html = `<div style="font-family:Arial;padding:10px">
+      <h2 style="text-align:center">ADMISSION FORM</h2>
+      <h3>GOVT PRIMARY SCHOOL PETHGAM WAGOORA</h3>
+      <table style="width:100%;border-collapse:collapse">
+        <tr><td><strong>Student Name:</strong> ${s.name}</td><td><strong>Adm No:</strong> ${s.id}</td></tr>
+        <tr><td><strong>Father:</strong> ${s.father}</td><td><strong>Mother:</strong> ${s.mother}</td></tr>
+        <tr><td><strong>DOB:</strong> ${s.dob}</td><td><strong>Class:</strong> ${s.class}</td></tr>
+        <tr><td colspan="2"><strong>Residence:</strong> ${s.residence}</td></tr>
+      </table>
+    </div>`;
+    openPrintable(html, `Admission_${s.name}`);
+  }
+
+  // Simple marksheet generator (assumes results stored in gps_results)
+  const RKEY='gps_results'; // results array: {studentId, subject, fa1..fa6, cca, sa, total, max}
+  const SUBJECTS = ['English','Math','EVS','Urdu','Kashmiri'];
+  function getResults(){ return JSON.parse(localStorage.getItem(RKEY)||'[]'); }
+
+  function generateMarksheet(studentId){
+    const students = getStudents();
+    const results = getResults();
+    const student = students.find(s=>s.id===studentId);
+    const studentResults = results.filter(r=>r.studentId===studentId);
+
+    // build marks table
+    let rows = '';
+    let grandTotal=0, totalMax=SUBJECTS.length*100;
+    SUBJECTS.forEach(sub=>{
+      const r = studentResults.find(x=>x.subject===sub) || {};
+      const fa1= r.fa1||0,fa2=r.fa2||0,fa3=r.fa3||0,fa4=r.fa4||0,fa5=r.fa5||0,fa6=r.fa6||0,cca=r.cca||0,sa=r.sa||0;
+      const total = r.total|| (fa1+fa2+fa3+fa4+fa5+fa6+cca+sa);
+      grandTotal+=total;
+      rows += `<tr><td style="text-align:left">${sub}</td><td>${fa1}</td><td>${fa2}</td><td>${fa3}</td><td>${fa4}</td><td>${fa5}</td><td>${fa6}</td><td>${fa1+fa2+fa3+fa4+fa5+fa6}</td><td>${cca}</td><td>${sa}</td><td>${total}</td></tr>`;
+    });
+    const percent = Math.round((grandTotal/totalMax)*100);
+    const html = `<div style="font-family:Arial">
+      <h2 style="text-align:center">GOVT PRIMARY SCHOOL PETHGAM WAGOORA</h2>
+      <h3 style="text-align:center">Marksheet — ${student.name}</h3>
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr>
+          <th>Subject</th><th>FA1</th><th>FA2</th><th>FA3</th><th>FA4</th><th>FA5</th><th>FA6</th><th>Total FA</th><th>CCA</th><th>SA</th><th>Total</th>
+        </tr></thead>
+        <tbody>${rows}
+        <tr><td style="text-align:right;font-weight:bold">Grand Total</td><td colspan="9"></td><td>${grandTotal}</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px"><strong>Percentage:</strong> ${percent}%</div>
+      <div style="margin-top:8px;display:flex;justify-content:space-between"><div>Sign. Form Teacher</div><div>Sign. Exam I/C</div><div>Parents Signature</div><div>Headmaster</div></div>
+    </div>`;
+    openPrintable(html, `Marksheet_${student.name}`);
+  }
+
+  function openPrintable(content, title='Doc'){
+    const w = window.open('','_blank');
+    w.document.write(`<html><head><title>${title}</title><style>body{font-family:Arial;padding:20px} table{width:100%;border-collapse:collapse} table,td,th{border:1px solid #444;padding:6px}</style></head><body>${content}<script>setTimeout(()=>window.print(),200)</script></body></html>`);
+    w.document.close();
+  }
+
+  function downloadAllStudentCards(){
+    const arr = getStudents();
+    if(arr.length===0){ alert('No students'); return; }
+    let html = '';
+    arr.forEach(s => html += `<div style="page-break-after:always">${generateCardHtml(s)}</div>`);
+    openPrintable(html,'AllStudentCards');
+  }
+  function generateCardHtml(s){
+    return `<div style="font-family:Arial;text-align:center">
+      <h2>GOVT PRIMARY SCHOOL PETHGAM WAGOORA</h2>
+      <h3>Student Card</h3>
+      <div style="margin-top:8px;font-weight:bold">${s.name}</div>
+      <div>${s.class||''} • Roll: ${s.roll||s.id}</div>
+    </div>`;
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{ renderStudents(); populateClassFilter(); });
+</script>
 </body>
 </html>
