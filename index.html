@@ -127,38 +127,36 @@
         .list-item { background: #eee; padding: 10px; margin-bottom: 5px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;}
 
         /* PHOTO INPUT GROUP */
-        .photo-input-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-        .photo-preview {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        .photo-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .mark-input-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
-        .mark-input-grid div {
-            padding: 5px 0;
-        }
+.photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 10px;
+    background: #e0f4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.initial {
+    font-size: 40px;
+    color: #0369a1;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
         /* MEDIA QUERIES */
         @media (max-width: 768px) {
             .two-col { flex-direction: column; }
