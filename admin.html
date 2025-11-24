@@ -168,124 +168,684 @@
             <h3>Pending Admissions</h3>
             <strong>12</strong>
         </div>
-        <div class="stat-box">
-            <h3>MDM Records</h3>
-            <strong>Updated</strong>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Panel — GPS Pethgam Wagoora</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{
+      --navy:#003566;
+      --blue:#0d6efd;
+      --gold:#ffc300;
+      --light:#fff7d1;
+      --bg:#f4f8ff;
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#0B76EF;
+      --success:#22c55e;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#06202a}
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:14px 20px; background:linear-gradient(90deg,rgba(11,118,239,0.12),rgba(3,53,102,0.06));
+      border-bottom:1px solid rgba(0,0,0,0.04);
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:8px;object-fit:cover;background:linear-gradient(45deg,var(--blue),var(--navy))}
+    h1{font-size:18px;margin:0;color:var(--navy)}
+    .top-actions{display:flex;gap:8px;align-items:center}
+    .btn{padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 0 rgba(6,42,83,0.12)}
+    .btn.secondary{background:white;color:var(--navy);border:1px solid rgba(6,42,83,0.06);box-shadow:none}
+    .container{max-width:1200px;margin:18px auto;padding:0 18px}
+    /* 3D dashboard tiles */
+    .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:18px}
+    .tile{
+      background:linear-gradient(180deg,#0B76EF,#075bb8);
+      color:white;padding:20px;border-radius:14px;
+      text-align:center;cursor:pointer;
+      box-shadow:0 18px 0 rgba(3,41,80,0.12);
+      transition:transform .12s, box-shadow .12s;
+      user-select:none;font-weight:800;
+    }
+    .tile.small{padding:14px;font-size:14px}
+    .tile:active{transform:translateY(8px);box-shadow:0 8px 0 rgba(3,41,80,0.12)}
+    .tile .icon{font-size:28px;margin-bottom:6px}
+    /* layout */
+    .layout{display:grid;grid-template-columns:1fr 420px;gap:18px;margin-top:18px}
+    @media(max-width:1000px){ .layout{grid-template-columns:1fr} .sidebar{order:2} }
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 20px rgba(8,20,40,0.06)}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .muted{color:var(--muted);font-size:13px}
+    /* announcements (horizontal) */
+    .announcements{background:linear-gradient(90deg,var(--light),#fff);padding:10px;border-radius:10px;border:1px solid #ffea99;display:flex;align-items:center;gap:12px;overflow:hidden;box-shadow:0 3px 10px rgba(255,200,0,0.06)}
+    .ann-label{background:var(--gold);color:#1a1a1a;padding:6px 10px;border-radius:8px;font-weight:800}
+    .marquee{flex:1;overflow:hidden;white-space:nowrap}
+    .marquee p{display:inline-block;padding-left:100%;animation:marq 16s linear infinite;margin:0;font-weight:700;color:#333}
+    @keyframes marq{0%{transform:translateX(0%)}100%{transform:translateX(-100%)}}
+    /* news vertical scroll */
+    .news-list{max-height:260px;overflow:hidden}
+    .news-item{padding:10px;border-radius:8px;margin-bottom:8px;background:linear-gradient(180deg,#fff,#f7fbff);box-shadow:0 4px 10px rgba(3,53,102,0.03)}
+    .news-scroll{animation:newsScroll 10s linear infinite}
+    @keyframes newsScroll{0%{transform:translateY(0)}50%{transform:translateY(-50%)}100%{transform:translateY(0)}}
+    /* gallery */
+    .gallery{display:flex;gap:8px;flex-wrap:wrap}
+    .gallery img{width:100px;height:70px;object-fit:cover;border-radius:8px;box-shadow:0 6px 14px rgba(3,53,102,0.06)}
+    /* form grid */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    @media(max-width:640px){ .grid-2{grid-template-columns:1fr} }
+    input,select,textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #e6eef6}
+    label{font-size:13px;color:var(--muted);margin-top:8px;display:block}
+    .actions{display:flex;gap:8px;margin-top:10px}
+    .small-muted{font-size:12px;color:#556}
+    .stat{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;background:linear-gradient(180deg,#fff,#f9fbff)}
+    .stat strong{font-size:20px;color:var(--navy)}
+    .pdf-list{max-height:150px;overflow:auto}
+    .footer{margin-top:22px;text-align:center;color:var(--muted);font-size:13px;padding:8px}
+  </style>
+  <!-- jsPDF for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo" title="School logo"></div>
+    <div>
+      <h1>Government Primary School Pethgam Wagoora</h1>
+      <div class="muted">UDISE: 01022202207 • pspethgam@gmail.com • 7006261694</div>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <button class="btn" onclick="openView('dashboard')">Admin Panel</button>
+    <button class="btn secondary" onclick="downloadFullBackup()">Export Backup</button>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- announcements strip -->
+  <div class="card announcements">
+    <div class="ann-label">Announcements</div>
+    <div class="marquee" id="annStrip"><p>Loading announcements…</p></div>
+    <button class="btn secondary" style="width:160px" onclick="openView('announcements')">Edit Announcements</button>
+  </div>
+
+  <div class="layout">
+    <main>
+      <!-- Dashboard tiles -->
+      <div class="card">
+        <div class="section-title">
+          <h3>Admin Dashboard</h3>
+          <div class="muted">Quick actions</div>
         </div>
-    </div>
 
-    <!-- MANAGE STUDENTS -->
-    <div id="students" class="section">
-        <h2>Manage Students</h2>
+        <div class="tiles" role="list">
+          <div class="tile" onclick="openView('students')">
+            <div class="icon">👩‍🎓</div>Student Profile
+          </div>
+          <div class="tile" onclick="openView('staff')">
+            <div class="icon">👩‍🏫</div>Staff Profile
+          </div>
+          <div class="tile" onclick="openView('results')">
+            <div class="icon">📝</div>Results
+          </div>
+          <div class="tile" onclick="openView('gallery')">
+            <div class="icon">🖼️</div>Gallery
+          </div>
+          <div class="tile" onclick="openView('announcements')">
+            <div class="icon">📣</div>Announcements
+          </div>
+          <div class="tile" onclick="openView('news')">
+            <div class="icon">📰</div>News & Events
+          </div>
+          <div class="tile" onclick="openView('glance')">
+            <div class="icon">📊</div>School at a Glance
+          </div>
+          <div class="tile" onclick="openView('certificates')">
+            <div class="icon">📜</div>Certificates
+          </div>
+          <div class="tile" onclick="openView('uploads')">
+            <div class="icon">📁</div>Upload / PDFs
+          </div>
+        </div>
 
-        <button onclick="alert('Add Student Form Coming Soon!')">+ Add New Student</button>
+      </div>
 
-        <table>
-            <tr>
-                <th>Reg No.</th>
-                <th>Name</th>
-                <th>Class</th>
-                <th>Parent</th>
-                <th>Actions</th>
-            </tr>
+      <!-- VIEWS - each view hidden/shown -->
+      <div id="view-area" style="margin-top:12px"></div>
+    </main>
 
-            <tr>
-                <td>102</td>
-                <td>Ayaan Ahmad</td>
-                <td>3rd</td>
-                <td>Abdul Ahmad</td>
-                <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <!-- Right sidebar -->
+    <aside class="sidebar">
+      <div class="card">
+        <div class="section-title"><h4>News & Events</h4><div class="muted">Latest</div></div>
+        <div class="news-list" id="newsList">
+          <!-- news items inserted by JS -->
+        </div>
+      </div>
 
-    <!-- MANAGE STAFF -->
-    <div id="staff" class="section">
-        <h2>Manage Staff</h2>
+      <div style="height:12px"></div>
 
-        <button onclick="alert('Add Staff Form Coming Soon!')">+ Add Staff</button>
+      <div class="card">
+        <div class="section-title"><h4>Gallery Preview</h4><div class="muted">Recent uploads</div></div>
+        <div class="gallery" id="galleryPreview">
+          <!-- images -->
+        </div>
+      </div>
 
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Designation</th>
-                <th>Actions</th>
-            </tr>
+      <div style="height:12px"></div>
 
-            <tr>
-                <td>01</td>
-                <td>Mohammad Ashraf Rather</td>
-                <td>Head of Institution</td>
-                <td>
-                    <button>Edit</button>
-                </td>
-            </tr>
-        </table>
-    </div>
+      <div class="card">
+        <div class="section-title"><h4>Quick Stats</h4><div class="muted">At a glance</div></div>
+        <div class="stat"><strong id="statStudents">0</strong><div class="small-muted">Students</div></div>
+        <div style="height:8px"></div>
+        <div class="stat"><strong id="statStaff">0</strong><div class="small-muted">Staff</div></div>
+        <div style="height:8px"></div>
+        <div class="stat"><strong id="statResults">0</strong><div class="small-muted">Results</div></div>
+      </div>
+    </aside>
+  </div>
 
-    <!-- RESULTS UPLOAD -->
-    <div id="results" class="section">
-        <h2>Results Upload</h2>
-
-        <label>Select Class:</label>
-        <select>
-            <option>1st</option><option>2nd</option><option>3rd</option>
-            <option>4th</option><option>5th</option>
-        </select>
-
-        <br><br>
-        <input type="file">
-        <button>Upload</button>
-    </div>
-
-    <!-- ATTENDANCE -->
-    <div id="attendance" class="section">
-        <h2>Attendance Manager</h2>
-
-        <button>Download Today’s Sheet</button>
-        <button>Upload Attendance</button>
-    </div>
-
-    <!-- MDM SECTION -->
-    <div id="mdm" class="section">
-        <h2>Mid-Day Meal (MDM) Generator</h2>
-
-        <label>Select Month:</label>
-        <input type="month">
-
-        <button>Generate MDM Statement</button>
-    </div>
-
-    <!-- CERTIFICATES -->
-    <div id="certificates" class="section">
-        <h2>Generate Certificates</h2>
-
-        <button>Bonafide Certificate</button>
-        <button>Date of Birth Certificate</button>
-        <button>Character Certificate</button>
-    </div>
-
-    <!-- SETTINGS -->
-    <div id="settings" class="section">
-        <h2>Settings & Configurations</h2>
-
-        <label>School Name</label>
-        <input type="text" value="Govt. Primary School Pethgam Wagoora"><br><br>
-
-        <label>UDISE Code</label>
-        <input type="text" value="0101010101"><br><br>
-
-        <label>Admin Email</label>
-        <input type="email" value="gpspethgam@gmail.com"><br><br>
-
-        <button>Save Settings</button>
-    </div>
-
+  <div class="footer card" style="margin-top:18px">
+    © <span id="year"></span> Government Primary School Pethgam Wagoora — All rights reserved.
+  </div>
 </div>
 
+<script>
+/* ===========================
+   Admin Panel Single File JS
+   ===========================
+   - Data in localStorage keys:
+     gps_students, gps_staff, gps_results, gps_gallery, gps_announcements, gps_news, gps_uploads
+   - Uses jsPDF (included) for pdf generation
+   =========================== */
+
+const { jsPDF } = window.jspdf;
+
+// Helpers
+function read(key){ try{ return JSON.parse(localStorage.getItem(key) || '[]'); }catch(e){ return []; } }
+function write(key,val){ localStorage.setItem(key, JSON.stringify(val)); }
+function uid(){ return Date.now() + Math.floor(Math.random()*999); }
+function toast(msg, time = 1700){ const el = document.createElement('div'); el.textContent = msg; el.style.cssText = 'position:fixed;right:18px;bottom:18px;background:#0B76EF;color:white;padding:10px 12px;border-radius:8px;box-shadow:0 6px 18px rgba(3,41,80,0.12)'; document.body.appendChild(el); setTimeout(()=>el.remove(),time); }
+function safeStr(s){ return (s||'').toString().trim(); }
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ========== ANNOUNCEMENTS strip (horizontal) ========== */
+function renderAnnouncementsStrip(){
+  const ann = read('gps_announcements');
+  const el = document.getElementById('annStrip');
+  if(!ann.length){ el.innerHTML = '<p>No announcements yet — add one from Announcements.</p>'; return; }
+  const text = ann.filter(a=>a.active).map(a=>`${a.title} — ${a.body}`).join(' • ');
+  el.innerHTML = `<p>${text || 'No active announcements'}</p>`;
+}
+
+/* ========== NEWS vertical list ========== */
+function renderNews(){
+  const news = read('gps_news');
+  const container = document.getElementById('newsList');
+  if(!news.length){ container.innerHTML = '<div class="muted small-muted">No news yet.</div>'; return; }
+  container.innerHTML = news.map(n=>{
+    return `<div class="news-item"><strong>${n.title}</strong><div class="muted small-muted">${n.date}</div><div style="margin-top:6px">${n.body}</div></div>`;
+  }).join('');
+}
+
+/* ========== GALLERY preview ========== */
+function renderGalleryPreview(){
+  const g = read('gps_gallery');
+  const box = document.getElementById('galleryPreview');
+  box.innerHTML = '';
+  g.slice(0,8).forEach((src,i)=>{
+    const img = document.createElement('img'); img.src = src; img.alt = 'img'+i;
+    box.appendChild(img);
+  });
+}
+
+/* ========== STATS ========== */
+function refreshStats(){
+  document.getElementById('statStudents').textContent = (read('gps_students')||[]).length;
+  document.getElementById('statStaff').textContent = (read('gps_staff')||[]).length;
+  document.getElementById('statResults').textContent = (read('gps_results')||[]).length;
+}
+
+/* ========== RENDER MAIN VIEW AREA ========== */
+function openView(view){
+  const area = document.getElementById('view-area');
+  // simple router for modules
+  const views = {
+    dashboard: () => {
+      area.innerHTML = `<div class="card"><h3>Welcome to Admin Dashboard</h3><p class="muted">Click tiles to manage modules. Use Export Backup to download all data.</p></div>`;
+    },
+
+    announcements: () => {
+      const ann = read('gps_announcements');
+      area.innerHTML = `<div class="card">
+        <div class="section-title"><h3>Announcements</h3><div class="muted">Create / Edit / Activate</div></div>
+        <div>
+          <label>Title</label><input id="ann_title">
+          <label>Body</label><textarea id="ann_body" rows="3"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" onclick="saveAnnouncement()">Save Announcement</button>
+            <button class="btn secondary" onclick="renderAnnouncementsList()">Refresh List</button>
+          </div>
+        </div>
+        <hr>
+        <div id="annList"></div>
+      </div>`;
+      renderAnnouncementsList();
+    },
+
+    news: () => {
+      area.innerHTML = `<div class="card">
+        <div class="section-title"><h3>News & Events</h3><div class="muted">Add news/event</div></div>
+        <div>
+          <label>Title</label><input id="news_title">
+          <label>Date</label><input id="news_date" type="date">
+          <label>Body</label><textarea id="news_body" rows="3"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" onclick="saveNews()">Save News/Event</button>
+            <button class="btn secondary" onclick="renderNewsList()">Refresh</button>
+          </div>
+        </div>
+        <hr><div id="newsListAdmin"></div>
+      </div>`;
+      renderNewsList();
+    },
+
+    gallery: () => {
+      area.innerHTML = `<div class="card">
+        <div class="section-title"><h3>Gallery</h3><div class="muted">Upload images (saved locally)</div></div>
+        <input id="gallery_file" type="file" accept="image/*" multiple>
+        <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" onclick="uploadGalleryImages()">Upload</button><button class="btn secondary" onclick="clearGallery()">Clear Gallery</button></div>
+        <hr>
+        <div id="galleryAdmin" class="gallery" style="margin-top:10px"></div>
+      </div>`;
+      renderGalleryAdmin();
+    },
+
+    students: () => {
+      const students = read('gps_students');
+      area.innerHTML = `<div class="card">
+        <div class="section-title"><h3>Students</h3><div class="muted">Add / Edit / Delete student</div></div>
+        <div class="grid-2">
+          <div>
+            <label>First Name</label><input id="s_fname">
+            <label>Middle Name</label><input id="s_mname">
+            <label>Last Name</label><input id="s_lname">
+            <label>Class Joining</label><input id="s_class">
+            <label>PEN / Adm No</label><input id="s_pen">
+          </div>
+          <div>
+            <label>Father's Name</label><input id="s_father">
+            <label>Mother's Name</label><input id="s_mother">
+            <label>DOB</label><input id="s_dob" type="date">
+            <label>Upload Photo</label><input id="s_photo" type="file" accept="image/*">
+            <div style="margin-top:8px"><button class="btn" onclick="saveStudent()">Save Student</button><button class="btn secondary" onclick="renderStudentsTable()">Refresh List</button></div>
+          </div>
+        </div>
+        <hr><div id="studentsTable"></div>
+      </div>`;
+      renderStudentsTable();
+    },
+
+    staff: () => {
+      area.innerHTML = `<div class="card">
+        <div class="section-title"><h3>Staff</h3><div class="muted">Add / Edit staff</div></div>
+        <div class="grid-2">
+          <div>
+            <label>Name</label><input id="t_name">
+            <label>Code</label><input id="t_code">
+            <label>Qualification</label><input id="t_qual">
+          </div>
+          <div>
+            <label>Designation</label><input id="t_desig">
+            <label>Date of Joining</label><input id="t_doj" type="date">
+            <label>Upload Photo</label><input id="t_photo" type="file" accept="image/*">
+            <div style="margin-top:8px"><button class="btn" onclick="saveStaff()">Save Staff</button><button class="btn secondary" onclick="renderStaffTable()">Refresh</button></div>
+          </div>
+        </div>
+        <hr><div id="staffTableAdmin"></div>
+      </div>`;
+      renderStaffTable();
+    },
+
+    results: () => {
+      area.innerHTML = `<div class="card">
+        <div class="section-title"><h3>Results</h3><div class="muted">Enter marks and generate PDF</div></div>
+        <div>
+          <label>Adm. No</label><input id="r_adm">
+          <label>Student Name</label><input id="r_name">
+          <label>Class</label><input id="r_class">
+          <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-top:8px">
+            <div><strong>Subject</strong></div><div><strong>FA1</strong></div><div><strong>FA2</strong></div><div><strong>FA3</strong></div><div><strong>FA4</strong></div><div><strong>FA5</strong></div><div><strong>FA6</strong></div><div><strong>SA</strong></div>
+            <!-- subjects rows -->
+            <div>English</div><input id="eng_f1" type="number"><input id="eng_f2" type="number"><input id="eng_f3" type="number"><input id="eng_f4" type="number"><input id="eng_f5" type="number"><input id="eng_f6" type="number"><input id="eng_sa" type="number">
+            <div>Maths</div><input id="math_f1" type="number"><input id="math_f2" type="number"><input id="math_f3" type="number"><input id="math_f4" type="number"><input id="math_f5" type="number"><input id="math_f6" type="number"><input id="math_sa" type="number">
+            <div>EVS</div><input id="evs_f1" type="number"><input id="evs_f2" type="number"><input id="evs_f3" type="number"><input id="evs_f4" type="number"><input id="evs_f5" type="number"><input id="evs_f6" type="number"><input id="evs_sa" type="number">
+            <div>Urdu</div><input id="urdu_f1" type="number"><input id="urdu_f2" type="number"><input id="urdu_f3" type="number"><input id="urdu_f4" type="number"><input id="urdu_f5" type="number"><input id="urdu_f6" type="number"><input id="urdu_sa" type="number">
+            <div>Kashmiri</div><input id="kash_f1" type="number"><input id="kash_f2" type="number"><input id="kash_f3" type="number"><input id="kash_f4" type="number"><input id="kash_f5" type="number"><input id="kash_f6" type="number"><input id="kash_sa" type="number">
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="btn" onclick="saveResult()">Save Result</button>
+            <button class="btn secondary" onclick="generateMarksheetPDFFromForm()">Generate Marksheet PDF</button>
+          </div>
+        </div>
+        <hr><div id="resultsTableAdmin"></div>
+      </div>`;
+      renderResultsTable();
+    },
+
+    glance: () => {
+      const stats = {
+        students: read('gps_students').length,
+        staff: read('gps_staff').length,
+        classes: 10,
+        books: 4500
+      };
+      area.innerHTML = `<div class="card"><h3>School at a Glance</h3>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px">
+          <div class="stat"><strong>${stats.students}</strong><div class="muted">Students</div></div>
+          <div class="stat"><strong>${stats.staff}</strong><div class="muted">Staff</div></div>
+          <div class="stat"><strong>${stats.classes}</strong><div class="muted">Classrooms</div></div>
+          <div class="stat"><strong>${stats.books}</strong><div class="muted">Library Books</div></div>
+        </div>
+        <div style="margin-top:8px"><button class="btn" onclick="generateGlancePDF()">Generate PDF</button></div>
+      </div>`;
+    },
+
+    certificates: () => {
+      area.innerHTML = `<div class="card"><h3>Certificates</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div class="card"><strong>DOB Certificate</strong><div style="margin-top:8px"><label>Student Name</label><input id="cert_name1"><label>DOB</label><input id="cert_dob1" type="date"><div style="margin-top:8px"><button class="btn" onclick="generateDOBCert()">Generate PDF</button></div></div></div>
+          <div class="card"><strong>Bonafide Certificate</strong><div style="margin-top:8px"><label>Name</label><input id="cert_name2"><label>Class</label><input id="cert_class2"><div style="margin-top:8px"><button class="btn" onclick="generateBonafide()">Generate PDF</button></div></div></div>
+          <div class="card"><strong>Character Certificate</strong><div style="margin-top:8px"><label>Name</label><input id="cert_name3"><label>Remarks</label><input id="cert_remarks3"><div style="margin-top:8px"><button class="btn" onclick="generateCharacter()">Generate PDF</button></div></div></div>
+        </div>
+      </div>`;
+    },
+
+    uploads: () => {
+      area.innerHTML = `<div class="card"><h3>Upload PDFs / Documents</h3>
+        <label>Select PDF to upload</label><input id="pdf_upload" type="file" accept="application/pdf">
+        <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" onclick="uploadPDF()">Upload PDF</button><button class="btn secondary" onclick="renderPDFList()">Refresh</button></div>
+        <hr><div id="pdfList" class="pdf-list"></div></div>`;
+      renderPDFList();
+    }
+  };
+
+  if(views[view]) views[view]();
+  // re-render strip and right panels
+  renderAnnouncementsStrip(); renderNews(); renderGalleryPreview(); refreshStats();
+}
+
+/* ====== ANNOUNCEMENTS CRUD ====== */
+function saveAnnouncement(){
+  const title = safeStr(document.getElementById('ann_title').value);
+  const body = safeStr(document.getElementById('ann_body').value);
+  if(!title || !body){ alert('Add title & body'); return; }
+  const arr = read('gps_announcements');
+  arr.unshift({id:uid(), title, body, active:true, ts:new Date().toLocaleString()});
+  write('gps_announcements', arr);
+  toast('Announcement saved');
+  renderAnnouncementsList(); renderAnnouncementsStrip();
+  document.getElementById('ann_title').value=''; document.getElementById('ann_body').value='';
+}
+function renderAnnouncementsList(){
+  const arr = read('gps_announcements');
+  const container = document.getElementById('annList');
+  if(!container) return;
+  if(!arr.length) container.innerHTML = '<div class="muted small-muted">No announcements</div>';
+  else container.innerHTML = arr.map(a=>`<div style="padding:8px;border-radius:8px;background:#fff;margin-bottom:8px"><strong>${a.title}</strong><div class="muted small-muted">${a.ts}</div><div style="margin-top:6px">${a.body}</div><div style="margin-top:6px"><button class="btn secondary" onclick="toggleAnn(${a.id})">${a.active? 'Deactivate':'Activate'}</button> <button class="btn secondary" onclick="deleteAnn(${a.id})">Delete</button></div></div>`).join('');
+}
+function toggleAnn(id){
+  const arr = read('gps_announcements');
+  const i = arr.findIndex(a=>a.id===id);
+  if(i>=0){ arr[i].active = !arr[i].active; write('gps_announcements',arr); renderAnnouncementsList(); renderAnnouncementsStrip(); toast('Updated'); }
+}
+function deleteAnn(id){
+  if(!confirm('Delete announcement?')) return;
+  const arr = read('gps_announcements').filter(a=>a.id!==id);
+  write('gps_announcements', arr); renderAnnouncementsList(); renderAnnouncementsStrip(); toast('Deleted');
+}
+
+/* ====== NEWS CRUD ====== */
+function saveNews(){
+  const title = safeStr(document.getElementById('news_title').value);
+  const date = document.getElementById('news_date').value || new Date().toLocaleDateString();
+  const body = safeStr(document.getElementById('news_body').value);
+  if(!title || !body){ alert('Add title & body'); return; }
+  const arr = read('gps_news'); arr.unshift({id:uid(), title, date, body});
+  write('gps_news',arr); toast('News added'); renderNewsList(); renderNews();
+  document.getElementById('news_title').value=''; document.getElementById('news_body').value=''; document.getElementById('news_date').value='';
+}
+function renderNewsList(){
+  const arr = read('gps_news'); const container = document.getElementById('newsListAdmin'); if(!container) return;
+  if(!arr.length) container.innerHTML = '<div class="muted small-muted">No news</div>';
+  else container.innerHTML = arr.map(n=>`<div style="padding:8px;border-radius:8px;background:#fff;margin-bottom:8px"><strong>${n.title}</strong><div class="muted small-muted">${n.date}</div><div style="margin-top:6px">${n.body}</div><div style="margin-top:6px"><button class="btn secondary" onclick="deleteNews(${n.id})">Delete</button></div></div>`).join('');
+}
+function deleteNews(id){ if(!confirm('Delete news item?')) return; const arr = read('gps_news').filter(n=>n.id!==id); write('gps_news',arr); renderNewsList(); renderNews(); toast('Deleted'); }
+
+/* ====== GALLERY ====== */
+function uploadGalleryImages(){
+  const inp = document.getElementById('gallery_file');
+  if(!inp.files.length){ alert('Choose images'); return; }
+  const arr = read('gps_gallery');
+  const files = Array.from(inp.files);
+  let count = 0;
+  files.forEach(file=>{
+    const r = new FileReader();
+    r.onload = (e)=>{
+      arr.unshift(e.target.result); write('gps_gallery', arr); renderGalleryAdmin(); renderGalleryPreview(); toast('Image uploaded'); count++;
+      if(count===files.length) inp.value='';
+    };
+    r.readAsDataURL(file);
+  });
+}
+function renderGalleryAdmin(){
+  const box = document.getElementById('galleryAdmin'); if(!box) return;
+  const arr = read('gps_gallery');
+  if(!arr.length){ box.innerHTML = '<div class="muted">No images</div>'; return; }
+  box.innerHTML = arr.map((src,i)=>`<div style="position:relative"><img src="${src}" style="width:120px;height:80px;object-fit:cover;border-radius:8px"><div style="margin-top:4px"><button class="btn secondary" onclick="deleteGallery(${i})">Delete</button></div></div>`).join('<div style="width:8px"></div>');
+}
+function deleteGallery(i){ if(!confirm('Delete image?')) return; const arr = read('gps_gallery'); arr.splice(i,1); write('gps_gallery',arr); renderGalleryAdmin(); renderGalleryPreview(); toast('Deleted'); }
+function clearGallery(){ if(!confirm('Clear gallery?')) return; write('gps_gallery',[]); renderGalleryAdmin(); renderGalleryPreview(); toast('Cleared'); }
+
+/* ====== STUDENTS ====== */
+function saveStudent(){
+  const arr = read('gps_students');
+  const fname = safeStr(document.getElementById('s_fname').value);
+  if(!fname){ alert('Add student first name'); return; }
+  const obj = {
+    id: uid(),
+    fname, mname: safeStr(document.getElementById('s_mname').value),
+    lname: safeStr(document.getElementById('s_lname').value),
+    class_joining: safeStr(document.getElementById('s_class').value),
+    pen: safeStr(document.getElementById('s_pen')?.value),
+    father: safeStr(document.getElementById('s_father')?.value),
+    mother: safeStr(document.getElementById('s_mother')?.value),
+    dob: document.getElementById('s_dob')?.value || '',
+    photo: ''
+  };
+  const photoInput = document.getElementById('s_photo');
+  if(photoInput && photoInput.files && photoInput.files[0]){
+    const fr = new FileReader();
+    fr.onload = (e)=>{ obj.photo = e.target.result; arr.unshift(obj); write('gps_students',arr); renderStudentsTable(); toast('Student saved'); refreshStats(); };
+    fr.readAsDataURL(photoInput.files[0]);
+  } else {
+    arr.unshift(obj); write('gps_students',arr); renderStudentsTable(); toast('Student saved'); refreshStats();
+  }
+}
+function renderStudentsTable(){
+  const arr = read('gps_students'); const container = document.getElementById('studentsTable'); if(!container) return;
+  if(!arr.length){ container.innerHTML = '<div class="muted">No students</div>'; return; }
+  container.innerHTML = '<table style="width:100%;border-collapse:collapse"><thead><tr><th>Name</th><th>Class</th><th>Adm No</th><th>Photo</th><th>Actions</th></tr></thead><tbody>' + arr.map((s,i)=>`<tr><td>${s.fname} ${s.mname||''} ${s.lname||''}</td><td>${s.class_joining||''}</td><td>${s.pen||''}</td><td>${s.photo? '<img src="'+s.photo+'" style="width:46px;height:36px;object-fit:cover;border-radius:6px">':''}</td><td><button class="btn secondary" onclick="deleteStudent(${i})">Delete</button> <button class="btn" onclick="generateStudentPDF(${i})">PDF</button></td></tr>`).join('') + '</tbody></table>';
+}
+function deleteStudent(i){ if(!confirm('Delete student?')) return; const arr = read('gps_students'); const removed = arr.splice(i,1); write('gps_students',arr); renderStudentsTable(); toast('Deleted'); refreshStats(); }
+function generateStudentPDF(i){
+  const arr = read('gps_students'); const s = arr[i]; if(!s) return alert('Student not found');
+  const doc = new jsPDF({unit:'pt',format:'a4'});
+  let y=40; doc.setFontSize(16); doc.text('Government Primary School Pethgam Wagoora',210,y,{align:'center'}); y+=20;
+  doc.setFontSize(12); doc.text('Student Profile',210,y,{align:'center'}); y+=28;
+  doc.setFontSize(11); doc.text('Name: '+[s.fname,s.mname,s.lname].filter(Boolean).join(' '),40,y); y+=16;
+  doc.text('Father: '+(s.father||''),40,y); y+=14;
+  doc.text('Mother: '+(s.mother||''),40,y); y+=14;
+  doc.text('Class: '+(s.class_joining||''),40,y); y+=14;
+  doc.text('PEN: '+(s.pen||''),40,y); y+=18;
+  if(s.photo){ try{ doc.addImage(s.photo,'JPEG',420,60,90,110); }catch(e){} }
+  doc.save((s.fname||'student')+'.pdf'); toast('PDF generated');
+}
+
+/* ====== STAFF ====== */
+function saveStaff(){
+  const arr = read('gps_staff');
+  const obj = {
+    id:uid(), name:safeStr(document.getElementById('t_name').value), code:safeStr(document.getElementById('t_code').value),
+    qual:safeStr(document.getElementById('t_qual').value), desig:safeStr(document.getElementById('t_desig').value), doj:document.getElementById('t_doj')?.value || '', photo:''
+  };
+  const p = document.getElementById('t_photo');
+  if(p && p.files && p.files[0]){ const fr=new FileReader(); fr.onload=(e)=>{ obj.photo=e.target.result; arr.unshift(obj); write('gps_staff',arr); renderStaffTable(); toast('Staff saved'); refreshStats(); }; fr.readAsDataURL(p.files[0]); }
+  else { arr.unshift(obj); write('gps_staff',arr); renderStaffTable(); toast('Staff saved'); refreshStats(); }
+}
+function renderStaffTable(){
+  const arr = read('gps_staff'); const container = document.getElementById('staffTableAdmin'); if(!container) return;
+  if(!arr.length) container.innerHTML = '<div class="muted">No staff</div>';
+  else container.innerHTML = '<table style="width:100%;border-collapse:collapse"><thead><tr><th>Name</th><th>Code</th><th>Designation</th><th>Photo</th><th>Actions</th></tr></thead><tbody>' + arr.map((s,i)=>`<tr><td>${s.name}</td><td>${s.code||''}</td><td>${s.desig||s.qual||''}</td><td>${s.photo?'<img src="'+s.photo+'" style="width:46px;height:36px;object-fit:cover;border-radius:6px">':''}</td><td><button class="btn secondary" onclick="deleteStaff(${i})">Delete</button></td></tr>`).join('') + '</tbody></table>';
+}
+function deleteStaff(i){ if(!confirm('Delete staff?')) return; const arr = read('gps_staff'); arr.splice(i,1); write('gps_staff',arr); renderStaffTable(); toast('Deleted'); refreshStats(); }
+
+/* ====== RESULTS ====== */
+function saveResult(){
+  const arr = read('gps_results');
+  const obj = { id:uid(), adm:safeStr(document.getElementById('r_adm').value), name:safeStr(document.getElementById('r_name').value), class:safeStr(document.getElementById('r_class').value), marks:{} };
+  ['eng','math','evs','urdu','kash'].forEach(s=>{
+    obj.marks[s] = [
+      Number(document.getElementById(s+'_f1')?.value||0),
+      Number(document.getElementById(s+'_f2')?.value||0),
+      Number(document.getElementById(s+'_f3')?.value||0),
+      Number(document.getElementById(s+'_f4')?.value||0),
+      Number(document.getElementById(s+'_f5')?.value||0),
+      Number(document.getElementById(s+'_f6')?.value||0),
+      Number(document.getElementById(s+'_sa')?.value||0)
+    ];
+  });
+  arr.unshift(obj); write('gps_results',arr); renderResultsTable(); toast('Result saved');
+}
+function renderResultsTable(){
+  const arr = read('gps_results'); const container = document.getElementById('resultsTableAdmin'); if(!container) return;
+  if(!arr.length) container.innerHTML = '<div class="muted">No results</div>';
+  else container.innerHTML = '<table style="width:100%;border-collapse:collapse"><thead><tr><th>Student</th><th>Adm</th><th>Class</th><th>Total</th><th>Actions</th></tr></thead><tbody>' + arr.map((r,i)=>`<tr><td>${r.name}</td><td>${r.adm}</td><td>${r.class}</td><td>${computeTotal(r)}</td><td><button class="btn" onclick="generateMarksheetPDF(${i})">PDF</button> <button class="btn secondary" onclick="deleteResult(${i})">Delete</button></td></tr>`).join('') + '</tbody></table>';
+}
+function computeTotal(r){ let total=0; ['eng','math','evs','urdu','kash'].forEach(s=>{ const arr=r.marks[s]||[]; total += arr.slice(0,6).reduce((a,b)=>a+(Number(b)||0),0) + Number(arr[6]||0); }); return total; }
+function generateMarksheetPDF(index){
+  const r = read('gps_results')[index]; if(!r) return;
+  const doc = new jsPDF({unit:'pt',format:'a4'});
+  let y=40; doc.setFontSize(16); doc.text('Government Primary School Pethgam Wagoora',210,y,{align:'center'}); y+=20;
+  doc.setFontSize(12); doc.text('Marksheet',210,y,{align:'center'}); y+=24;
+  doc.setFontSize(10); doc.text('Name: '+r.name,40,y); doc.text('Adm. No: '+r.adm,400,y); y+=16;
+  doc.text('Class: '+r.class,40,y); y+=16;
+  // table header
+  const headers = ['Subject','FA Total','SA','Subject Total'];
+  let startX=40; doc.setFontSize(10);
+  doc.text(headers.join('   '), startX, y); y+=14;
+  ['English','Maths','EVS','Urdu','Kashmiri'].forEach((sub,si)=>{
+    const key=['eng','math','evs','urdu','kash'][si];
+    const arr = r.marks[key]||[]; const fa = arr.slice(0,6).reduce((a,b)=>a+(Number(b)||0),0); const sa = Number(arr[6]||0); const st = fa+sa;
+    doc.text(`${sub} — ${fa} — ${sa} — ${st}`, startX, y); y+=14;
+  });
+  y+=8; doc.text('Grand Total: '+computeTotal(r),40,y);
+  doc.save((r.name||'marksheet')+'.pdf'); toast('Marksheet PDF downloaded');
+}
+function generateMarksheetPDFFromForm(){ saveResult(); const arr = read('gps_results'); generateMarksheetPDF(0); } // quick example
+function deleteResult(i){ if(!confirm('Delete result?')) return; const arr=read('gps_results'); arr.splice(i,1); write('gps_results',arr); renderResultsTable(); toast('Deleted'); }
+
+/* ====== GLANCE PDF ====== */
+function generateGlancePDF(){
+  const doc = new jsPDF({unit:'pt',format:'a4'});
+  let y=40; doc.setFontSize(16); doc.text('School At A Glance — GPS Pethgam Wagoora',40,y); y+=24;
+  const students = read('gps_students').length, staff = read('gps_staff').length, classes = 10, books = 4500;
+  doc.setFontSize(12); doc.text(`Students: ${students}`,40,y); y+=16; doc.text(`Staff: ${staff}`,40,y); y+=16; doc.text(`Classrooms: ${classes}`,40,y); y+=16; doc.text(`Library Books: ${books}`,40,y);
+  doc.save('school-glance.pdf'); toast('Glance PDF created');
+}
+
+/* ====== CERTIFICATES generation ====== */
+function generateDOBCert(){
+  const name = safeStr(document.getElementById('cert_name1').value);
+  const dob = document.getElementById('cert_dob1').value;
+  if(!name || !dob){ alert('Fill name and DOB'); return; }
+  const doc = new jsPDF({unit:'pt',format:'a4'});
+  let y=80; doc.setFontSize(18); doc.text('Date of Birth Certificate',210,y,{align:'center'}); y+=30;
+  doc.setFontSize(12); doc.text(`This is to certify that ${name} was born on ${dob}.`,60,y); y+=24;
+  doc.text('Issued by Government Primary School Pethgam Wagoora',60,y);
+  doc.save((name+'_DOB_Certificate')+'.pdf'); toast('DOB Certificate generated');
+}
+function generateBonafide(){
+  const name = safeStr(document.getElementById('cert_name2').value);
+  const cls = safeStr(document.getElementById('cert_class2').value);
+  if(!name || !cls){ alert('Complete fields'); return; }
+  const doc = new jsPDF({unit:'pt',format:'a4'});
+  let y=80; doc.setFontSize(18); doc.text('Bonafide Certificate',210,y,{align:'center'}); y+=30;
+  doc.setFontSize(12); doc.text(`This is to certify that ${name} is a bona fide student of class ${cls} at Government Primary School Pethgam Wagoora.`,60,y); y+=24;
+  doc.save((name+'_Bonafide')+'.pdf'); toast('Bonafide generated');
+}
+function generateCharacter(){
+  const name = safeStr(document.getElementById('cert_name3').value); const remarks = safeStr(document.getElementById('cert_remarks3').value);
+  if(!name || !remarks){ alert('Fill fields'); return; }
+  const doc = new jsPDF({unit:'pt',format:'a4'}); let y=80; doc.setFontSize(18); doc.text('Character Certificate',210,y,{align:'center'}); y+=30; doc.setFontSize(12); doc.text(`This is to certify that ${name} bears a good character. Remarks: ${remarks}`,60,y); doc.save((name+'_Character')+'.pdf'); toast('Character certificate ready');
+}
+
+/* ====== UPLOAD PDF storage ====== */
+function uploadPDF(){
+  const inp = document.getElementById('pdf_upload'); if(!inp.files.length) return alert('Select a PDF');
+  const file = inp.files[0]; const fr = new FileReader();
+  fr.onload = (e)=>{
+    const arr = read('gps_uploads'); arr.unshift({id:uid(), name:file.name, data:e.target.result, ts:new Date().toLocaleString()}); write('gps_uploads',arr); renderPDFList(); toast('PDF uploaded'); inp.value='';
+  };
+  fr.readAsDataURL(file);
+}
+function renderPDFList(){
+  const arr = read('gps_uploads'); const box = document.getElementById('pdfList'); if(!box) return;
+  if(!arr.length) box.innerHTML = '<div class="muted">No uploaded PDFs</div>'; else box.innerHTML = arr.map((p,i)=>`<div style="padding:8px;border-bottom:1px solid #f0f4fa"><strong>${p.name}</strong><div class="muted small-muted">${p.ts}</div><div style="margin-top:6px"><button class="btn" onclick="downloadPDF(${i})">Download</button> <button class="btn secondary" onclick="deletePDF(${i})">Delete</button></div></div>`).join('');
+}
+function downloadPDF(i){ const arr = read('gps_uploads'); const p = arr[i]; if(!p) return; const a = document.createElement('a'); a.href = p.data; a.download = p.name; a.click(); }
+function deletePDF(i){ if(!confirm('Delete PDF?')) return; const arr = read('gps_uploads'); arr.splice(i,1); write('gps_uploads',arr); renderPDFList(); toast('Deleted'); }
+
+/* ====== Helpers: PDF of student from results, etc. ====== */
+function generateMarksheetPDFFromForm(){
+  // Used earlier or call generateMarksheetPDF with newest saved result
+  const arr = read('gps_results'); if(!arr.length) return alert('No result saved');
+  generateMarksheetPDF(0);
+}
+
+/* ====== BACKUP ====== */
+function downloadFullBackup(){
+  const payload = {
+    students: read('gps_students'),
+    staff: read('gps_staff'),
+    results: read('gps_results'),
+    gallery: read('gps_gallery'),
+    announcements: read('gps_announcements'),
+    news: read('gps_news'),
+    uploads: read('gps_uploads')
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'gps-backup-'+new Date().toISOString().slice(0,10)+'.json'; a.click();
+  toast('Backup downloaded');
+}
+
+/* ====== Initial data & render ====== */
+if(!localStorage.getItem('gps_announcements')) write('gps_announcements', [{id:uid(), title:'Admissions open for 2025–26', body:'Apply online for Nursery to Grade 5', active:true, ts:new Date().toLocaleString()}]);
+if(!localStorage.getItem('gps_news')) write('gps_news', [{id:uid(), title:'Sports Day 2025', date:new Date().toLocaleDateString(), body:'Students participated in athletics and traditional games.'}]);
+if(!localStorage.getItem('gps_gallery')) write('gps_gallery', []);
+if(!localStorage.getItem('gps_students')) write('gps_students', []);
+if(!localStorage.getItem('gps_staff')) write('gps_staff', []);
+if(!localStorage.getItem('gps_results')) write('gps_results', []);
+if(!localStorage.getItem('gps_uploads')) write('gps_uploads', []);
+
+openView('dashboard');
+renderAnnouncementsStrip(); renderNews(); renderGalleryPreview(); refreshStats();
+
+</script>
 </body>
-                                    </html>
+</html>
