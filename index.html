@@ -1,127 +1,320 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Government Primary School Pethgam Wagoora</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    :root{
-      --brand:#0b76ef;
-      --accent:#ffc107;
-      --gold:#f7c948;
-      --bg:#f3fbff;
-      --card:#ffffff;
-      --muted:#666;
-      --green:#28a745;
-    }
-    *{box-sizing:border-box}
-    body{font-family:Nunito,system-ui,Arial;margin:0;background:linear-gradient(180deg,#f7fbff,#ffffff);color:#123;}
-    header{background:linear-gradient(90deg,var(--brand),#2fa1ff);color:white;padding:18px 12px;display:flex;flex-direction:column;gap:8px}
-    .topline{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;width:100%}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{width:68px;height:68px;border-radius:10px;background:#fff;padding:6px}
-    h1{margin:0;font-size:20px;letter-spacing:0.6px}
-    .contacts{font-size:14px}
-    nav{max-width:1200px;margin:12px auto;display:flex;gap:10px;flex-wrap:wrap}
-    .btn{padding:10px 14px;border-radius:10px;background:var(--card);color:var(--brand);font-weight:800;box-shadow: 0 6px 0 rgba(0,0,0,0.06);transform:translateY(0);border:none}
-    .btn:hover{transform:translateY(-4px)}
-    main{max-width:1200px;margin:18px auto;padding:12px}
-    .hero{background:linear-gradient(135deg,#e8f6ff,#fff6e6);padding:18px;border-radius:10px;display:flex;gap:18px;align-items:center}
-    .hero .left{flex:1}
-    .hero h2{margin:0;color:var(--brand)}
-    .hero .meta{margin-top:8px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
-    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-    .small{font-size:13px;color:var(--muted)}
-    footer{background:#fff;padding:18px;border-top:4px solid var(--brand);text-align:center}
-    @media(max-width:700px){.hero{flex-direction:column;align-items:flex-start}}
-  </style>
-</head>
-<body>
-  <header>
-    <div class="topline">
-      <div class="brand">
-        <img src="https://via.placeholder.com/80x80.png?text=Logo" alt="logo">
-        <div>
-          <h1>GOVERNMENT PRIMARY SCHOOL PETHGAM WAGOORA</h1>
-          <div class="small">Wagoora Babareshi Road — Near Zonal Education Office</div>
-        </div>
-      </div>
-      <div class="contacts">
-        <div><strong>Email:</strong> pspethgam@gmail.com</div>
-        <div><strong>UDISE:</strong> 01022202207</div>
-        <div><strong>Phone:</strong> 7006261694 | 9596449881</div>
-      </div>
-    </div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Primary School Pethgam Wagoora</title>
 
-    <nav>
-      <a class="btn" href="index.html">Home</a>
-      <a class="btn" href="students.html">Students</a>
-      <a class="btn" href="staff.html">Staff</a>
-      <a class="btn" href="mdm.html">MDM Statement</a>
-      <a class="btn" href="results.html">Results</a>
-      <a class="btn" href="Admin.html">Admin Panel</a>
-    </nav>
-  </header>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-  <main>
-    <section class="hero">
-      <div class="left">
-        <h2>Welcome — Government Primary School Pethgam Wagoora</h2>
-        <p class="meta">Quality education for every child • Use the Admin panel to manage students, staff, results and generate documents (admission form, roll statements, marksheets, MDM statements).</p>
-        <p class="small">Document Title displayed when generating PDFs: <strong id="docTitlePreview">—</strong></p>
-      </div>
-      <div style="width:260px">
-        <div class="card">
-          <h4 style="margin:0">Quick Actions</h4>
-          <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
-            <button class="btn" onclick="location.href='students.html'">Student Cards</button>
-            <button class="btn" onclick="location.href='staff.html'">Staff Cards</button>
-            <button class="btn" onclick="location.href='mdm.html'">Generate MDM Statement</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Announcements</h3>
-        <div class="small">Use the Admin Panel to add announcements. This area will show latest items.</div>
-        <ul id="announceList" style="margin-top:8px"></ul>
-      </div>
-      <div class="card">
-        <h3>Our Twinkling Stars</h3>
-        <div class="small">Highlighted student achievers</div>
-        <div id="twinklePreview" style="margin-top:10px"></div>
-      </div>
-      <div class="card">
-        <h3>Recent Documents</h3>
-        <div class="small">Quick links to last generated documents</div>
-        <ul id="recentDocs"></ul>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    © 2025 Government Primary School Pethgam Wagoora — Email: pspethgam@gmail.com — UDISE: 01022202207
-  </footer>
-
-<script>
-  function loadPreview() {
-    const ann = JSON.parse(localStorage.getItem('gps_news')||'[]');
-    const stars = JSON.parse(localStorage.getItem('gps_stars')||'[]');
-    const docs = JSON.parse(localStorage.getItem('gps_docs')||'[]');
-
-    const announceList = document.getElementById('announceList');
-    announceList.innerHTML = ann.slice(0,5).map(a=>`<li>${a.title} — <small>${new Date(a.date||Date.now()).toLocaleDateString()}</small></li>`).join('') || '<li class="small">No announcements</li>';
-
-    const tw = document.getElementById('twinklePreview');
-    tw.innerHTML = stars.slice(0,3).map(s=>`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div style="width:48px;height:48px;border-radius:50%;overflow:hidden;background:#e6f7ff;display:flex;align-items:center;justify-content:center;font-weight:700">${s.photo?'':' '+(s.name||'')[0]}</div><div><strong>${s.name}</strong><div class="small">${s.note||''}</div></div></div>`).join('') || '<div class="small">No achievers</div>';
-
-    const recent = document.getElementById('recentDocs');
-    recent.innerHTML = docs.slice(0,5).map(d=>`<li>${d.title} — ${new Date(d.date).toLocaleString()}</li>`).join('') || '<li class="small">No documents</li>';
+<style>
+  :root {
+    --blue: #1e90ff;
+    --yellow: #fdd835;
+    --green: #4caf50;
+    --light: #f5faff;
+    --dark: #023e8a;
   }
-  document.addEventListener('DOMContentLoaded', loadPreview);
-</script>
+
+  body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    background: var(--light);
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(45deg, var(--blue), var(--green));
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+
+  header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
+  /* Top info */
+  .top-info {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  /* 3D MENU BAR */
+  nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: white;
+    padding: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  nav a {
+    background: linear-gradient(145deg, #ffffff, #d4e9ff);
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 700;
+    box-shadow: 4px 4px 10px #c4d8ff, -4px -4px 10px #ffffff;
+    transition: 0.3s;
+  }
+
+  nav a:hover {
+    transform: translateY(-4px);
+    box-shadow: 4px 4px 14px #a4c8ff, -4px -4px 14px #ffffff;
+  }
+
+  /* Announcement Bar */
+  .announce-box {
+    background: var(--yellow);
+    padding: 10px;
+    color: #000;
+    overflow: hidden;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .scroll-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll 12s linear infinite;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-100%); }
+  }
+
+  /* Cards */
+  .section {
+    padding: 20px;
+  }
+
+  h2 {
+    color: var(--dark);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 10px 0;
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ACHIEVEMENTS SLIDER */
+  .slider {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .slide-track {
+    display: inline-block;
+    animation: scroll 18s linear infinite;
+  }
+  .slide {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 30px;
+    margin: 8px;
+    font-weight: bold;
+  }
+
+  /* Quick Links */
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px;
+  }
+  .quick-card {
+    background: white;
+    padding: 18px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    border-top: 5px solid var(--blue);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
+
+  /* Gallery */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+  }
+  .gallery img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  /* VERTICAL NEWS SCROLLER */
+  .news-box {
+    height: 120px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .news-list {
+    position: absolute;
+    animation: scroll-vertical 10s linear infinite;
+  }
+
+  @keyframes scroll-vertical {
+    0% { top: 100%; }
+    100% { top: -120%; }
+  }
+
+  /* Footer */
+  footer {
+    background: var(--dark);
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+  }
+
+  footer a { color: #bbdefb; }
+
+  .map {
+    width: 100%;
+    border-radius: 10px;
+    height: 200px;
+    border: none;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="logo.png" alt="School Logo">
+  <h1>Government Primary School Pethgam Wagoora</h1>
+  <div class="top-info">
+    UDISE: 01022202207 • Email: pspethgam@gmail.com • Phone: 7006261694 / 9596449881
+  </div>
+</header>
+
+<!-- 3D MENU BAR -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="admission.html">Admission</a>
+  <a href="results.html">Results</a>
+  <a href="calendar.html">Calendar</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<!-- Announcements -->
+<div class="announce-box">
+  <span class="scroll-text">📢 Admissions Open • Winter Vacations • Eco-Club Activities • Clean School Award • Mid-Day Meals Daily 🎉</span>
+</div>
+
+<!-- PRINCIPAL MESSAGE -->
+<div class="section">
+  <h2>Principal's Message</h2>
+  <div class="card">
+    <p>
+      “Our mission at Government Primary School Pethgam Wagoora is to provide 
+      quality education, discipline, and character development for every learner.”
+    </p>
+    <strong>— HOI Mohammad Ashraf Rather</strong>
+  </div>
+</div>
+
+<!-- VERTICAL NEWS SCROLLER -->
+<div class="section">
+  <h2>News & Events</h2>
+  <div class="card">
+    <div class="news-box">
+      <div class="news-list">
+        <p>🎨 Painting competition held successfully</p>
+        <p>🌱 Plantation drive under Eco-Club</p>
+        <p>📘 Mid-term exams next month</p>
+        <p>🎉 Attendance drive 100% success</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Vision & Mission -->
+<div class="section">
+  <h2>Vision & Mission</h2>
+  <div class="card">
+    <ul>
+      <li>Provide joyful modern learning</li>
+      <li>Foundational literacy & numeracy</li>
+      <li>Promote creativity & sports</li>
+      <li>Encourage digital learning</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Achievements Slider -->
+<div class="section">
+  <h2>Achievements</h2>
+  <div class="slider">
+    <div class="slide-track">
+      <div class="slide">District Kho-Kho Award</div>
+      <div class="slide">100% Attendance Drive</div>
+      <div class="slide">Eco Club Activities</div>
+      <div class="slide">Best Clean School Award</div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Links -->
+<div class="section">
+  <h2>Quick Links</h2>
+  <div class="links-grid">
+    <a class="quick-card" href="admission.html">Admission</a>
+    <a class="quick-card" href="results.html">Results</a>
+    <a class="quick-card" href="calendar.html">School Calendar</a>
+    <a class="quick-card" href="contact.html">Contact Us</a>
+  </div>
+</div>
+
+<!-- Gallery -->
+<div class="section">
+  <h2>Gallery Preview</h2>
+  <div class="gallery">
+    <img src="g1.jpg">
+    <img src="g2.jpg">
+    <img src="g3.jpg">
+    <img src="g4.jpg">
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <h3>Government Primary School Pethgam Wagoora</h3>
+  <p>Wagoora, Baramulla, Jammu & Kashmir</p>
+  <p>Email: pspethgam@gmail.com | Phone: 7006261694, 9596449881</p>
+
+  <iframe class="map" 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.9170161814918!2d74.3967!3d34.2639"
+  loading="lazy"></iframe>
+
+  <p style="text-align:center;margin-top:10px;">© 2025 GPS Pethgam Wagoora</p>
+</footer>
+
 </body>
 </html>
