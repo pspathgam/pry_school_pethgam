@@ -1,131 +1,120 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Students — GPS Pethgam Wagoora</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    :root{--brand:#0b76ef;--card:#fff;--muted:#666}
-    body{font-family:Arial;margin:0;background:#f3fbff;color:#123}
-    header{background:var(--brand);color:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center}
-    main{max-width:1200px;margin:16px auto;padding:12px}
-    .cols{display:flex;gap:12px}
-    .form{width:360px;background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-    input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;margin-bottom:8px}
-    .student-card{width:220px;padding:12px;border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06);text-align:center;margin:8px}
-    .photo{width:100px;height:100px;border-radius:50%;margin:0 auto 8px;overflow:hidden;background:#e6f7ff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:28px}
-    .grid{display:flex;flex-wrap:wrap;gap:8px}
-    .btn{padding:8px 10px;border-radius:8px;border:none;background:#ffc107;color:#043;font-weight:700}
-    .small{font-size:13px;color:var(--muted)}
-  </style>
-</head>
-<body>
-  <header>
-    <div style="display:flex;gap:12px;align-items:center">
-      <img src="https://via.placeholder.com/60" alt="logo">
-      <div><strong>GOVT PRIMARY SCHOOL PETHGAM WAGOORA</strong><div style="font-size:12px">Student Database</div></div>
-    </div>
-    <div><a href="index.html" style="color:#fff">Home</a></div>
-  </header>
+<!-- ===================== NAVIGATION BAR ===================== -->
 
-  <main>
-    <div class="cols">
-      <div class="form">
-        <h3>Admission Form (Short)</h3>
-        <!-- Minimal fields reflecting the complex form; store full structure -->
-        <input id="stuFirst" placeholder="Student First Name">
-        <input id="stuMiddle" placeholder="Middle Name">
-        <input id="stuLast" placeholder="Last Name">
-        <input id="stuAadhaarName" placeholder="Name as per Aadhaar">
-        <input id="stuFather" placeholder="Father's Name">
-        <input id="stuMother" placeholder="Mother's Name">
-        <input id="stuResidence" placeholder="Residence">
-        <input id="stuTehsil" placeholder="Tehsil">
-        <input id="stuDistrict" placeholder="District">
-        <input id="stuFatherPhone" placeholder="Father's Contact">
-        <input id="stuMotherPhone" placeholder="Mother's Contact">
-        <input id="stuAadhaar" placeholder="Aadhaar Number">
-        <input id="stuDob" placeholder="DOB (DD-MM-YYYY)">
-        <input id="stuDobWords" placeholder="DOB in words">
-        <input id="stuBankAcc" placeholder="Bank Account No">
-        <input id="stuBankName" placeholder="Bank Name">
-        <input id="stuBranch" placeholder="Branch">
-        <input id="stuIFSC" placeholder="IFSC">
-        <input id="stuCategory" placeholder="Category (GEN/OBC/SC/ST)">
-        <input id="stuBlood" placeholder="Blood Group">
-        <input id="stuRation" placeholder="Ration Card No">
-        <input id="stuClass" placeholder="Class (e.g. 4th)">
-        <input id="stuRoll" placeholder="Roll No">
-        <input id="stuPhoto" placeholder="Photo URL">
-        <textarea id="stuDeclaration" placeholder="Parent Declaration" rows="3"></textarea>
-        <div style="display:flex;gap:8px">
-          <button class="btn" onclick="saveStudent()">Save Student</button>
-          <button class="btn" onclick="clearForm()">Clear</button>
-        </div>
-      </div>
-
-      <div style="flex:1">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <h3>Students</h3>
-          <div>
-            <select id="classFilter" onchange="renderStudents()"><option value="">All Classes</option></select>
-            <button class="btn" onclick="downloadRollStatement()">Download Roll Statement (PDF)</button>
-            <button class="btn" onclick="downloadAllStudentCards()">Download All Student Cards (PDF)</button>
-          </div>
-        </div>
-
-        <div class="grid" id="studentsGrid"></div>
-      </div>
-    </div>
-  </main>
-
-<script>
-  const SKEY='gps_students';
-  function getStudents(){ return JSON.parse(localStorage.getItem(SKEY)||'[]'); }
-  function setStudents(a){ localStorage.setItem(SKEY, JSON.stringify(a)); }
-  function uid(){ return 'st'+Date.now(); }
-
-  function saveStudent(){
-    const s = {
-      id: document.getElementById('stuRoll').value.trim() || uid(),
-      name: (document.getElementById('stuFirst').value.trim()+' '+document.getElementById('stuMiddle').value.trim()+' '+document.getElementById('stuLast').value.trim()).trim(),
-      aadhaarName: document.getElementById('stuAadhaarName').value.trim(),
-      father: document.getElementById('stuFather').value.trim(),
-      mother: document.getElementById('stuMother').value.trim(),
-      residence: document.getElementById('stuResidence').value.trim(),
-      tehsil: document.getElementById('stuTehsil').value.trim(),
-      district: document.getElementById('stuDistrict').value.trim(),
-      fatherPhone: document.getElementById('stuFatherPhone').value.trim(),
-      motherPhone: document.getElementById('stuMotherPhone').value.trim(),
-      aadhaar: document.getElementById('stuAadhaar').value.trim(),
-      dob: document.getElementById('stuDob').value.trim(),
-      dobWords: document.getElementById('stuDobWords').value.trim(),
-      bankAcc: document.getElementById('stuBankAcc').value.trim(),
-      bankName: document.getElementById('stuBankName').value.trim(),
-      branch: document.getElementById('stuBranch').value.trim(),
-      ifsc: document.getElementById('stuIFSC').value.trim(),
-      category: document.getElementById('stuCategory').value.trim(),
-      blood: document.getElementById('stuBlood').value.trim(),
-      ration: document.getElementById('stuRation').value.trim(),
-      class: document.getElementById('stuClass').value.trim(),
-      roll: document.getElementById('stuRoll').value.trim(),
-      photo: document.getElementById('stuPhoto').value.trim(),
-      declaration: document.getElementById('stuDeclaration').value.trim()
-    };
-    // update if id exists
-    const arr = getStudents(); const idx = arr.findIndex(x=>x.id===s.id);
-    if(idx>=0) arr[idx]=s; else arr.push(s);
-    setStudents(arr); alert('Saved'); renderStudents(); populateClassFilter();
-  }
-  function clearForm(){
-    document.querySelectorAll('#stuFirst,#stuMiddle,#stuLast,#stuAadhaarName,#stuFather,#stuMother,#stuResidence,#stuTehsil,#stuDistrict,#stuFatherPhone,#stuMotherPhone,#stuAadhaar,#stuDob,#stuDobWords,#stuBankAcc,#stuBankName,#stuBranch,#stuIFSC,#stuCategory,#stuBlood,#stuRation,#stuClass,#stuRoll,#stuPhoto,#stuDeclaration').forEach(i=>i.value='');
+<style>
+  /* NAV BAR WRAPPER */
+  .navbar {
+    background: white;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 12px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
   }
 
-  function renderStudents(){
-    const grid = document.getElementById('studentsGrid'); grid.innerHTML='';
-    const arr = getStudents();
-    const filter = document.getElementById('classFilter').value;
-    arr.filter(s => !filter || s.class===filter).forEach(s=>{
+  /* MENU BUTTONS */
+  .navbar a, .dropdown-btn {
+    text-decoration: none;
+    color: #023e8a;
+    font-weight: 700;
+    padding: 10px 16px;
+    background: linear-gradient(145deg, #ffffff, #d4e9ff);
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px #c4d8ff, -4px -4px 10px #ffffff;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .navbar a:hover, .dropdown-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 4px 4px 14px #a4c8ff, -4px -4px 14px #ffffff;
+  }
+
+  /* DROPDOWN CONTAINER */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* DROPDOWN MENU */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 180px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.20);
+    padding: 8px 0;
+    z-index: 20;
+  }
+
+  .dropdown-content a {
+    display: block;
+    padding: 10px 16px;
+    font-weight: 600;
+    color: #023e8a;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+
+  .dropdown-content a:hover {
+    background: #e6f1ff;
+  }
+
+  /* SHOW DROPDOWN ON HOVER */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  /* MOBILE SUPPORT */
+  @media (max-width: 700px) {
+    .dropdown-content {
+      position: static;
+      box-shadow: none;
+      background: #f7fbff;
+    }
+  }
+</style>
+
+<nav class="navbar">
+  <a href="index.html">Home</a>
+
+  <!-- ABOUT DROPDOWN -->
+  <div class="dropdown">
+    <div class="dropdown-btn">About ▾</div>
+    <div class="dropdown-content">
+      <a href="about.html">School Profile</a>
+      <a href="principal.html">Principal Message</a>
+      <a href="staff.html">Staff</a>
+    </div>
+  </div>
+
+  <!-- ACADEMICS DROPDOWN -->
+  <div class="dropdown">
+    <div class="dropdown-btn">Academics ▾</div>
+    <div class="dropdown-content">
+      <a href="admission.html">Admission</a>
+      <a href="results.html">Results</a>
+      <a href="mdm.html">Mid-Day Meal</a>
+    </div>
+  </div>
+
+  <!-- STUDENTS DROPDOWN -->
+  <div class="dropdown">
+    <div class="dropdown-btn">Students ▾</div>
+    <div class="dropdown-content">
+      <a href="gallery.html">Gallery</a>
+      <a href="activities.html">Activities</a>
+      <a href="achievements.html">Achievements</a>
+    </div>
+  </div>
+
+  <a href="contact.html">Contact</a>
+  <a href="admin.html">Admin Panel</a>
+</nav>
       const box = document.createElement('div'); box.className='student-card';
       box.innerHTML = `<div class="photo">${s.photo?'<img src="'+s.photo+'" style="width:100%;height:100%;object-fit:cover">':(s.name? s.name.charAt(0):'S')}</div>
         <div style="font-weight:800">${s.name}</div>
