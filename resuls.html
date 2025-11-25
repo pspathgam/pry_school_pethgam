@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Government Primary School Pethgam Wagoora</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* TEMP fallback if style.css is missing */
+body { margin:0; font-family:Arial; background:#f6fbff; }
+header { background:#005bbb; color:white; padding:20px; font-size:22px; text-align:center; font-weight:bold; }
+nav { background:#003f7f; padding:10px; text-align:center; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+.section { background:white; margin:15px; padding:20px; border-radius:10px; }
+.apply-btn { background:#28a745; padding:12px; border:none; border-radius:6px; color:white; font-size:18px; width:100%; }
+.apply-btn:hover { background:#1e7e34; }
+#admissionForm { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); justify-content:center; align-items:center; }
+.form-box { background:white; padding:25px; width:90%; max-width:450px; border-radius:10px; }
+.close-btn { background:#d00000; color:white; border:none; width:100%; padding:10px; border-radius:6px; margin-top:10px; }
+input { width:100%; padding:10px; margin:7px 0; border:1px solid #ccc; border-radius:6px; }
+.marquee { background:#fff3cd; padding:8px; color:#b85a00; font-weight:bold; overflow:hidden; white-space:nowrap; }
+.marquee span { display:inline-block; animation:scroll 12s linear infinite; }
+@keyframes scroll { from{transform:translateX(100%);} to{transform:translateX(-100%);} }  
+</style>
+
+<script>
+/* FIXED: WORKING OPEN / CLOSE LOGIC */
+function openForm(){
+    document.getElementById('admissionForm').style.display="flex";
+}
+function closeForm(){
+    document.getElementById('admissionForm').style.display="none";
+}
+function submitForm(){
+    alert("Form Submitted Successfully!");
+}
+</script>
+
+</head>
+
+<body>
+
+<!-- HEADER FIXED -->
+<header>
+    Government Primary School Pethgam Wagoora <br>
+    UDISE: XXXXX | Email: gpspethgam@gmail.com | Contact: 700XXXXXXX
+</header>
+
+<!-- NAVIGATION RESTORED -->
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Admissions</a>
+    <a href="#">Staff</a>
+    <a href="#">Gallery</a>
+    <a href="#">Results</a>
+</nav>
+
+<!-- SCROLLING NOTICES RESTORED -->
+<div class="marquee">
+    <span>★ Admission Open 2025 ★ Winter Vacation Expected from 1 December ★ FA-1 to FA-6 Schedule Available ★</span>
+</div>
+
+<!-- HERO SECTION (ORIGINAL STRUCTURE) -->
+<div class="section" style="text-align:center;">
+    <h1>Welcome to GPS Pethgam Wagoora</h1>
+    <p>Striving for Excellence in Education</p>
+</div>
+
+<!-- QUICK LINKS RESTORED -->
+<div class="section">
+    <h2>Quick Links</h2>
+    <ul>
+        <li>Attendance</li>
+        <li>Results</li>
+        <li>Staff Directory</li>
+        <li>Gallery</li>
+    </ul>
+</div>
+
+<!-- NEWS & EVENTS -->
+<div class="section">
+    <h2>News & Events</h2>
+    <p>★ New Academic Session has started.</p>
+    <p>★ FA Assessments evenly spread across the session.</p>
+    <p>★ School Development Plan Updated.</p>
+</div>
+
+<!-- APPLY SECTION (UNCHANGED, FIXED) -->
+<div class="section" style="text-align:center;">
+    <h2>Admission 2025</h2>
+    <button class="apply-btn" onclick="openForm()">Apply Now</button>
+</div>
+
+<!-- POPUP FORM (WORKING NOW) -->
+<div id="admissionForm">
+    <div class="form-box">
+        <h3>Admission Form</h3>
+
+        <input type="text" placeholder="Student Name" required>
+        <input type="text" placeholder="Parent Name" required>
+        <input type="number" placeholder="Mobile Number" required>
+        <input type="text" placeholder="Class" required>
+
+        <button class="apply-btn" onclick="submitForm()">Submit</button>
+        <button class="close-btn" onclick="closeForm()">Close</button>
+    </div>
+</div>
+
+</body>
+</html>
